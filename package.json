@@ -1,0 +1,7 @@
+{
+  "private": "true",
+  "workspaces": ["addon", "test-app"],
+  "version": "0.0.0",
+  "scripts": {},
+  "license": "MIT"
+}
