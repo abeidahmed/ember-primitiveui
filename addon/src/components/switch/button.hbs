@@ -1,0 +1,16 @@
+{{#let (element (or @as "button")) as |Tag|}}
+  <Tag
+    id={{@buttonId}}
+    role="switch"
+    tabindex="0"
+    aria-labelledby={{if @label @labelId}}
+    aria-checked="{{@isChecked}}"
+    {{on "click" @onButtonClick}}
+    {{on "keyup" @onKeyup}}
+    {{on "keypress" @onKeypress}}
+    {{this.registerButton}}
+    ...attributes
+  >
+    {{yield}}
+  </Tag>
+{{/let}}
