@@ -1,0 +1,14 @@
+{{#let (element (or @as "div")) as |Tag|}}
+  <Tag
+    id={{@panelId}}
+    tabindex="-1"
+    {{focus-trap options=(hash
+      fallbackFocus=(concat "#" @panelId)
+      allowOutsideClick=this.closeDialog
+      escapeDeactivates=this.closeDialog
+    )}}
+    ...attributes
+  >
+    {{yield}}
+  </Tag>
+{{/let}}

@@ -1,0 +1,9 @@
+<button type="button" {{on "click" this.open}}>Open dialog</button>
+
+<Dialog @open={{this.isOpen}} @onClose={{this.close}} as |dialog|>
+  <dialog.Panel>
+    <dialog.Title>This is the title</dialog.Title>
+    <dialog.Description>This is the description of the dialog</dialog.Description>
+    <button type="button">Hello button</button>
+  </dialog.Panel>
+</Dialog>

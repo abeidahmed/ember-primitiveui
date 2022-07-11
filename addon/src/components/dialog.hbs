@@ -1,0 +1,34 @@
+{{#if @open}}
+  {{#let (element (or @as "div")) as |Tag|}}
+    {{#in-element this.portalRoot insertBefore=null}}
+      <Tag
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={{if this.title this.titleId}}
+        aria-describedby={{if this.description this.descriptionId}}
+        tabindex="-1"
+        ...attributes
+      >
+        {{yield (hash
+          Title=(
+            component "dialog/title"
+            titleId=this.titleId
+            registerTitle=this.registerTitle
+            unregisterTitle=this.unregisterTitle
+          )
+          Description=(
+            component "dialog/description"
+            descriptionId=this.descriptionId
+            registerDescription=this.registerDescription
+            unregisterDescription=this.unregisterDescription
+          )
+          Panel=(
+            component "dialog/panel"
+            panelId=this.panelId
+            onClose=@onClose
+          )
+        )}}
+      </Tag>
+    {{/in-element}}
+  {{/let}}
+{{/if}}
