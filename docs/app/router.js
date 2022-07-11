@@ -15,5 +15,6 @@ Router.map(function () {
   this.route('examples', function () {
     this.route('dialog');
     this.route('switch');
+    this.route('tabs');
   });
 });
