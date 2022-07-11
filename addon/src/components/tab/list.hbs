@@ -1,0 +1,10 @@
+{{#let (element (or @as "div")) as |Tag|}}
+  <Tag
+    role="tablist"
+    aria-orientation={{if @isVertical "vertical" "horizontal"}}
+    {{on "keydown" this.onKeydown}}
+    ...attributes
+  >
+    {{yield}}
+  </Tag>
+{{/let}}

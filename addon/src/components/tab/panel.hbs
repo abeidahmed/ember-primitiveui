@@ -1,0 +1,13 @@
+{{#if this.isSelected}}
+  {{#let (element (or @as "div")) as |Tag|}}
+    <Tag
+      id={{@id}}
+      role="tabpanel"
+      tabindex={{if this.isSelected "0" "-1"}}
+      aria-labelledby={{@selectedItem.id}}
+      ...attributes
+    >
+      {{yield (hash isSelected=this.isSelected)}}
+    </Tag>
+  {{/let}}
+{{/if}}

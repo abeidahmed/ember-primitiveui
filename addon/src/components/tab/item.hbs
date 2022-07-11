@@ -1,0 +1,14 @@
+{{#let (element (or @as "button")) as |Tag|}}
+  <Tag
+    id={{this.id}}
+    role="tab"
+    tabindex={{if this.isSelected "0" "-1"}}
+    aria-controls={{if this.isSelected @controls}}
+    aria-selected="{{this.isSelected}}"
+    {{on "click" this.onClick}}
+    {{this.registerItem}}
+    ...attributes
+  >
+    {{yield (hash isSelected=this.isSelected)}}
+  </Tag>
+{{/let}}

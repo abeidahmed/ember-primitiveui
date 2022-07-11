@@ -79,6 +79,11 @@
       "./components/switch.js": "./dist/_app_/components/switch.js",
       "./components/switch/button.js": "./dist/_app_/components/switch/button.js",
       "./components/switch/label.js": "./dist/_app_/components/switch/label.js",
+      "./components/tab.js": "./dist/_app_/components/tab.js",
+      "./components/tab/item.js": "./dist/_app_/components/tab/item.js",
+      "./components/tab/list.js": "./dist/_app_/components/tab/list.js",
+      "./components/tab/panel.js": "./dist/_app_/components/tab/panel.js",
+      "./helpers/dom.js": "./dist/_app_/helpers/dom.js",
       "./helpers/or.js": "./dist/_app_/helpers/or.js",
       "./modifiers/focus-trap.js": "./dist/_app_/modifiers/focus-trap.js"
     }
