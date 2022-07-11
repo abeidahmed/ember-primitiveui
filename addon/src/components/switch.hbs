@@ -1,5 +1,5 @@
 {{#let (element (or @as "div")) as |Tag|}}
-  <Tag>
+  <Tag ...attributes>
     {{yield (hash
       Label=(
         component "switch/label"

@@ -2,9 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Docs</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.">
+    <meta property="og:title" content="Ember SkeletonUI">
+    <meta property="og:url" content="https://ember-primitiveui.netlify.com">
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.">
+    <meta name="twitter:title" content="Ember SkeletonUI">
+    <meta name="twitter:description" content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.">
 
     {{content-for "head"}}
 
@@ -13,7 +18,7 @@
 
     {{content-for "head-footer"}}
   </head>
-  <body>
+  <body class="bg-white text-gray-900 min-h-screen font-normal text-base">
     {{content-for "body"}}
 
     <script src="{{rootURL}}assets/vendor.js"></script>
