@@ -1,0 +1,5 @@
+{{#let (element (or @as "h2")) as |Tag|}}
+  <Tag id={{@titleId}} {{this.registerTitle}} ...attributes>
+    {{yield}}
+  </Tag>
+{{/let}}

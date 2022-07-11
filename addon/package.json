@@ -30,7 +30,8 @@
   "dependencies": {
     "@embroider/addon-shim": "^1.8.3",
     "ember-element-helper": "^0.6.1",
-    "ember-modifier": "^3.2.7"
+    "ember-modifier": "^3.2.7",
+    "focus-trap": "^6.9.4"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
@@ -71,10 +72,15 @@
     "type": "addon",
     "version": 2,
     "app-js": {
+      "./components/dialog.js": "./dist/_app_/components/dialog.js",
+      "./components/dialog/description.js": "./dist/_app_/components/dialog/description.js",
+      "./components/dialog/panel.js": "./dist/_app_/components/dialog/panel.js",
+      "./components/dialog/title.js": "./dist/_app_/components/dialog/title.js",
       "./components/switch.js": "./dist/_app_/components/switch.js",
       "./components/switch/button.js": "./dist/_app_/components/switch/button.js",
       "./components/switch/label.js": "./dist/_app_/components/switch/label.js",
-      "./helpers/or.js": "./dist/_app_/helpers/or.js"
+      "./helpers/or.js": "./dist/_app_/helpers/or.js",
+      "./modifiers/focus-trap.js": "./dist/_app_/modifiers/focus-trap.js"
     }
   },
   "exports": {

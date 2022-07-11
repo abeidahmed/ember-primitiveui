@@ -1,0 +1,5 @@
+{{#let (element (or @as "p")) as |Tag|}}
+  <Tag id={{@descriptionId}} {{this.registerDescription}} ...attributes>
+    {{yield}}
+  </Tag>
+{{/let}}
