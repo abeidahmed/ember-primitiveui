@@ -12,4 +12,7 @@ Router.map(function () {
     this.route('switch');
     this.route('tabs');
   });
+  this.route('examples', function () {
+    this.route('dialog');
+  });
 });

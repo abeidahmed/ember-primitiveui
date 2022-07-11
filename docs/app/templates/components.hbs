@@ -1,3 +1,5 @@
+<Navbar />
+
 <div class="flex max-w-8xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
   <div class="hidden lg:block flex-shrink-0 w-64 mr-9">
     <nav class="space-y-4 text-gray-600">
@@ -15,9 +17,7 @@
     </nav>
   </div>
 
-  <main class="flex-1">
-    <article class="w-full max-w-[800px] mx-auto lg:mx-0 prose">
-      {{outlet}}
-    </article>
+  <main class="flex-1 overflow-x-hidden">
+    {{outlet}}
   </main>
 </div>
