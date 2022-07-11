@@ -7,7 +7,7 @@ export default class ExamplesRoute extends Route {
   beforeModel(transition) {
     const { targetName } = transition;
     if (targetName && targetName.split('.')[1] === 'index') {
-      this.router.transitionTo('components.dialog');
+      this.router.transitionTo('examples.dialog');
     }
   }
 }
