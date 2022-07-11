@@ -14,6 +14,9 @@ module.exports = function (defaults) {
         ],
       },
     },
+    svgJar: {
+      sourceDirs: ['public/images/icons', 'public/images/assets'],
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

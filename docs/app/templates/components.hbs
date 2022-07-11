@@ -1,0 +1,23 @@
+<div class="flex max-w-8xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+  <div class="hidden lg:block flex-shrink-0 w-64 mr-9">
+    <nav class="space-y-4 text-gray-600">
+      <LinkTo @route="components.dialog" @activeClass="text-gray-900" class="block hover:text-gray-900">
+        Dialog (Modal)
+      </LinkTo>
+
+      <LinkTo @route="components.switch" @activeClass="text-gray-900" class="block hover:text-gray-900">
+        Switch (Toggle)
+      </LinkTo>
+
+      <LinkTo @route="components.tabs" @activeClass="text-gray-900" class="block hover:text-gray-900">
+        Tabs
+      </LinkTo>
+    </nav>
+  </div>
+
+  <main class="flex-1">
+    <article class="w-full max-w-[800px] prose">
+      {{outlet}}
+    </article>
+  </main>
+</div>
