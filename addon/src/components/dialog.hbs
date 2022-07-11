@@ -7,7 +7,6 @@
         aria-labelledby={{if this.title this.titleId}}
         aria-describedby={{if this.description this.descriptionId}}
         tabindex="-1"
-        {{on "keydown" this.onKeydown}}
         ...attributes
       >
         {{yield (hash

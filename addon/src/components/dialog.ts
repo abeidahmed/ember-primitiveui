@@ -36,16 +36,6 @@ export default class DialogComponent extends Component<Args> {
     this.description = undefined;
   }
 
-  @action onKeydown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      if (!this.args.open) return;
-
-      event.preventDefault();
-      event.stopPropagation();
-      this.args.onClose();
-    }
-  }
-
   get portalRoot() {
     const {
       APP: { rootElement },

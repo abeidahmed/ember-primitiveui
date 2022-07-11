@@ -4,7 +4,8 @@
     tabindex="-1"
     {{focus-trap options=(hash
       fallbackFocus=(concat "#" @panelId)
-      allowOutsideClick=this.allowOutsideClick
+      allowOutsideClick=this.closeDialog
+      escapeDeactivates=this.closeDialog
     )}}
     ...attributes
   >

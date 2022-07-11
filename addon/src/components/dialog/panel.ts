@@ -6,7 +6,7 @@ interface Args {
 }
 
 export default class DialogPanelComponent extends Component<Args> {
-  @action allowOutsideClick() {
+  @action closeDialog() {
     this.args.onClose();
     return true;
   }
