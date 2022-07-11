@@ -1,2 +1,74 @@
 {{page-title "Switch"}}
-{{outlet}}
+
+<Article
+  @title="Switch (Toggle)"
+  @description="Similar to the checkbox element."
+  @demoSrc="/examples/switch"
+>
+{{format-markdown "
+## Basic example
+
+Switches are built using the `switch`, `switch.Button`, and `switch.Label` components. Toggling the switch calls the
+onChange function with a negated version of the checked value.
+
+```js
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
+export default class MySwitchComponent extends Component {
+  @tracked isChecked = false;
+
+  @action onChange(value) {
+    this.isChecked = value;
+  }
+}
+```
+
+```hbs
+<Switch @isChecked={{this.isChecked}} @onChange={{this.onChange}} as |switch|>
+  <switch.Label>Enable notifications</switch.Label>
+  <switch.Button>
+    <span>{{!-- more --}}</span>
+  </switch.Button>
+</Switch>
+```
+
+By default, clicking the `switch.Label` will toggle the Switch, just like the labels in native HTML checkboxes do. If
+you'd like to change this behavior, pass `@isPassive={{true}}` to the `switch.Label` as an argument.
+
+```diff
+- <switch.Label>Enable notifications</switch.Label>
++ <switch.Label @isPassive={{true}}>Enable notifications</switch.Label>
+```
+
+## Keyboard interactions
+
+| Command      | Description |
+| ---        |    ----   |
+| `Space`      | Toggles the switch when it is focused.       |
+
+## Component API
+
+### `switch`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `div`        | `string \| typeof Component` |
+| `isChecked`   | -        | `boolean`. Whether or not the switch the checked. |
+| `onChange`   | -        | `(value: boolean) => void`. The function to call when the switch is toggled. |
+
+### `switch.Label`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `label`        | `string \| typeof Component` |
+| `isPassive`   | `false`        | `boolean`. When true, clicking the label won't toggle the `switch`. |
+
+### `switch.Button`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `button`        | `string \| typeof Component` |
+"}}
+</Article>

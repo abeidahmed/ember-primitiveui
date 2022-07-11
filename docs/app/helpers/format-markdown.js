@@ -5,11 +5,13 @@ import { htmlSafe } from '@ember/template';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import handlebars from 'highlight.js/lib/languages/handlebars';
+import xml from 'highlight.js/lib/languages/xml';
 import diff from 'highlight.js/lib/languages/diff';
 import plaintext from 'highlight.js/lib/languages/plaintext';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('handlebars', handlebars);
+hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('diff', diff);
 hljs.registerLanguage('plaintext', plaintext);
 
