@@ -1,0 +1,36 @@
+{{#let (element (or @as "div")) as |Tag|}}
+  <Tag
+    {{on "keydown" this.onKeydown}}
+    {{on-outside-interaction (array "click" "focusin") this.close}}
+    ...attributes
+  >
+    {{yield (hash
+      Button=(
+        component "menu/button"
+        isOpen=this.isOpen
+        buttonId=this.buttonId
+        itemsId=this.itemsId
+        toggle=this.toggle
+        registerButton=this.registerButton
+        unregisterButton=this.unregisterButton
+      )
+      Items=(
+        component "menu/items"
+        isOpen=this.isOpen
+        itemsId=this.itemsId
+        buttonId=this.buttonId
+        activeItem=this.activeItem
+      )
+      Item=(
+        component "menu/item"
+        registerItem=this.registerItem
+        unregisterItem=this.unregisterItem
+        close=this.close
+        activeItem=this.activeItem
+        activateItem=this.activateItem
+        isMouseMoving=this.isMouseMoving
+        setMouseMoving=this.setMouseMoving
+      )
+    )}}
+  </Tag>
+{{/let}}

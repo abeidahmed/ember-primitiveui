@@ -1,0 +1,15 @@
+{{#if @isOpen}}
+  {{#let (element (or @as "div")) as |Tag|}}
+    <Tag
+      id={{@itemsId}}
+      tabindex="0"
+      role="menu"
+      aria-labelledby={{@buttonId}}
+      aria-activedescendant={{@activeItem.id}}
+      {{autofocus}}
+      ...attributes
+    >
+      {{yield}}
+    </Tag>
+  {{/let}}
+{{/if}}
