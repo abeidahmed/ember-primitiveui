@@ -1,0 +1,11 @@
+<Listbox @value={{this.selectedPerson}} @onChange={{this.setSelectedPerson}} as |listbox|>
+  <listbox.Label>Listbox label</listbox.Label>
+  <listbox.Button>{{this.selectedPerson.name}}</listbox.Button>
+  <listbox.Options>
+    {{#each this.people as |person|}}
+      <listbox.Option @value={{person}} disabled={{person.disabled}} as |option|>
+        {{person.name}} {{if option.isSelected "(selected)"}} {{if option.isActive "(active)"}}
+      </listbox.Option>
+    {{/each}}
+  </listbox.Options>
+</Listbox>

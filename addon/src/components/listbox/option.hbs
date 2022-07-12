@@ -1,0 +1,18 @@
+{{#let (element (or @as "li")) as |Tag|}}
+  <Tag
+    id={{@value.id}}
+    tabindex="-1"
+    role="option"
+    aria-selected="{{this.ariaSelected}}"
+    {{this.registerOption}}
+    {{on "click" this.onClick}}
+    {{on "mouseover" this.onMouseover}}
+    {{on "mousemove" this.onMousemove}}
+    ...attributes
+  >
+    {{yield (hash
+      isSelected=this.isSelected
+      isActive=this.isActive
+    )}}
+  </Tag>
+{{/let}}
