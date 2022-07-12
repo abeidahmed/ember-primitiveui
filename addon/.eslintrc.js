@@ -20,7 +20,9 @@ module.exports = {
   env: {
     browser: true,
   },
-  rules: {},
+  rules: {
+    'ember/no-empty-glimmer-component-classes': 'off',
+  },
   overrides: [
     // node files
     {
@@ -34,6 +36,7 @@ module.exports = {
         './blueprints/*/addon-main.js',
         './config/**/*.js',
         './tests/dummy/config/**/*.js',
+        './addon-main.js',
       ],
       parserOptions: {
         sourceType: 'script',

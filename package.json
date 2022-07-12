@@ -1,7 +1,14 @@
 {
   "private": "true",
-  "workspaces": ["addon", "docs", "test-app"],
+  "workspaces": [
+    "addon",
+    "docs",
+    "test-app"
+  ],
   "version": "0.0.0",
-  "scripts": {},
+  "scripts": {
+    "lint": "yarn workspaces run lint",
+    "test": "yarn workspaces run test:ember"
+  },
   "license": "MIT"
 }

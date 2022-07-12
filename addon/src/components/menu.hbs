@@ -1,3 +1,5 @@
+{{!-- template-lint-disable no-down-event-binding --}}
+
 {{#let (element (or @as "div")) as |Tag|}}
   <Tag
     {{on "keydown" this.onKeydown}}
