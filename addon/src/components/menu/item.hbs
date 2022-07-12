@@ -1,0 +1,14 @@
+{{#let (if (tag-is-component @as) @as (element (or @as "button"))) as |Tag|}}
+  <Tag
+    id={{this.id}}
+    role="menuitem"
+    tabindex="-1"
+    {{on "click" this.onClick}}
+    {{on "mouseover" this.onMouseover}}
+    {{on "mousemove" this.onMousemove}}
+    {{this.registerItem}}
+    ...attributes
+  >
+    {{yield (hash isActive=this.isActive)}}
+  </Tag>
+{{/let}}

@@ -1,0 +1,13 @@
+{{#let (element (or @as "button")) as |Tag|}}
+  <Tag
+    id={{@buttonId}}
+    aria-haspopup="true"
+    aria-expanded="{{@isOpen}}"
+    aria-controls={{if @isOpen @itemsId}}
+    {{on "click" @toggle}}
+    {{this.registerButton}}
+    ...attributes
+  >
+    {{yield}}
+  </Tag>
+{{/let}}

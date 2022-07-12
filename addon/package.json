@@ -76,6 +76,10 @@
       "./components/dialog/description.js": "./dist/_app_/components/dialog/description.js",
       "./components/dialog/panel.js": "./dist/_app_/components/dialog/panel.js",
       "./components/dialog/title.js": "./dist/_app_/components/dialog/title.js",
+      "./components/menu.js": "./dist/_app_/components/menu.js",
+      "./components/menu/button.js": "./dist/_app_/components/menu/button.js",
+      "./components/menu/item.js": "./dist/_app_/components/menu/item.js",
+      "./components/menu/items.js": "./dist/_app_/components/menu/items.js",
       "./components/switch.js": "./dist/_app_/components/switch.js",
       "./components/switch/button.js": "./dist/_app_/components/switch/button.js",
       "./components/switch/label.js": "./dist/_app_/components/switch/label.js",
@@ -85,7 +89,10 @@
       "./components/tab/panel.js": "./dist/_app_/components/tab/panel.js",
       "./helpers/dom.js": "./dist/_app_/helpers/dom.js",
       "./helpers/or.js": "./dist/_app_/helpers/or.js",
-      "./modifiers/focus-trap.js": "./dist/_app_/modifiers/focus-trap.js"
+      "./helpers/tag-is-component.js": "./dist/_app_/helpers/tag-is-component.js",
+      "./modifiers/autofocus.js": "./dist/_app_/modifiers/autofocus.js",
+      "./modifiers/focus-trap.js": "./dist/_app_/modifiers/focus-trap.js",
+      "./modifiers/on-outside-interaction.js": "./dist/_app_/modifiers/on-outside-interaction.js"
     }
   },
   "exports": {

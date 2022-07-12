@@ -11,10 +11,12 @@ Router.map(function () {
     this.route('dialog');
     this.route('switch');
     this.route('tabs');
+    this.route('menu');
   });
   this.route('examples', function () {
     this.route('dialog');
     this.route('switch');
     this.route('tabs');
+    this.route('menu');
   });
 });
