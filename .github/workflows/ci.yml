@@ -34,11 +34,11 @@ jobs:
         with:
           node-version: 14.x
           cache: yarn
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
       - name: Build addon
         run: yarn build
         working-directory: addon
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
       - name: Run Tests
         run: yarn test
 
