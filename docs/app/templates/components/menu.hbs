@@ -1,0 +1,120 @@
+{{page-title "Menu"}}
+
+<Article
+  @title="Menu (Dropdown)"
+  @description="An accessible menu component that you can extend to build robust custom menus with full-fledged keyboard support and aria attributes."
+  @demoSrc="/examples/menu"
+>
+{{format-markdown "
+## Usage
+
+Menu is built using the `menu`, `menu.Button`, `menu.Items`, and `menu.Item` components. Opening/closing the `menu.Items`
+is handled automatically. Here is a list of all the scenarios:
+- Opens/closes the menu when `menu.Button` is clicked.
+- Closes the menu when clicked outside the `menu` component.
+- Closes the menu when focus moves outside the `menu` component.
+
+```hbs
+<Menu as |menu|>
+  <menu.Button>Toggle menu</menu.Button>
+  <menu.Items>
+    <menu.Item as |item|>
+      Account settings {{if item.isActive \"(active)\"}}
+    </menu.Item>
+
+    <menu.Item disabled as |item|>
+      Help {{if item.isActive \"(active)\"}}
+    </menu.Item>
+
+    <menu.Item as |item|>
+      Guides {{if item.isActive \"(active)\"}}
+    </menu.Item>
+  </menu.Items>
+</Menu>
+```
+
+## Styling the active item
+
+Each `menu.Item` yields `isActive` getter which is true when the item is active, otherwise false.
+
+```hbs
+<menu.Item as |item|>
+  <span class=\"w-full {{if item.isActive \"text-gray-700\" \"text-gray-300\"}}\">
+    Account
+  </span>
+</menu.Item>
+```
+
+## Disabling an item
+
+Pass the `disabled` attribute to the `menu.Item` component. This will make it unselectable via keyboard navigation,
+and it will be skipped when pressing the up/down arrows.
+
+```diff
+- <menu.Item as |item|>Account</menu.Item>
++ <menu.Item disabled as |item|>Account</menu.Item>
+```
+
+## Integrating with `LinkTo` component
+
+Pass the `LinkTo` component to the `@as` argument and it will automatically redirect to the page and will also close
+the menu.
+
+```hbs
+<menu.Item @as={{component \"link-to\" route=\"about\" query=(...) model=\"...\"}} as |item|>
+  About page
+</menu.Item>
+```
+
+## Focus management
+
+Clicking the `menu.Button` toggles the menu and focuses the `menu.Items` component. Pressing `Tab` when inside the
+`menu.Items` will close the menu and focus returns to `menu.Button` component.
+
+## Mouse interaction
+
+Clicking anywhere outside of an open menu will close that menu and focus returns to the `menu.Button` component.
+
+## Keyboard interaction
+
+| Command      | Description |
+| ---        |    ----   |
+| `Enter` when `menu.Button` is focused      | Opens the menu and activates the first non-disabled `menu.Item`.       |
+| `Space` when `menu.Button` is focused      | Opens the menu and activates the first non-disabled `menu.Item`.       |
+| `ArrowDown` when `menu.Button` is focused      | Opens the menu and activates the first non-disabled `menu.Item`.       |
+| `ArrowUp` when `menu.Button` is focused      | Opens the menu and activates the last non-disabled `menu.Item`.       |
+| `Esc`   | Closes any open menus.        |
+| `ArrowDown` when menu is open   | Activates next non-disabled `menu.Item`.        |
+| `ArrowUp` when menu is open   | Activates previous non-disabled `menu.Item`.        |
+
+## Component API
+
+### `menu`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `div`        | `string \| typeof Component` |
+
+### `menu.Button`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `button`        | `string \| typeof Component` |
+
+### `menu.Items`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `div`        | `string \| typeof Component` |
+
+### `menu.Item`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `button`        | `string \| typeof Component` |
+
+| Yields      | Description |
+| ---        |   ---- |
+| `isActive`   |  `boolean`. Whether or not the `menu.Item` is currently active. |
+"}}
+</Article>
