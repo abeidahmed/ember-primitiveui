@@ -8,7 +8,7 @@
   "version": "0.0.0",
   "scripts": {
     "lint": "yarn workspaces run lint",
-    "test": "yarn workspaces run test:ember"
+    "test": "yarn workspace docs run test:ember && yarn workspace test-app run test:ember"
   },
   "license": "MIT"
 }
