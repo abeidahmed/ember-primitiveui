@@ -8,9 +8,12 @@
     "ember-headlessui",
     "component"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abeidahmed/ember-primitiveui"
+  },
   "license": "MIT",
-  "author": "",
+  "author": "abeidahmed",
   "files": [
     "addon-main.js",
     "dist"
