@@ -1,9 +1,12 @@
 {
   "name": "ember-primitiveui",
   "version": "0.1.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "headlessui",
+    "ember-headlessui",
+    "component"
   ],
   "repository": "",
   "license": "MIT",
@@ -12,6 +15,9 @@
     "addon-main.js",
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
