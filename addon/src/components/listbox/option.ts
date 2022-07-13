@@ -68,10 +68,4 @@ export default class ListboxOptionComponent extends Component<Args> {
   get disabled() {
     return this.elem?.hasAttribute('disabled');
   }
-
-  get ariaSelected() {
-    if (this.disabled) return undefined;
-
-    return !!this.isSelected;
-  }
 }
