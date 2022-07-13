@@ -1,21 +1,26 @@
 {
   "name": "ember-primitiveui",
   "version": "0.1.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "headlessui",
+    "ember-headlessui",
+    "component"
   ],
-  "repository": "",
-  "license": "MIT",
-  "author": "",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abeidahmed/ember-primitiveui"
   },
+  "license": "MIT",
+  "author": "abeidahmed",
   "files": [
     "addon-main.js",
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
@@ -71,6 +76,7 @@
     "main": "addon-main.js",
     "type": "addon",
     "version": 2,
+    "demoURL": "https://ember-primitiveui.netlify.com",
     "app-js": {
       "./components/dialog.js": "./dist/_app_/components/dialog.js",
       "./components/dialog/description.js": "./dist/_app_/components/dialog/description.js",
