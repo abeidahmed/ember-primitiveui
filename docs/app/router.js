@@ -12,6 +12,7 @@ Router.map(function () {
     this.route('switch');
     this.route('tabs');
     this.route('menu');
+    this.route('listbox');
   });
   this.route('examples', function () {
     this.route('dialog');
