@@ -269,7 +269,7 @@ module('Integration | Component | menu', function (hooks) {
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
-            <menu.Item @isDisabled={{true}} data-test-item2>
+            <menu.Item disabled data-test-item2>
               Item 2
             </menu.Item>
             <menu.Item data-test-item3>
@@ -287,11 +287,7 @@ module('Integration | Component | menu', function (hooks) {
         .dom('[data-test-items]')
         .hasAria('activedescendant', find('[data-test-item1]').id);
 
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowDown');
-      assert
-        .dom('[data-test-items]')
-        .hasAria('activedescendant', find('[data-test-item2]').id);
-
+      // skips option2
       await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowDown');
       assert
         .dom('[data-test-items]')
@@ -311,7 +307,7 @@ module('Integration | Component | menu', function (hooks) {
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
-            <menu.Item @isDisabled={{true}} data-test-item2>
+            <menu.Item disabled data-test-item2>
               Item 2
             </menu.Item>
             <menu.Item data-test-item3>
@@ -329,11 +325,7 @@ module('Integration | Component | menu', function (hooks) {
         .dom('[data-test-items]')
         .hasAria('activedescendant', find('[data-test-item3]').id);
 
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowUp');
-      assert
-        .dom('[data-test-items]')
-        .hasAria('activedescendant', find('[data-test-item2]').id);
-
+      // skips option2
       await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowUp');
       assert
         .dom('[data-test-items]')

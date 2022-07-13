@@ -1,0 +1,170 @@
+{{page-title "Listbox"}}
+
+<Article
+  @title="Listbox (Select)"
+  @description="Build custom select menus for your app, with robust support for keyboard navigation."
+  @demoSrc="/examples/listbox"
+>
+{{format-markdown "
+## Usage
+
+Listboxes are built using the `listbox`, `listbox.Label`, `listbox.Button`, `listbox.Options`, and `listbox.Option`
+components.
+
+The `listbox.Button` automatically opens/closes the `listbox.Options` when clicked, and when the menu is open, the
+items receives focus and is navigable via keyboard.
+
+```js
+import Component from '@glimmer/component';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
+export default class MyDialogComponent extends Component {
+  people = [
+    { id: 1, name: 'Thomas Alva Edison', disabled: false },
+    { id: 2, name: 'Max Planck', disabled: false },
+    { id: 3, name: 'Mary Somerville', disabled: false },
+  ];
+
+  @tracked selectedPerson = this.people[0];
+
+  @action setSelectedPerson(person) {
+    this.selectedPerson = person;
+  }
+}
+```
+
+```hbs
+<Listbox
+  @value={{this.selectedPerson}}
+  @onChange={{this.setSelectedPerson}} as |listbox|
+>
+  <listbox.Button>{{this.selectedPerson.name}}</listbox.Button>
+  <listbox.Options>
+    {{#each this.people as |person|}}
+      <listbox.Option @value={{person}} disabled={{person.disabled}}>
+        {{person.name}}
+      </listbox.Option>
+    {{/each}}
+  </listbox.Options>
+</Listbox>
+```
+
+## Styling the active and selected `listbox.Option`
+
+Each `listbox.Option` yields `isActive` and `isSelected` getter function that you can use to style your listboxes.
+
+```diff
+<Listbox
+  @value={{this.selectedPerson}}
+  @onChange={{this.setSelectedPerson}} as |listbox|
+>
+  <listbox.Button>{{this.selectedPerson.name}}</listbox.Button>
+  <listbox.Options>
+    {{#each this.people as |person|}}
++     <listbox.Option @value={{person}} disabled={{person.disabled}} as |option|>
++       <span
++         class=\"{{if option.isActive \"bg-blue-500 text-white\" \"bg-white text-gray-900\"}}\"
++       >
++         {{person.name}} {{if option.isSelected \"(selected)\"}}
++       </span>
+      </listbox.Option>
+    {{/each}}
+  </listbox.Options>
+</Listbox>
+```
+
+## Using a custom label
+
+By default, the `listbox` will use the contents of the button as label for screenreaders. If you'd like more
+control of what is announced, use the `listbox.Label` component.
+
+```diff
+<Listbox
+  @value={{this.selectedPerson}}
+  @onChange={{this.setSelectedPerson}} as |listbox|
+>
++ <listbox.Label>Send notification to:</listbox.Label>
+  <listbox.Button>{{this.selectedPerson.name}}</listbox.Button>
+  <listbox.Options>
+    {{#each this.people as |person|}}
+      <listbox.Option @value={{person}} disabled={{person.disabled}}>
+        {{person.name}}
+      </listbox.Option>
+    {{/each}}
+  </listbox.Options>
+</Listbox>
+```
+
+## Disabling an option
+
+Pass the `disabled` attribute to the `listbox.Option` component and it will make it unselectable. It will also
+be skipped when pressing the Up/Down arrows.
+
+```hbs
+<listbox.Option @value={{person}} disabled>
+  {{person.name}}
+</listbox.Option>
+```
+
+## Focus management
+
+When a `listbox` is opened, the `listbox.Options` receives focus. Closing the `listbox` returns the focus back to the
+`listbox.Button`.
+
+## Mouse interaction
+
+Clicking the `listbox.Button` toggles the opening/closing of the `listbox.Options`. Clicking anywhere outside of the
+`listbox` closes the current `listbox`.
+
+## Keyboard interactions
+
+| Command      | Description |
+| ---        |    ----   |
+| `Enter` `Space` `ArrowDown` when `listbox.Button` is focused      | Opens listbox and activates the first option when there is no selected option. Opens listbox and activates the first selected option when there is a selected option.      |
+| `ArrowUp` when `listbox.Button` is focused      | Opens listbox and activates the last option when there is no selected option.  Opens listbox and activates the first selected option when there is a selected option.      |
+| `ArrowDown` when `listbox` is open      | Activates next non-disabled option. |
+| `ArrowUp` when `listbox` is open      | Activates previous non-disabled option. |
+| `Enter` `Space` when `listbox` is open      | Selects the activated option. |
+
+## Component API
+
+### `listbox`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `div`        | `string` |
+| `value`   | - | `{}`. If selected, then `{ id: number \| string, ...rest }` |
+| `onChange`   | - | `(value: { id: number \| string, ...rest })`. Returns the passed `value` argument to `listbox.Option`. |
+
+## `listbox.Label`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `label`        | `string` |
+
+## `listbox.Button`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `button`        | `string` |
+
+## `listbox.Options`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `ul`        | `string` |
+
+## `listbox.Option`
+
+| Argument      | Default | Description |
+| ---        |    ----   | ---- |
+| `as`   | `li`        | `string` |
+| `value`   | -        | `{ id: number \| string, ...rest }` |
+
+| Yields      | Description |
+| ---        |   ---- |
+| `isActive`   |  `boolean`. Whether or not the `listbox.Option` is active. |
+| `isSelected`   |  `boolean`. Whether or not the `listbox.Option` is selected. |
+"}}
+</Article>

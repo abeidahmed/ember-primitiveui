@@ -1,0 +1,10 @@
+{{#let (element (or @as "label")) as |Tag|}}
+  <Tag
+    id={{@labelId}}
+    {{on "click" @onLabelClick}}
+    {{this.registerLabel}}
+    ...attributes
+  >
+    {{yield}}
+  </Tag>
+{{/let}}
