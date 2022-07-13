@@ -6,6 +6,7 @@ import {
   click,
   triggerKeyEvent,
   focus,
+  triggerEvent,
 } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
@@ -110,51 +111,6 @@ module('Integration | Component | listbox', function (hooks) {
     });
   });
 
-  module('initial active option', function () {
-    test('activates the first option if there is no selected option', async function (assert) {
-      this.set('option', { id: 1 });
-      this.set('selectedValue', {});
-
-      await render(hbs`
-        <Listbox @value={{this.selectedValue}} as |listbox|>
-          <listbox.Button data-test-button>Button</listbox.Button>
-          <listbox.Options data-test-options>
-            <listbox.Option @value={{this.option}} data-test-option>Option 1</listbox.Option>
-          </listbox.Options>
-        </Listbox>
-      `);
-
-      await click('[data-test-button]');
-      assert
-        .dom('[data-test-options]')
-        .hasAria('activedescendant', this.option.id.toString());
-      assert.dom('[data-test-option]').hasAria('selected', 'false');
-    });
-
-    test('activates the first selected option', async function (assert) {
-      this.set('active', { id: 2 });
-      this.set('option1', { id: 1 });
-      this.set('option2', { id: 2 });
-
-      await render(hbs`
-        <Listbox @value={{this.active}} as |listbox|>
-          <listbox.Button data-test-button>Button</listbox.Button>
-          <listbox.Options data-test-options>
-            <listbox.Option @value={{this.option1}} data-test-option1>Option 1</listbox.Option>
-            <listbox.Option @value={{this.option2}} data-test-option2>Option 2</listbox.Option>
-          </listbox.Options>
-        </Listbox>
-      `);
-
-      await click('[data-test-button]');
-      assert
-        .dom('[data-test-options]')
-        .hasAria('activedescendant', this.active.id.toString());
-      assert.dom('[data-test-option1]').hasAria('selected', 'false');
-      assert.dom('[data-test-option2]').hasAria('selected', 'true');
-    });
-  });
-
   module('selecting an option', function () {
     test('dispatches the selected value and closes the options', async function (assert) {
       this.set('selectedValue', {});
@@ -203,6 +159,111 @@ module('Integration | Component | listbox', function (hooks) {
     });
   });
 
+  module('activating an option', function () {
+    test('activates the first option if there is no selected option', async function (assert) {
+      this.set('option', { id: 1 });
+      this.set('selectedValue', {});
+
+      await render(hbs`
+        <Listbox @value={{this.selectedValue}} as |listbox|>
+          <listbox.Button data-test-button>Button</listbox.Button>
+          <listbox.Options data-test-options>
+            <listbox.Option @value={{this.option}} data-test-option>Option 1</listbox.Option>
+          </listbox.Options>
+        </Listbox>
+      `);
+
+      await click('[data-test-button]');
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option.id.toString());
+      assert.dom('[data-test-option]').hasAria('selected', 'false');
+    });
+
+    test('activates the first selected option', async function (assert) {
+      this.set('active', { id: 2 });
+      this.set('option1', { id: 1 });
+      this.set('option2', { id: 2 });
+
+      await render(hbs`
+        <Listbox @value={{this.active}} as |listbox|>
+          <listbox.Button data-test-button>Button</listbox.Button>
+          <listbox.Options data-test-options>
+            <listbox.Option @value={{this.option1}} data-test-option1>Option 1</listbox.Option>
+            <listbox.Option @value={{this.option2}} data-test-option2>Option 2</listbox.Option>
+          </listbox.Options>
+        </Listbox>
+      `);
+
+      await click('[data-test-button]');
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.active.id.toString());
+      assert.dom('[data-test-option1]').hasAria('selected', 'false');
+      assert.dom('[data-test-option2]').hasAria('selected', 'true');
+    });
+
+    test('activates on mouseover', async function (assert) {
+      this.set('selectedValue', {});
+      this.set('option1', { id: 1 });
+      this.set('option2', { id: 2 });
+      this.set('onChange', (value) => {
+        this.set('selectedValue', value);
+      });
+
+      await render(hbs`
+        <Listbox @value={{this.selectedValue}} @onChange={{this.onChange}} data-test-listbox as |listbox|>
+          <listbox.Button data-test-button>Button</listbox.Button>
+          <listbox.Options data-test-options>
+            <listbox.Option @value={{this.option1}} data-test-option1>Option 1</listbox.Option>
+            <listbox.Option @value={{this.option2}} data-test-option2>Option 2</listbox.Option>
+          </listbox.Options>
+        </Listbox>
+      `);
+
+      await click('[data-test-button]');
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
+
+      await triggerEvent('[data-test-option2]', 'mousemove');
+      await triggerEvent('[data-test-option2]', 'mouseover');
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option2]').id);
+    });
+
+    test('does not activate a disabled item on mouseover', async function (assert) {
+      this.set('selectedValue', {});
+      this.set('option1', { id: 1 });
+      this.set('option2', { id: 2 });
+      this.set('onChange', (value) => {
+        this.set('selectedValue', value);
+      });
+
+      await render(hbs`
+        <Listbox @value={{this.selectedValue}} @onChange={{this.onChange}} data-test-listbox as |listbox|>
+          <listbox.Button data-test-button>Button</listbox.Button>
+          <listbox.Options data-test-options>
+            <listbox.Option @value={{this.option1}} data-test-option1>Option 1</listbox.Option>
+            <listbox.Option @value={{this.option2}} disabled data-test-option2>Option 2</listbox.Option>
+          </listbox.Options>
+        </Listbox>
+      `);
+
+      await click('[data-test-button]');
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
+
+      await triggerEvent('[data-test-option2]', 'mousemove');
+      await triggerEvent('[data-test-option2]', 'mouseover');
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
+    });
+  });
+
   module('keyboard interactions', function () {
     test('opens/closes the listbox with Enter/Space key', async function (assert) {
       this.set('selectedValue', {});
@@ -223,6 +284,9 @@ module('Integration | Component | listbox', function (hooks) {
       assert.dom('[data-test-options]').isNotVisible();
       assert.dom('[data-test-button]').matchesSelector('span');
       await triggerKeyEvent('[data-test-button]', 'keydown', 'Enter');
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option]').id);
 
       assert.dom('[data-test-options]').isVisible();
 
@@ -231,9 +295,82 @@ module('Integration | Component | listbox', function (hooks) {
 
       await triggerKeyEvent('[data-test-button]', 'keydown', ' ');
       assert.dom('[data-test-options]').isVisible();
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option]').id);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', ' ');
       assert.dom('[data-test-options]').isNotVisible();
+    });
+
+    test('opens the listbox with ArrowDown/ArrowUp and activates the first/last option when there is no selected option', async function (assert) {
+      this.set('selectedValue', {});
+      this.set('option1', { id: 1 });
+      this.set('option2', { id: 2 });
+      this.set('onChange', (value) => {
+        this.set('selectedValue', value);
+      });
+
+      await render(hbs`
+        <Listbox @value={{this.selectedValue}} @onChange={{this.onChange}} data-test-listbox as |listbox|>
+          <listbox.Button data-test-button>Button</listbox.Button>
+          <listbox.Options data-test-options>
+            <listbox.Option @value={{this.option1}} data-test-option1>Option 1</listbox.Option>
+            <listbox.Option @value={{this.option2}} data-test-option2>Option 1</listbox.Option>
+          </listbox.Options>
+        </Listbox>
+      `);
+
+      assert.dom('[data-test-options]').isNotVisible();
+      await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowDown');
+      assert.dom('[data-test-options]').isVisible();
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
+
+      await click('[data-test-button]');
+      assert.dom('[data-test-options]').isNotVisible();
+
+      await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowUp');
+      assert.dom('[data-test-options]').isVisible();
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option2]').id);
+    });
+
+    test('opens the listbox with ArrowDown/ArrowUp and activates the selected option when there is a selected option', async function (assert) {
+      this.set('selectedValue', { id: 1 });
+      this.set('option1', { id: 1 });
+      this.set('option2', { id: 2 });
+      this.set('onChange', (value) => {
+        this.set('selectedValue', value);
+      });
+
+      await render(hbs`
+        <Listbox @value={{this.selectedValue}} @onChange={{this.onChange}} data-test-listbox as |listbox|>
+          <listbox.Button data-test-button>Button</listbox.Button>
+          <listbox.Options data-test-options>
+            <listbox.Option @value={{this.option1}} data-test-option1>Option 1</listbox.Option>
+            <listbox.Option @value={{this.option2}} data-test-option2>Option 1</listbox.Option>
+          </listbox.Options>
+        </Listbox>
+      `);
+
+      assert.dom('[data-test-options]').isNotVisible();
+      await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowDown');
+      assert.dom('[data-test-options]').isVisible();
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
+
+      await click('[data-test-button]');
+      assert.dom('[data-test-options]').isNotVisible();
+
+      await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowUp');
+      assert.dom('[data-test-options]').isVisible();
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
     });
 
     test('selects the option with Enter key', async function (assert) {
