@@ -15,13 +15,29 @@ hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('diff', diff);
 hljs.registerLanguage('plaintext', plaintext);
 
+const renderer = {
+  heading(text, level) {
+    const escapedText = text
+      .toLowerCase()
+      .replace(/<[^>]*>?/g, '') // remove surrounding tags
+      .replace(/[^\w]+/g, '-'); // replace unwanted chars with '-'
+    return `
+      <h${level} id="${escapedText}" class="markdown-heading">
+        <a class="font-bold no-underline hover:underline" href="#${escapedText}">
+          ${text}
+        </a>
+      </h${level}>
+    `;
+  },
+};
+
+marked.use({ renderer });
+
 export function formatMarkdown([value]) {
-  if (!value) {
-    return;
-  }
+  if (!value) return;
 
   marked.setOptions({
-    highlight: function (code, lang) {
+    highlight(code, lang) {
       const language = hljs.getLanguage(lang) ? lang : 'plaintext';
       return hljs.highlight(code, { language }).value;
     },

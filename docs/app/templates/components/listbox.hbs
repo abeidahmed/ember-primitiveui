@@ -1,6 +1,6 @@
 {{page-title "Listbox"}}
 
-<Article
+<ArticleContainer
   @title="Listbox (Select)"
   @description="Build custom select menus for your app, with robust support for keyboard navigation."
   @demoSrc="/examples/listbox"
@@ -121,15 +121,15 @@ Clicking the `listbox.Button` toggles the opening/closing of the `listbox.Option
 
 | Command      | Description |
 | ---        |    ----   |
-| `Enter` `Space` `ArrowDown` when `listbox.Button` is focused      | Opens listbox and activates the first option when there is no selected option. Opens listbox and activates the first selected option when there is a selected option.      |
-| `ArrowUp` when `listbox.Button` is focused      | Opens listbox and activates the last option when there is no selected option.  Opens listbox and activates the first selected option when there is a selected option.      |
+| `Enter` `Space` `ArrowDown` when `listbox.Button` is focused      | <ul class=\"my-0\"><li>Opens listbox and activates the first option when there is no selected option.</li><li>Opens listbox and activates the first selected option when there is a selected option.</li></ul>      |
+| `ArrowUp` when `listbox.Button` is focused      | <ul class=\"my-0\"><li>Opens listbox and activates the last option when there is no selected option.</li><li>Opens listbox and activates the first selected option when there is a selected option.</li></ul> |
 | `ArrowDown` when `listbox` is open      | Activates next non-disabled option. |
 | `ArrowUp` when `listbox` is open      | Activates previous non-disabled option. |
 | `Enter` `Space` when `listbox` is open      | Selects the activated option. |
 
 ## Component API
 
-### `listbox`
+### listbox
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
@@ -137,25 +137,25 @@ Clicking the `listbox.Button` toggles the opening/closing of the `listbox.Option
 | `value`   | - | `{}`. If selected, then `{ id: number \| string, ...rest }` |
 | `onChange`   | - | `(value: { id: number \| string, ...rest })`. Returns the passed `value` argument to `listbox.Option`. |
 
-## `listbox.Label`
+### listbox.Label
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `label`        | `string` |
 
-## `listbox.Button`
+### listbox.Button
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `button`        | `string` |
 
-## `listbox.Options`
+### listbox.Options
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `ul`        | `string` |
 
-## `listbox.Option`
+### listbox.Option
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
@@ -167,4 +167,4 @@ Clicking the `listbox.Button` toggles the opening/closing of the `listbox.Option
 | `isActive`   |  `boolean`. Whether or not the `listbox.Option` is active. |
 | `isSelected`   |  `boolean`. Whether or not the `listbox.Option` is selected. |
 "}}
-</Article>
+</ArticleContainer>

@@ -6,6 +6,7 @@ module.exports = {
     './app/templates/**/*.hbs',
     './app/components/**/*.{hbs,js}',
     './app/styles/**/*.css',
+    './app/helpers/**/*.js',
   ],
   theme: {
     extend: {

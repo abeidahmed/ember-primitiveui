@@ -1,8 +1,8 @@
 {{page-title "Tabs"}}
 
-<Article
+<ArticleContainer
   @title="Tabs"
-  @description="Fully customizable tab elements with robust keyboard and focus management."
+  @description="Fully customizable tab interfaces with robust keyboard navigation and focus management that you can extend to create accessible tab components."
   @demoSrc="/examples/tabs"
 >
 {{format-markdown "
@@ -108,7 +108,7 @@ right.
 
 ## Component API
 
-### `tab`
+### tab
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
@@ -117,13 +117,13 @@ right.
 | `isVertical`      | false       | `Boolean`. When true, the orientation of the `tab.List` will be `vertical`, otherwise it will be `horizontal`. |
 | `onChange`   | -        | `(value: string) => void`. Called whenever the tab changes. |
 
-### `tab.List`
+### tab.List
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `div`        | `string` |
 
-### `tab.Item`
+### tab.Item
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
@@ -134,7 +134,7 @@ right.
 | ---        |   ---- |
 | `isSelected`   |  `boolean`. Whether or not the `tab.Item` is currently selected. |
 
-### `tab.Panel`
+### tab.Panel
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
@@ -145,4 +145,4 @@ right.
 | ---        |   ---- |
 | `isSelected`   |  `boolean`. Whether or not the `tab.Panel` is currently selected. |
 "}}
-</Article>
+</ArticleContainer>
