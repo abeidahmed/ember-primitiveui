@@ -8,10 +8,6 @@
   "repository": "",
   "license": "MIT",
   "author": "",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "files": [
     "addon-main.js",
     "dist"
