@@ -71,6 +71,7 @@
     "main": "addon-main.js",
     "type": "addon",
     "version": 2,
+    "demoURL": "https://ember-primitiveui.netlify.com",
     "app-js": {
       "./components/dialog.js": "./dist/_app_/components/dialog.js",
       "./components/dialog/description.js": "./dist/_app_/components/dialog/description.js",
