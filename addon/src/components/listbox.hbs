@@ -1,7 +1,11 @@
 {{!-- template-lint-disable no-down-event-binding --}}
 
 {{#let (element (or @as "div")) as |Tag|}}
-  <Tag {{on "keydown" this.onKeydown}} ...attributes>
+  <Tag
+    {{on "keydown" this.onKeydown}}
+    {{on-outside-interaction (array "click" "focusin") this.close}}
+    ...attributes
+  >
     {{yield (hash
       Label=(
         component "listbox/label"

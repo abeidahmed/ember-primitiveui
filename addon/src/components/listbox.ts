@@ -3,13 +3,13 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { next } from '@ember/runloop';
 import { guidFor } from '@ember/object/internals';
+import { move } from '../helpers/dom';
 import type ListboxLabelComponent from './listbox/label';
 import type ListboxOptionComponent from './listbox/option';
 import type ListboxButtonComponent from './listbox/button';
-import { move } from '../helpers/dom';
 
 export interface Value {
-  id: number;
+  id: unknown;
 }
 
 interface Args {
