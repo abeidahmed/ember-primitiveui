@@ -19,5 +19,6 @@ Router.map(function () {
     this.route('switch');
     this.route('tabs');
     this.route('menu');
+    this.route('listbox');
   });
 });

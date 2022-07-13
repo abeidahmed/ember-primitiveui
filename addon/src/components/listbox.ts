@@ -94,6 +94,7 @@ export default class ListboxComponent extends Component<Args> {
             this.findSelectedOptionAndActivate(true);
           });
         } else {
+          event.preventDefault();
           this.setActiveOptionAndScroll(
             move(this.enabledOptions, this.activeOption, 1)
           );
@@ -107,6 +108,7 @@ export default class ListboxComponent extends Component<Args> {
             this.findSelectedOptionAndActivate(false);
           });
         } else {
+          event.preventDefault();
           this.setActiveOptionAndScroll(
             move(this.enabledOptions, this.activeOption, -1)
           );
