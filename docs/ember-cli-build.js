@@ -10,6 +10,7 @@ module.exports = function (defaults) {
         includePaths: ['app'],
         plugins: [
           { module: require('postcss-import') },
+          { module: require('autoprefixer') },
           require('tailwindcss')('./tailwind.config.js'),
         ],
       },
