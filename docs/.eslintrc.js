@@ -34,6 +34,7 @@ module.exports = {
         './lib/*/index.js',
         './server/**/*.js',
         './tailwind.config.js',
+        './fastboot-server.js',
       ],
       parserOptions: {
         sourceType: 'script',

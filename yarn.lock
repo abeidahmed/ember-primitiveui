@@ -3183,7 +3183,7 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
-basic-auth@~2.0.1:
+basic-auth@^2.0.1, basic-auth@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
   integrity sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==
@@ -6807,6 +6807,18 @@ fast-sourcemap-concat@^2.1.0:
     source-map "^0.4.2"
     source-map-url "^0.3.0"
     sourcemap-validator "^1.1.0"
+
+fastboot-app-server@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/fastboot-app-server/-/fastboot-app-server-3.3.2.tgz#7aadc5bfdda7b51a20005c26404959c1d80d098b"
+  integrity sha512-jQ+nsmcLhR49Bx1J/74eN/9yez5abzutnck91FdctWgwHMghuuas82v5hoqrKYSVq8I1J5RwS0v7WcICNLH1oA==
+  dependencies:
+    basic-auth "^2.0.1"
+    chalk "^4.1.2"
+    compression "^1.7.4"
+    express "^4.17.2"
+    fastboot "3.3.2"
+    fastboot-express-middleware "3.3.2"
 
 fastboot-express-middleware@3.3.2:
   version "3.3.2"
