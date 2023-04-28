@@ -33,6 +33,7 @@ module.exports = {
         './blueprints/*/index.js',
         './config/**/*.js',
         './tests/dummy/config/**/*.js',
+        './tailwind.config.js',
       ],
       parserOptions: {
         sourceType: 'script',
