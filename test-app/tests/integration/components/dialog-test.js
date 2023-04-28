@@ -63,9 +63,7 @@ module('Integration | Component | dialog', function (hooks) {
         </Dialog>
       `);
 
-      assert
-        .dom('[data-test-dialog]')
-        .hasAria('labelledby', find('[data-test-title]').id);
+      assert.dom('[data-test-dialog]').hasAria('labelledby', find('[data-test-title]').id);
     });
 
     test('it does not set the attribute when title is missing', async function (assert) {
@@ -93,9 +91,7 @@ module('Integration | Component | dialog', function (hooks) {
         </Dialog>
       `);
 
-      assert
-        .dom('[data-test-dialog]')
-        .hasAria('describedby', find('[data-dialog-description]').id);
+      assert.dom('[data-test-dialog]').hasAria('describedby', find('[data-dialog-description]').id);
     });
 
     test('does not set aria-describedby attribute if description is missing', async function (assert) {
