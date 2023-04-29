@@ -29,8 +29,8 @@
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "build": "rollup --config",
-    "prepublishOnly": "rollup --config",
-    "start": "rollup --config --watch"
+    "build:watch": "rollup --config --watch",
+    "prepublishOnly": "rollup --config"
   },
   "dependencies": {
     "@embroider/addon-shim": "^1.8.3",
