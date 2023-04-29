@@ -22,6 +22,7 @@ module.exports = {
   },
   rules: {
     'ember/no-empty-glimmer-component-classes': 'off',
+    'prettier/prettier': ['error'],
   },
   overrides: [
     // node files

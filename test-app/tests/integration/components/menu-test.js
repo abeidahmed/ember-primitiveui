@@ -1,6 +1,12 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from '../../helpers';
-import { render, click, triggerKeyEvent, triggerEvent, find, focus } from '@ember/test-helpers';
+import {
+  render,
+  click,
+  triggerKeyEvent,
+  triggerEvent,
+  find,
+} from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | menu', function (hooks) {
@@ -42,8 +48,10 @@ module('Integration | Component | menu', function (hooks) {
 
     const items = find('[data-test-items]');
     assert.dom('[data-test-button]').hasAria('controls', items.id);
-    assert.dom('[data-test-items]').hasAttribute('tabindex', '0');
-    assert.dom('[data-test-items]').hasAria('labelledby', find('[data-test-button]').id);
+    assert.dom('[data-test-items]').hasAttribute('tabindex', '-1');
+    assert
+      .dom('[data-test-items]')
+      .hasAria('labelledby', find('[data-test-button]').id);
     assert.dom('[data-test-items]').hasAttribute('role', 'menu');
     assert.dom('[data-test-item]').hasAttribute('tabindex', '-1');
     assert.dom('[data-test-item]').hasAttribute('role', 'menuitem');
@@ -71,26 +79,6 @@ module('Integration | Component | menu', function (hooks) {
       assert.dom('[data-test-items]').isVisible();
 
       await click(document.body);
-      assert.dom('[data-test-items]').isNotVisible();
-    });
-
-    test('closes the menu on outside focus', async function (assert) {
-      await render(hbs`
-        <Menu as |menu|>
-          <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
-            <menu.Item data-test-item>
-              Item 1
-            </menu.Item>
-          </menu.Items>
-        </Menu>
-        <button type="button" data-test-outside-button>Outside button</button>
-      `);
-
-      await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
-
-      await focus('[data-test-outside-button]');
       assert.dom('[data-test-items]').isNotVisible();
     });
   });
@@ -124,11 +112,14 @@ module('Integration | Component | menu', function (hooks) {
         </Menu>
       `);
 
+      assert.dom('[data-test-items]').isNotVisible();
       await click('[data-test-button]');
       assert.strictEqual(document.activeElement, find('[data-test-items]'));
+      assert.dom('[data-test-items]').isVisible();
 
       await click('[data-test-button]');
       assert.strictEqual(document.activeElement, find('[data-test-button]'));
+      assert.dom('[data-test-items]').isNotVisible();
     });
   });
 
@@ -165,7 +156,9 @@ module('Integration | Component | menu', function (hooks) {
       await click('[data-test-button]');
       await triggerEvent('[data-test-item]', 'mousemove');
       await triggerEvent('[data-test-item]', 'mouseover');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item]').id);
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item]').id);
     });
 
     test('activates the first option on Enter', async function (assert) {
@@ -182,7 +175,9 @@ module('Integration | Component | menu', function (hooks) {
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'Enter');
       assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item]').id);
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item]').id);
     });
 
     test('activates the first option on Space', async function (assert) {
@@ -199,7 +194,9 @@ module('Integration | Component | menu', function (hooks) {
 
       await triggerKeyEvent('[data-test-button]', 'keydown', ' ');
       assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item]').id);
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item]').id);
     });
 
     test('activates the first option on ArrowDown', async function (assert) {
@@ -219,7 +216,9 @@ module('Integration | Component | menu', function (hooks) {
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowDown');
       assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item1]').id);
     });
 
     test('activates the last option on ArrowUp', async function (assert) {
@@ -239,7 +238,9 @@ module('Integration | Component | menu', function (hooks) {
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowUp');
       assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item2]').id);
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item2]').id);
     });
 
     test('cycles through the items with ArrowDown', async function (assert) {
@@ -263,15 +264,21 @@ module('Integration | Component | menu', function (hooks) {
       await click('[data-test-button]');
       assert.dom('[data-test-items]').isVisible();
 
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowDown');
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item1]').id);
 
       // skips option2
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item3]').id);
+      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowDown');
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item3]').id);
 
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowDown');
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item1]').id);
     });
 
     test('cycles through the items with ArrowUp', async function (assert) {
@@ -295,15 +302,21 @@ module('Integration | Component | menu', function (hooks) {
       await click('[data-test-button]');
       assert.dom('[data-test-items]').isVisible();
 
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item3]').id);
+      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowUp');
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item3]').id);
 
       // skips option2
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowUp');
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item1]').id);
 
-      await triggerKeyEvent('[data-test-menu]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item3]').id);
+      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowUp');
+      assert
+        .dom('[data-test-items]')
+        .hasAria('activedescendant', find('[data-test-item3]').id);
     });
   });
 

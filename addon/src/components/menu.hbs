@@ -1,38 +1,43 @@
-{{!-- template-lint-disable no-down-event-binding --}}
+{{! template-lint-disable no-down-event-binding }}
 
 {{#let (element (or @as "div")) as |Tag|}}
-  <Tag
-    {{on "keydown" this.onKeydown}}
-    {{on-outside-interaction (array "click" "focusin") this.close}}
-    ...attributes
-  >
-    {{yield (hash
-      Button=(
-        component "menu/button"
-        isOpen=this.isOpen
-        buttonId=this.buttonId
-        itemsId=this.itemsId
-        toggle=this.toggle
-        registerButton=this.registerButton
-        unregisterButton=this.unregisterButton
+  <Tag ...attributes>
+    {{yield
+      (hash
+        Button=(component
+          "menu/button"
+          isOpen=this.isOpen
+          buttonId=this.buttonId
+          itemsId=this.itemsId
+          open=this.open
+          close=this.close
+          toggle=this.toggle
+          activateFirstItem=this.activateFirstItem
+          activateLastItem=this.activateLastItem
+          setMouseMoving=this.setMouseMoving
+        )
+        Items=(component
+          "menu/items"
+          isOpen=this.isOpen
+          itemsId=this.itemsId
+          buttonId=this.buttonId
+          close=this.close
+          activeItem=this.activeItem
+          activatePreviousItem=this.activatePreviousItem
+          activateNextItem=this.activateNextItem
+          setMouseMoving=this.setMouseMoving
+        )
+        Item=(component
+          "menu/item"
+          registerItem=this.registerItem
+          unregisterItem=this.unregisterItem
+          close=this.close
+          activeItem=this.activeItem
+          activateItem=this.activateItem
+          isMouseMoving=this.isMouseMoving
+          setMouseMoving=this.setMouseMoving
+        )
       )
-      Items=(
-        component "menu/items"
-        isOpen=this.isOpen
-        itemsId=this.itemsId
-        buttonId=this.buttonId
-        activeItem=this.activeItem
-      )
-      Item=(
-        component "menu/item"
-        registerItem=this.registerItem
-        unregisterItem=this.unregisterItem
-        close=this.close
-        activeItem=this.activeItem
-        activateItem=this.activateItem
-        isMouseMoving=this.isMouseMoving
-        setMouseMoving=this.setMouseMoving
-      )
-    )}}
+    }}
   </Tag>
 {{/let}}

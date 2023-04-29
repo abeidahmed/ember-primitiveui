@@ -1,16 +1,25 @@
-<Menu as |menu|>
-  <menu.Button>Toggle menu</menu.Button>
-  <menu.Items>
-    <menu.Item @as={{component "link-to" route="index" query=(hash filter=null)}} as |item|>
-      Item 1 {{if item.isActive "(active)"}}
+<Menu class="menu" as |menu|>
+  <menu.Button class="menu-btn">
+    Options
+  </menu.Button>
+
+  <menu.Items class="menu-list">
+    <menu.Item type="button" class="menu-item" as |item|>
+      <span class="menu-item-text {{if item.isActive 'active'}}">
+        Account settings
+      </span>
     </menu.Item>
 
-    <menu.Item disabled as |item|>
-      Item 2 {{if item.isActive "(active)"}}
+    <menu.Item type="button" class="menu-item" as |item|>
+      <span class="menu-item-text {{if item.isActive 'active'}}">
+        Support
+      </span>
     </menu.Item>
 
-    <menu.Item as |item|>
-      Item 3 {{if item.isActive "(active)"}}
+    <menu.Item type="button" class="menu-item" as |item|>
+      <span class="menu-item-text {{if item.isActive 'active'}}">
+        License
+      </span>
     </menu.Item>
   </menu.Items>
 </Menu>

@@ -1,15 +1,27 @@
+{{! template-lint-disable no-down-event-binding }}
+
 {{#if @isOpen}}
-  {{#let (element (or @as "div")) as |Tag|}}
-    <Tag
-      id={{@itemsId}}
-      tabindex="0"
-      role="menu"
-      aria-labelledby={{@buttonId}}
-      aria-activedescendant={{@activeItem.id}}
-      {{autofocus}}
-      ...attributes
-    >
-      {{yield}}
-    </Tag>
-  {{/let}}
+  {{#in-element this.portalRoot insertBefore=null}}
+    {{#let (element (or @as "div")) as |Tag|}}
+      <Tag
+        id={{@itemsId}}
+        tabindex="-1"
+        role="menu"
+        aria-labelledby={{@buttonId}}
+        aria-activedescendant={{@activeItem.id}}
+        {{on "keydown" this.handleKeydown}}
+        {{focus-trap
+          options=(hash
+            fallbackFocus=(concat "#" @itemsId)
+            allowOutsideClick=this.allowOutsideClick
+            clickOutsideDeactivates=this.clickOutsideDeactivates
+            onDeactivate=@close
+          )
+        }}
+        ...attributes
+      >
+        {{yield}}
+      </Tag>
+    {{/let}}
+  {{/in-element}}
 {{/if}}
