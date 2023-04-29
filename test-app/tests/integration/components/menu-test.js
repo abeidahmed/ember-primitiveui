@@ -379,6 +379,40 @@ module('Integration | Component | menu', function (hooks) {
     });
   });
 
+  test('portals by default', async function (assert) {
+    await render(hbs`
+      <div data-test-container>
+        <Menu as |menu|>
+          <menu.Button data-test-button>Toggle menu</menu.Button>
+          <menu.Items data-test-items>
+            <menu.Item>Item 1</menu.Item>
+          </menu.Items>
+        </Menu>
+      </div>
+    `);
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-items]').isVisible();
+    assert.dom('[data-test-container]').doesNotIncludeText('Item 1');
+  });
+
+  test('portal can be disabled', async function (assert) {
+    await render(hbs`
+      <div data-test-container>
+        <Menu as |menu|>
+          <menu.Button data-test-button>Toggle menu</menu.Button>
+          <menu.Items @portal={{false}} data-test-items>
+            <menu.Item>Item 1</menu.Item>
+          </menu.Items>
+        </Menu>
+      </div>
+    `);
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-items]').isVisible();
+    assert.dom('[data-test-container]').includesText('Item 1');
+  });
+
   test('can pass LinkTo component on the item', async function (assert) {
     await render(hbs`
       <Menu as |menu|>

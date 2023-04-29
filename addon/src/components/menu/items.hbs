@@ -1,7 +1,7 @@
 {{! template-lint-disable no-down-event-binding }}
 
 {{#if @isOpen}}
-  <Portal>
+  <Portal @disabled={{reverse-boolean @portal}}>
     {{#let (element (or @as "div")) as |Tag|}}
       <Tag
         id={{@itemsId}}

@@ -1,3 +1,7 @@
-{{#in-element this.portalRoot insertBefore=null}}
+{{#if @disabled}}
   {{yield}}
-{{/in-element}}
+{{else}}
+  {{#in-element this.portalRoot insertBefore=null}}
+    {{yield}}
+  {{/in-element}}
+{{/if}}
