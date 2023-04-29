@@ -1,29 +1,5 @@
 {{page-title "Menu"}}
 
 <div class="container">
-  <Menu class="menu" as |menu|>
-    <menu.Button class="menu-btn">
-      Options
-    </menu.Button>
-
-    <menu.Items class="menu-list">
-      <menu.Item type="button" class="menu-item" as |item|>
-        <span class="menu-item-text {{if item.isActive 'active'}}">
-          Account settings
-        </span>
-      </menu.Item>
-
-      <menu.Item type="button" class="menu-item" as |item|>
-        <span class="menu-item-text {{if item.isActive 'active'}}">
-          Support
-        </span>
-      </menu.Item>
-
-      <menu.Item type="button" class="menu-item" as |item|>
-        <span class="menu-item-text {{if item.isActive 'active'}}">
-          License
-        </span>
-      </menu.Item>
-    </menu.Items>
-  </Menu>
+  <MyMenu />
 </div>
