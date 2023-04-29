@@ -10,18 +10,20 @@ module.exports = {
       legacyDecorators: true,
     },
   },
-  plugins: ['ember', '@typescript-eslint'],
+  plugins: ['ember', '@typescript-eslint', 'eslint-plugin-prettier'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'prettier',
   ],
   env: {
     browser: true,
   },
   rules: {
     'ember/no-empty-glimmer-component-classes': 'off',
+    'prettier/prettier': ['error'],
   },
   overrides: [
     // node files
