@@ -49,6 +49,7 @@
     "@glimmer/tracking": "^1.1.2",
     "@rollup/plugin-babel": "^5.3.1",
     "@types/ember__component": "^4.0.8",
+    "@types/ember__destroyable": "^4.0.1",
     "@types/ember__object": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
@@ -105,7 +106,8 @@
       "./helpers/tag-is-component.js": "./dist/_app_/helpers/tag-is-component.js",
       "./modifiers/autofocus.js": "./dist/_app_/modifiers/autofocus.js",
       "./modifiers/focus-trap.js": "./dist/_app_/modifiers/focus-trap.js",
-      "./modifiers/on-outside-interaction.js": "./dist/_app_/modifiers/on-outside-interaction.js"
+      "./modifiers/on-outside-interaction.js": "./dist/_app_/modifiers/on-outside-interaction.js",
+      "./modifiers/velcro.js": "./dist/_app_/modifiers/velcro.js"
     }
   },
   "exports": {

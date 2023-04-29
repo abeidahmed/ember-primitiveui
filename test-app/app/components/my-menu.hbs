@@ -1,9 +1,12 @@
 <Menu class="menu" as |menu|>
-  <menu.Button class="menu-btn">
+  <menu.Button class="menu-btn" data-button>
     Options
   </menu.Button>
 
-  <menu.Items class="menu-list">
+  <menu.Items
+    class="menu-list"
+    {{velcro "[data-button]" offsetOptions=(hash mainAxis=4)}}
+  >
     <menu.Item type="button" class="menu-item" as |item|>
       <span class="menu-item-text {{if item.isActive 'active'}}">
         Account settings
