@@ -95,7 +95,9 @@ export default class ListboxComponent extends Component<Args> {
           });
         } else {
           event.preventDefault();
-          this.setActiveOptionAndScroll(move(this.enabledOptions, this.activeOption, 1));
+          this.setActiveOptionAndScroll(
+            move(this.enabledOptions, this.activeOption, 1)
+          );
         }
         break;
       case 'ArrowUp':
@@ -107,7 +109,9 @@ export default class ListboxComponent extends Component<Args> {
           });
         } else {
           event.preventDefault();
-          this.setActiveOptionAndScroll(move(this.enabledOptions, this.activeOption, -1));
+          this.setActiveOptionAndScroll(
+            move(this.enabledOptions, this.activeOption, -1)
+          );
         }
         break;
       default:
@@ -159,9 +163,13 @@ export default class ListboxComponent extends Component<Args> {
   }
 
   findSelectedOptionAndActivate(first: boolean) {
-    const option = this.options.find((option) => option.args.value.id === this.args.value.id);
+    const option = this.options.find(
+      (option) => option.args.value.id === this.args.value.id
+    );
     this.selectedOption = option;
-    this.setActiveOptionAndScroll(option || this.options[first ? 0 : this.options.length - 1]);
+    this.setActiveOptionAndScroll(
+      option || this.options[first ? 0 : this.options.length - 1]
+    );
   }
 
   setActiveOptionAndScroll(option: ListboxOptionComponent) {

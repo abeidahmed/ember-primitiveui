@@ -10,13 +10,12 @@ module.exports = {
       legacyDecorators: true,
     },
   },
-  plugins: ['ember', '@typescript-eslint', 'eslint-plugin-prettier'],
+  plugins: ['ember', '@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:ember/recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
   ],
   env: {
     browser: true,

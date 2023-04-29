@@ -12,7 +12,9 @@ function assertSelectedItem(itemSelector) {
 
   QUnit.assert.dom(itemSelector).hasAria('selected', 'true');
   QUnit.assert.dom(itemSelector).hasAttribute('tabindex', '0');
-  QUnit.assert.dom(itemSelector).hasAria('controls', find(`[data-test-panel${id}]`).id);
+  QUnit.assert
+    .dom(itemSelector)
+    .hasAria('controls', find(`[data-test-panel${id}]`).id);
 }
 
 function assertNotSelectedItem(itemSelector) {
@@ -25,7 +27,9 @@ function assertSelectedPanel(panelSelector) {
   const id = getRelatedId(panelSelector);
 
   QUnit.assert.dom(panelSelector).hasAttribute('role', 'tabpanel');
-  QUnit.assert.dom(panelSelector).hasAria('labelledby', find(`[data-test-item${id}]`).id);
+  QUnit.assert
+    .dom(panelSelector)
+    .hasAria('labelledby', find(`[data-test-item${id}]`).id);
   QUnit.assert.dom(panelSelector).hasAttribute('tabindex', '0');
 }
 

@@ -1,6 +1,13 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from '../../helpers';
-import { render, find, click, triggerKeyEvent, focus, triggerEvent } from '@ember/test-helpers';
+import {
+  render,
+  find,
+  click,
+  triggerKeyEvent,
+  focus,
+  triggerEvent,
+} from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 module('Integration | Component | listbox', function (hooks) {
@@ -50,7 +57,9 @@ module('Integration | Component | listbox', function (hooks) {
     assert.dom(options).hasAttribute('role', 'listbox');
     assert.dom('[data-test-option]').hasAttribute('role', 'option');
     assert.dom('[data-test-option]').hasAttribute('tabindex', '-1');
-    assert.dom('[data-test-option]').hasAttribute('id', this.option.id.toString());
+    assert
+      .dom('[data-test-option]')
+      .hasAttribute('id', this.option.id.toString());
     assert.dom('[data-test-option]').hasAria('selected', 'false');
 
     await click(button);
@@ -80,7 +89,9 @@ module('Integration | Component | listbox', function (hooks) {
       assert.dom('[data-test-label]').hasAttribute('id');
 
       await click(button);
-      assert.dom('[data-test-options]').hasAria('labelledby', find('[data-test-label]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('labelledby', find('[data-test-label]').id);
     });
 
     test('focuses on the button element when label is clicked', async function (assert) {
@@ -163,7 +174,9 @@ module('Integration | Component | listbox', function (hooks) {
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.option.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option.id.toString());
       assert.dom('[data-test-option]').hasAria('selected', 'false');
     });
 
@@ -183,7 +196,9 @@ module('Integration | Component | listbox', function (hooks) {
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.active.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.active.id.toString());
       assert.dom('[data-test-option1]').hasAria('selected', 'false');
       assert.dom('[data-test-option2]').hasAria('selected', 'true');
     });
@@ -207,11 +222,15 @@ module('Integration | Component | listbox', function (hooks) {
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option1]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
 
       await triggerEvent('[data-test-option2]', 'mousemove');
       await triggerEvent('[data-test-option2]', 'mouseover');
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option2]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option2]').id);
     });
 
     test('does not activate a disabled item on mouseover', async function (assert) {
@@ -233,11 +252,15 @@ module('Integration | Component | listbox', function (hooks) {
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option1]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
 
       await triggerEvent('[data-test-option2]', 'mousemove');
       await triggerEvent('[data-test-option2]', 'mouseover');
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option1]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
     });
   });
 
@@ -261,7 +284,9 @@ module('Integration | Component | listbox', function (hooks) {
       assert.dom('[data-test-options]').isNotVisible();
       assert.dom('[data-test-button]').matchesSelector('span');
       await triggerKeyEvent('[data-test-button]', 'keydown', 'Enter');
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option]').id);
 
       assert.dom('[data-test-options]').isVisible();
 
@@ -270,7 +295,9 @@ module('Integration | Component | listbox', function (hooks) {
 
       await triggerKeyEvent('[data-test-button]', 'keydown', ' ');
       assert.dom('[data-test-options]').isVisible();
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option]').id);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', ' ');
       assert.dom('[data-test-options]').isNotVisible();
@@ -297,14 +324,18 @@ module('Integration | Component | listbox', function (hooks) {
       assert.dom('[data-test-options]').isNotVisible();
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowDown');
       assert.dom('[data-test-options]').isVisible();
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option1]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
 
       await click('[data-test-button]');
       assert.dom('[data-test-options]').isNotVisible();
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowUp');
       assert.dom('[data-test-options]').isVisible();
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option2]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option2]').id);
     });
 
     test('opens the listbox with ArrowDown/ArrowUp and activates the selected option when there is a selected option', async function (assert) {
@@ -328,14 +359,18 @@ module('Integration | Component | listbox', function (hooks) {
       assert.dom('[data-test-options]').isNotVisible();
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowDown');
       assert.dom('[data-test-options]').isVisible();
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option1]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
 
       await click('[data-test-button]');
       assert.dom('[data-test-options]').isNotVisible();
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowUp');
       assert.dom('[data-test-options]').isVisible();
-      assert.dom('[data-test-options]').hasAria('activedescendant', find('[data-test-option1]').id);
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', find('[data-test-option1]').id);
     });
 
     test('selects the option with Enter key', async function (assert) {
@@ -400,14 +435,20 @@ module('Integration | Component | listbox', function (hooks) {
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.option1.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option1.id.toString());
 
       // skips option 2
       await triggerKeyEvent('[data-listbox]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.option3.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option3.id.toString());
 
       await triggerKeyEvent('[data-listbox]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.option1.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option1.id.toString());
     });
 
     test('cycles through the options with ArrowUp key', async function (assert) {
@@ -428,14 +469,20 @@ module('Integration | Component | listbox', function (hooks) {
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.option1.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option1.id.toString());
 
       await triggerKeyEvent('[data-listbox]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.option3.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option3.id.toString());
 
       // skips option 2
       await triggerKeyEvent('[data-listbox]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-options]').hasAria('activedescendant', this.option1.id.toString());
+      assert
+        .dom('[data-test-options]')
+        .hasAria('activedescendant', this.option1.id.toString());
     });
 
     test('closes the option on Escape key', async function (assert) {

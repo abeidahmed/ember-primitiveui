@@ -36,7 +36,9 @@ module('Integration | Component | switch', function (hooks) {
       assert.dom('[data-test-button]').hasAttribute('role', 'switch');
       assert.dom('[data-test-button]').hasAttribute('tabindex', '0');
       assert.dom('[data-test-button]').hasAria('checked', 'false');
-      assert.dom('[data-test-button]').hasAria('labelledby', find('[data-test-label]').id);
+      assert
+        .dom('[data-test-button]')
+        .hasAria('labelledby', find('[data-test-label]').id);
     });
 
     test('clicking on the label toggles the switch', async function (assert) {
