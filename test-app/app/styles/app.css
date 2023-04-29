@@ -1,0 +1,48 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.menu {
+  position: relative;
+}
+
+.menu-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border: 1px solid #e0e1eb;
+  width: 192px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item-text {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.menu-item .active {
+  background-color: #eeeeee;
+}

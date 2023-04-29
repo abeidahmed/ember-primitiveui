@@ -1,39 +1,27 @@
 {{page-title "Menu"}}
 
-<div class="flex items-center justify-center py-8">
-  <Menu class="relative" as |menu|>
-    <menu.Button
-      class="inline-flex justify-center rounded border shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
-    >
+<div class="container">
+  <Menu class="menu" as |menu|>
+    <menu.Button class="menu-btn">
       Options
     </menu.Button>
 
-    <menu.Items
-      class="origin-top-right absolute right-0 mt-2 py-1 w-56 rounded overflow-hidden shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-    >
-      <menu.Item type="button" class="block w-full text-left" as |item|>
-        <span class="block px-4 py-2 text-sm {{if item.isActive 'bg-indigo-600 text-white' 'text-gray-700'}}">
+    <menu.Items class="menu-list">
+      <menu.Item type="button" class="menu-item" as |item|>
+        <span class="menu-item-text {{if item.isActive 'active'}}">
           Account settings
         </span>
       </menu.Item>
 
-      <menu.Item type="button" class="block w-full text-left" as |item|>
-        <span class="block px-4 py-2 text-sm {{if item.isActive 'bg-indigo-600 text-white' 'text-gray-700'}}">
+      <menu.Item type="button" class="menu-item" as |item|>
+        <span class="menu-item-text {{if item.isActive 'active'}}">
           Support
         </span>
       </menu.Item>
 
-      <menu.Item type="button" class="block w-full text-left" as |item|>
-        <span class="block px-4 py-2 text-sm {{if item.isActive 'bg-indigo-600 text-white' 'text-gray-700'}}">
+      <menu.Item type="button" class="menu-item" as |item|>
+        <span class="menu-item-text {{if item.isActive 'active'}}">
           License
-        </span>
-      </menu.Item>
-
-      <div role="none" class="border-t my-2"></div>
-
-      <menu.Item type="button" class="block w-full text-left" as |item|>
-        <span class="block px-4 py-2 text-sm {{if item.isActive 'bg-indigo-600 text-white' 'text-gray-700'}}">
-          Sign out
         </span>
       </menu.Item>
     </menu.Items>
