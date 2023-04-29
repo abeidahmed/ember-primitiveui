@@ -1,5 +1,4 @@
 {
   "disableAnalytics": false,
-  "isTypeScriptProject": false,
-  "port": 3000
+  "isTypeScriptProject": false
 }
