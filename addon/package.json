@@ -35,6 +35,7 @@
   "dependencies": {
     "@embroider/addon-shim": "^1.8.3",
     "@floating-ui/dom": "^1.2.7",
+    "body-scroll-lock": "^4.0.0-beta.0",
     "ember-element-helper": "^0.6.1",
     "ember-modifier": "^3.2.7",
     "focus-trap": "^6.9.4"
@@ -48,6 +49,7 @@
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@rollup/plugin-babel": "^5.3.1",
+    "@types/body-scroll-lock": "^3.1.0",
     "@types/ember__component": "^4.0.8",
     "@types/ember__destroyable": "^4.0.1",
     "@types/ember__object": "^4.0.2",
@@ -105,6 +107,7 @@
       "./helpers/or.js": "./dist/_app_/helpers/or.js",
       "./helpers/tag-is-component.js": "./dist/_app_/helpers/tag-is-component.js",
       "./modifiers/autofocus.js": "./dist/_app_/modifiers/autofocus.js",
+      "./modifiers/body-scroll-lock.js": "./dist/_app_/modifiers/body-scroll-lock.js",
       "./modifiers/focus-trap.js": "./dist/_app_/modifiers/focus-trap.js",
       "./modifiers/on-outside-interaction.js": "./dist/_app_/modifiers/on-outside-interaction.js",
       "./modifiers/velcro.js": "./dist/_app_/modifiers/velcro.js"
