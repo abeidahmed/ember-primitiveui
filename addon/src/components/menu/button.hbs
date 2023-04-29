@@ -1,3 +1,5 @@
+{{! template-lint-disable no-down-event-binding }}
+
 {{#let (element (or @as "button")) as |Tag|}}
   <Tag
     id={{@buttonId}}
@@ -5,7 +7,7 @@
     aria-expanded="{{@isOpen}}"
     aria-controls={{if @isOpen @itemsId}}
     {{on "click" @toggle}}
-    {{this.registerButton}}
+    {{on "keydown" this.handleKeydown}}
     ...attributes
   >
     {{yield}}

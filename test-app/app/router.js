@@ -8,5 +8,7 @@ export default class Router extends EmberRouter {
 
 Router.map(function () {
   this.route('menu', function () {});
-  this.route('dialog', function () {});
+  this.route('dialog', function () {
+    this.route('with-menu');
+  });
 });

@@ -1,28 +1,56 @@
+import { action } from '@ember/object';
 import Component from '@glimmer/component';
-import { modifier } from 'ember-modifier';
+import { next } from '@ember/runloop';
 
 interface Args {
-  registerButton: (button: MenuButtonComponent) => void;
-  unregisterButton: () => void;
+  isOpen: boolean;
+  open: () => void;
+  close: () => void;
+  toggle: () => void;
+  activateFirstItem: () => void;
+  activateLastItem: () => void;
+  setMouseMoving: (value: boolean) => void;
 }
 
 export default class MenuButtonComponent extends Component<Args> {
-  elem: HTMLElement | undefined;
+  @action handleKeydown(event: KeyboardEvent) {
+    this.args.setMouseMoving(false);
 
-  registerButton = modifier<{ Element: HTMLElement }>(
-    (element) => {
-      this.elem = element;
-      this.args.registerButton(this);
-
-      return () => {
-        this.elem = undefined;
-        this.args.unregisterButton();
-      };
-    },
-    { eager: false }
-  );
-
-  focus() {
-    this.elem?.focus();
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+        if (!this.args.isOpen) {
+          event.preventDefault();
+          this.args.open();
+          next(() => {
+            this.args.activateFirstItem();
+          });
+        }
+        break;
+      case 'Escape':
+        if (!this.args.isOpen) return;
+        event.preventDefault();
+        event.stopPropagation();
+        this.args.close();
+        break;
+      case 'ArrowUp':
+        if (document.activeElement === event.target && !this.args.isOpen) {
+          event.preventDefault();
+          this.args.open();
+          next(() => {
+            this.args.activateLastItem();
+          });
+        }
+        break;
+      case 'ArrowDown':
+        if (document.activeElement === event.target && !this.args.isOpen) {
+          event.preventDefault();
+          this.args.open();
+          next(() => {
+            this.args.activateFirstItem();
+          });
+        }
+        break;
+    }
   }
 }
