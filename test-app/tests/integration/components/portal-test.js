@@ -18,4 +18,15 @@ module('Integration | Component | portal', function (hooks) {
     assert.dom('[data-test-wrapper]').doesNotContainText('Outside');
     assert.dom(document.body).containsText('Outside');
   });
+
+  test('does not disrupt heirarchy if disabled', async function (assert) {
+    await render(hbs`
+      <div data-test-wrapper>
+        <div>Inside</div>
+        <Portal @disabled={{true}}>Outside</Portal>
+      </div>
+    `);
+
+    assert.dom('[data-test-wrapper]').includesText('Outside');
+  });
 });
