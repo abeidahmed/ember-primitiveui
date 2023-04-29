@@ -1,7 +1,7 @@
 {{! template-lint-disable no-down-event-binding }}
 
 {{#if @isOpen}}
-  {{#in-element this.portalRoot insertBefore=null}}
+  <Portal>
     {{#let (element (or @as "div")) as |Tag|}}
       <Tag
         id={{@itemsId}}
@@ -23,5 +23,5 @@
         {{yield}}
       </Tag>
     {{/let}}
-  {{/in-element}}
+  </Portal>
 {{/if}}

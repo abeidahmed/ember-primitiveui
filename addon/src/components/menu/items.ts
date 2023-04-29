@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { getOwner } from '@ember/application';
 import { action } from '@ember/object';
 import type MenuItemComponent from './item';
 
@@ -43,13 +42,5 @@ export default class MenuItemsComponent extends Component<Args> {
 
   @action clickOutsideDeactivates(event: Event) {
     return !this.allowOutsideClick(event);
-  }
-
-  get portalRoot() {
-    const {
-      APP: { rootElement },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } = (getOwner(this) as any).resolveRegistration('config:environment');
-    return rootElement ? document.querySelector(rootElement) : document.body;
   }
 }
