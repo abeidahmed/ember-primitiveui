@@ -34,7 +34,7 @@ export default class MenuButtonComponent extends Component<Args> {
         this.args.close();
         break;
       case 'ArrowUp':
-        if (document.activeElement === event.target && !this.args.isOpen) {
+        if (!this.args.isOpen) {
           event.preventDefault();
           this.args.open();
           next(() => {
@@ -43,7 +43,7 @@ export default class MenuButtonComponent extends Component<Args> {
         }
         break;
       case 'ArrowDown':
-        if (document.activeElement === event.target && !this.args.isOpen) {
+        if (!this.args.isOpen) {
           event.preventDefault();
           this.args.open();
           next(() => {

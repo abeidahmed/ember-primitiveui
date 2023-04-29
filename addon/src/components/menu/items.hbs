@@ -12,7 +12,10 @@
         {{on "keydown" this.handleKeydown}}
         {{focus-trap
           options=(hash
-            fallbackFocus=(concat "#" @itemsId) allowOutsideClick=this.closeItems escapeDeactivates=this.closeItems
+            fallbackFocus=(concat "#" @itemsId)
+            allowOutsideClick=this.allowOutsideClick
+            clickOutsideDeactivates=this.clickOutsideDeactivates
+            onDeactivate=@close
           )
         }}
         ...attributes

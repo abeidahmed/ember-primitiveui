@@ -4,6 +4,7 @@ import { action } from '@ember/object';
 import type MenuItemComponent from './item';
 
 interface Args {
+  buttonId: string;
   close: () => void;
   activatePreviousItem: () => void;
   activateNextItem: () => void;
@@ -17,6 +18,7 @@ export default class MenuItemsComponent extends Component<Args> {
 
     switch (event.key) {
       case 'Enter':
+      case ' ':
         if (!this.args.activeItem) return;
 
         event.preventDefault();
@@ -34,9 +36,13 @@ export default class MenuItemsComponent extends Component<Args> {
     }
   }
 
-  @action closeItems() {
-    this.args.close();
-    return true;
+  @action allowOutsideClick(event: Event) {
+    const button = document.getElementById(this.args.buttonId);
+    return button ? button.contains(event.target as HTMLElement) : false;
+  }
+
+  @action clickOutsideDeactivates(event: Event) {
+    return !this.allowOutsideClick(event);
   }
 
   get portalRoot() {
