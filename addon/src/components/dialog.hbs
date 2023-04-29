@@ -24,7 +24,12 @@
               unregisterDescription=this.unregisterDescription
             )
             Panel=(component
-              "dialog/panel" panelId=this.panelId onClose=@onClose
+              "dialog/panel"
+              panelId=this.panelId
+              onClose=@onClose
+              registerPanel=this.registerPanel
+              unregisterPanel=this.unregisterPanel
+              rootBoundaries=this.rootBoundaries
             )
           )
         }}

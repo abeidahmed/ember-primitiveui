@@ -2,8 +2,11 @@ import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
-import type MenuItemComponent from './menu/item';
+import { isTabbable } from 'tabbable';
 import { move } from '../helpers/dom';
+import type MenuButtonComponent from './menu/button';
+import type MenuItemComponent from './menu/item';
+import type MenuItemsComponent from './menu/items';
 
 interface Args {
   as?: string | typeof Component;
@@ -15,8 +18,10 @@ export default class MenuComponent extends Component<Args> {
   itemsId = `${this.guid}-items`;
 
   @tracked isOpen = false;
+  @tracked button?: MenuButtonComponent;
+  @tracked list?: MenuItemsComponent;
   @tracked items: MenuItemComponent[] = [];
-  @tracked activeItem: MenuItemComponent | undefined;
+  @tracked activeItem?: MenuItemComponent;
   @tracked isMouseMoving = false;
 
   @action toggle() {
@@ -54,6 +59,22 @@ export default class MenuComponent extends Component<Args> {
     await Promise.resolve(() => (this.items = items));
   }
 
+  @action registerButton(button: MenuButtonComponent) {
+    this.button = button;
+  }
+
+  @action unregisterButton() {
+    this.button = undefined;
+  }
+
+  @action registerList(list: MenuItemsComponent) {
+    this.list = list;
+  }
+
+  @action unregisterList() {
+    this.list = undefined;
+  }
+
   @action activateItem(item: MenuItemComponent) {
     this.activeItem = item;
   }
@@ -78,6 +99,14 @@ export default class MenuComponent extends Component<Args> {
 
   @action setMouseMoving(value: boolean) {
     this.isMouseMoving = value;
+  }
+
+  @action handleOutsideClick(event: Event, target: HTMLElement) {
+    this.close();
+    // Prevent dialogs from being closed accidentally.
+    if (!isTabbable(target)) {
+      event.preventDefault();
+    }
   }
 
   setActiveItemWithScroll(item?: MenuItemComponent) {

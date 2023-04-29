@@ -10,14 +10,7 @@
         aria-labelledby={{@buttonId}}
         aria-activedescendant={{@activeItem.id}}
         {{on "keydown" this.handleKeydown}}
-        {{focus-trap
-          options=(hash
-            fallbackFocus=(concat "#" @itemsId)
-            allowOutsideClick=this.allowOutsideClick
-            clickOutsideDeactivates=this.clickOutsideDeactivates
-            onDeactivate=@close
-          )
-        }}
+        {{this.registerList}}
         ...attributes
       >
         {{yield}}

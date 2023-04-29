@@ -1,12 +1,14 @@
 import Component from '@glimmer/component';
-import { getOwner } from '@ember/application';
 
 export default class PortalComponent extends Component {
   get portalRoot() {
-    const {
-      APP: { rootElement },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } = (getOwner(this) as any).resolveRegistration('config:environment');
-    return rootElement ? document.querySelector(rootElement) : document.body;
+    const portal = document.querySelector('[data-pui-portal]');
+    if (portal) return portal;
+
+    const element = document.createElement('div');
+    element.setAttribute('data-pui-portal', '');
+    document.body.append(element);
+
+    return element;
   }
 }

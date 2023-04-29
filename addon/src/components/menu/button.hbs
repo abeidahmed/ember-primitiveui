@@ -8,6 +8,7 @@
     aria-controls={{if @isOpen @itemsId}}
     {{on "click" @toggle}}
     {{on "keydown" this.handleKeydown}}
+    {{this.registerButton}}
     ...attributes
   >
     {{yield}}

@@ -1,13 +1,25 @@
 import Component from '@glimmer/component';
-import { action } from '@ember/object';
+import { modifier } from 'ember-modifier';
 
 interface Args {
   onClose: () => void;
+  registerPanel: (panel: DialogPanelComponent) => void;
+  unregisterPanel: () => void;
 }
 
 export default class DialogPanelComponent extends Component<Args> {
-  @action closeDialog() {
-    this.args.onClose();
-    return true;
-  }
+  elem?: HTMLElement;
+
+  registerPanel = modifier<{ Element: HTMLElement }>(
+    (element) => {
+      this.elem = element;
+      this.args.registerPanel(this);
+
+      return () => {
+        this.elem = undefined;
+        this.args.unregisterPanel();
+      };
+    },
+    { eager: false }
+  );
 }
