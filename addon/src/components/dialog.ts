@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { getOwner } from '@ember/application';
 import { guidFor } from '@ember/object/internals';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
@@ -34,13 +33,5 @@ export default class DialogComponent extends Component<Args> {
 
   @action unregisterDescription() {
     this.description = undefined;
-  }
-
-  get portalRoot() {
-    const {
-      APP: { rootElement },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } = (getOwner(this) as any).resolveRegistration('config:environment');
-    return rootElement ? document.querySelector(rootElement) : document.body;
   }
 }
