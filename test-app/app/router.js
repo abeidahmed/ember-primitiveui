@@ -10,5 +10,6 @@ Router.map(function () {
   this.route('menu', function () {});
   this.route('dialog', function () {
     this.route('with-menu');
+    this.route('with-body-lock');
   });
 });
