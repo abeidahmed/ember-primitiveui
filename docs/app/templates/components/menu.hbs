@@ -23,7 +23,7 @@ is handled automatically. Here is a list of all the scenarios:
       Account settings {{if item.active "(active)"}}
     </menu.Item>
 
-    <menu.Item disabled as |item|>
+    <menu.Item @disabled={{true}} as |item|>
       Help {{if item.active "(active)"}}
     </menu.Item>
 
@@ -48,12 +48,12 @@ Each `menu.Item` yields `active` getter which is true when the item is active, o
 
 ## Disabling an item
 
-Pass the `disabled` attribute to the `menu.Item` component. This will make it unselectable via keyboard navigation,
+Set `@disabled={{true}}` argument to the `menu.Item` component. This will make it unselectable via keyboard navigation,
 and it will be skipped when pressing the up/down arrows.
 
 ```diff
 - <menu.Item as |item|>Account</menu.Item>
-+ <menu.Item disabled as |item|>Account</menu.Item>
++ <menu.Item @disabled={{true}} as |item|>Account</menu.Item>
 ```
 
 ## Integrating with `LinkTo` component
@@ -107,12 +107,14 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `div`        | `string` |
+| `portal`   | `true`        | `boolean`. Setting it to `false` will not render the component inside a portal.  |
 
 ### menu.Item
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `button`        | `string \| typeof Component` |
+| `disabled`   | `false`        | `boolean`. Whether or not the `menu.Item` is disabled. |
 
 | Yields      | Description |
 | ---        |   ---- |
