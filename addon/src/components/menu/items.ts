@@ -21,6 +21,11 @@ export default class MenuItemsComponent extends Component<Args> {
     this.args.setMouseMoving(false);
 
     switch (event.key) {
+      case 'Escape':
+        event.preventDefault();
+        event.stopPropagation();
+        this.args.close();
+        break;
       case 'Enter':
       case ' ':
         if (!this.args.activeItem) return;

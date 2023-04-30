@@ -20,6 +20,14 @@ export default class DialogPanelComponent extends Component<Args> {
     { eager: false }
   );
 
+  @action handleKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Escape') return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    this.args.onClose();
+  }
+
   @action rootBoundaries() {
     const boundaries = Array.from(
       document.querySelectorAll('html > *, body > *, [data-pui-portal] > *') ??
