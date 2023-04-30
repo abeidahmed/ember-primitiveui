@@ -2,11 +2,7 @@
 
 {{#let (element (or @as "div")) as |Tag|}}
   <Tag
-    {{on-outside-click
-      this.handleOutsideClick
-      boundaries=(array this.button.elem this.list.elem)
-      enabled=this.isOpen
-    }}
+    {{on-outside-click this.handleOutsideClick boundaries=(array this.button.elem this.list.elem) enabled=this.isOpen}}
     ...attributes
   >
     {{yield
@@ -44,7 +40,7 @@
           unregisterItem=this.unregisterItem
           close=this.close
           activeItem=this.activeItem
-          activateItem=this.activateItem
+          setActiveItem=this.setActiveItem
           isMouseMoving=this.isMouseMoving
           setMouseMoving=this.setMouseMoving
         )

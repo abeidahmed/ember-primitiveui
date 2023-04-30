@@ -11,7 +11,7 @@ interface Args {
   unregisterItem: (item: MenuItemComponent) => void;
   close: () => void;
   activeItem: MenuItemComponent | undefined;
-  activateItem: (item: MenuItemComponent) => void;
+  setActiveItem: (item?: MenuItemComponent) => void;
   isMouseMoving: boolean;
   setMouseMoving: (value: boolean) => void;
 }
@@ -35,7 +35,7 @@ export default class MenuItemComponent extends Component<Args> {
     if (!this.args.isMouseMoving) return;
     if (this.args.disabled) return;
 
-    this.args.activateItem(this);
+    this.args.setActiveItem(this);
   }
 
   @action onMousemove() {
@@ -43,7 +43,11 @@ export default class MenuItemComponent extends Component<Args> {
     if (this.args.disabled) return;
 
     this.args.setMouseMoving(true);
-    this.args.activateItem(this);
+    this.args.setActiveItem(this);
+  }
+
+  @action handleMouseleave() {
+    this.args.setActiveItem(undefined);
   }
 
   registerItem = modifier<{ Element: HTMLElement }>(
