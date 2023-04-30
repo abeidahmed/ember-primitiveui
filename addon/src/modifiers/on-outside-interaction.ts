@@ -27,10 +27,7 @@ export default modifier<Signature>(
       };
 
       handlers.push([eventName, onOutsideInteraction]);
-      document.documentElement.addEventListener(
-        eventName,
-        onOutsideInteraction
-      );
+      document.documentElement.addEventListener(eventName, onOutsideInteraction);
     });
 
     return () => {

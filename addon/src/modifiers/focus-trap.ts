@@ -1,5 +1,6 @@
 import { modifier } from 'ember-modifier';
 import { tabbable } from 'tabbable';
+import { move } from '../helpers/dom';
 
 interface Signature {
   Element: HTMLElement;
@@ -9,30 +10,22 @@ const elements: HTMLElement[] = [];
 
 export default modifier<Signature>(
   (element) => {
-    const focusedElementBeforeActivation =
-      document.activeElement as HTMLElement | null;
+    const focusedElementBeforeActivation = document.activeElement as HTMLElement | null;
     let recentlyFocused: HTMLElement | undefined = undefined;
 
     function handleKeydown(event: KeyboardEvent) {
       if (event.key !== 'Tab') return;
 
       event.preventDefault();
-      const scopedTabbableElements = Array.from(
-        tabbable(element)
-      ) as HTMLElement[];
-      const activeElement = element.contains(document.activeElement)
-        ? (document.activeElement as HTMLElement)
-        : null;
-      const updatedActiveElement = event.shiftKey
-        ? getPreviousItem(scopedTabbableElements, activeElement)
-        : getNextItem(scopedTabbableElements, activeElement);
 
+      const scopedTabbableElements = Array.from(tabbable(element)) as HTMLElement[];
+      const activeElement = element.contains(document.activeElement) ? (document.activeElement as HTMLElement) : null;
+      const updatedActiveElement = move(scopedTabbableElements, activeElement, event.shiftKey ? -1 : 1);
       tryFocus(updatedActiveElement);
     }
 
     function handleFocusin(event: Event) {
-      const target = (event.composedPath?.()?.[0] ||
-        event.target) as HTMLElement;
+      const target = (event.composedPath?.()?.[0] || event.target) as HTMLElement;
 
       for (const element of elements) {
         if (element.contains(target)) {
@@ -64,8 +57,7 @@ export default modifier<Signature>(
     }
 
     elements.push(element);
-    const initialFocus =
-      element.querySelector<HTMLElement>('[data-autofocus]') || element;
+    const initialFocus = element.querySelector<HTMLElement>('[data-autofocus]') || element;
     tryFocus(initialFocus);
 
     element.addEventListener('keydown', handleKeydown, true);
@@ -79,15 +71,3 @@ export default modifier<Signature>(
   },
   { eager: false }
 );
-
-function getPreviousItem(items: HTMLElement[], activeItem: HTMLElement | null) {
-  const index = activeItem ? items.indexOf(activeItem) : 0;
-  const length = items.length;
-  return items[(index - 1 + length) % length];
-}
-
-function getNextItem(items: HTMLElement[], activeItem: HTMLElement | null) {
-  const index = activeItem ? items.indexOf(activeItem) : -1;
-  const length = items.length;
-  return items[(index + 1) % length];
-}

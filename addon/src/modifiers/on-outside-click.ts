@@ -2,10 +2,7 @@ import Modifier, { ArgsFor } from 'ember-modifier';
 import { registerDestructor } from '@ember/destroyable';
 
 type Boundary = HTMLElement | null;
-type Callback = (
-  event: MouseEvent | PointerEvent | Event,
-  target: HTMLElement
-) => void;
+type Callback = (event: MouseEvent | PointerEvent | Event, target: HTMLElement) => void;
 
 interface Signature {
   Element: HTMLElement;
@@ -35,10 +32,7 @@ export default class OnOutsideClickModifier extends Modifier {
   modify(
     element: Signature['Element'],
     [callback]: [Callback],
-    {
-      boundaries,
-      enabled = true,
-    }: { boundaries?: Boundary[] | (() => Boundary[]); enabled?: boolean } = {}
+    { boundaries, enabled = true }: { boundaries?: Boundary[] | (() => Boundary[]); enabled?: boolean } = {}
   ) {
     this.boundaries = boundaries || element;
     this.callback = callback;
@@ -61,8 +55,7 @@ export default class OnOutsideClickModifier extends Modifier {
 
   onMousedown(event: Event) {
     if (this.enabled) {
-      this.initialClickTarget = (event.composedPath?.()?.[0] ||
-        event.target) as HTMLElement;
+      this.initialClickTarget = (event.composedPath?.()?.[0] || event.target) as HTMLElement;
     }
   }
 
