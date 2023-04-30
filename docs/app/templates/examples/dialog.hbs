@@ -1,5 +1,9 @@
 <ExampleContainer>
-  <button type="button" {{on "click" this.open}} class="inline-flex justify-center rounded border border-transparent shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm active:bg-white">
+  <button
+    type="button"
+    {{on "click" this.open}}
+    class="inline-flex justify-center rounded border border-transparent shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm active:bg-white"
+  >
     Open dialog
   </button>
 
@@ -7,7 +11,9 @@
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
     <div class="fixed z-10 inset-0">
       <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
-        <dialog.Panel class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full">
+        <dialog.Panel
+          class="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full"
+        >
           <div class="flex flex-col justify-center items-center p-4">
             <div class="p-3 rounded-full bg-green-100 text-green-600">
               {{svg-jar "check" class="w-6 h-6" fill="currentColor" aria-hidden="true"}}
@@ -21,7 +27,12 @@
             </div>
 
             <div class="mt-4 w-full">
-              <button type="button" {{on "click" this.close}} class="block w-full py-2 px-4 text-base border border-transparent shadow-sm rounded bg-indigo-600 text-white font-medium hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 active:bg-indigo-600 sm:text-sm">
+              <button
+                type="button"
+                {{on "click" this.close}}
+                class="block w-full py-2 px-4 text-base border border-transparent shadow-sm rounded bg-indigo-600 text-white font-medium hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 active:bg-indigo-600 sm:text-sm"
+                data-autofocus
+              >
                 Visit dashboard
               </button>
             </div>
