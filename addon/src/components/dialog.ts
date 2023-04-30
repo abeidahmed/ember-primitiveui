@@ -34,4 +34,12 @@ export default class DialogComponent extends Component<Args> {
   @action unregisterDescription() {
     this.description = undefined;
   }
+
+  @action handleKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Escape') return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    this.args.onClose();
+  }
 }
