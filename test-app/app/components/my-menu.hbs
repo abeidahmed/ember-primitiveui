@@ -3,10 +3,7 @@
     Options
   </menu.Button>
 
-  <menu.Items
-    class="menu-list"
-    {{velcro "[data-button]" offsetOptions=(hash mainAxis=4)}}
-  >
+  <menu.Items class="menu-list" {{velcro "[data-button]" offsetOptions=(hash mainAxis=4)}}>
     <menu.Item type="button" class="menu-item" as |item|>
       <span class="menu-item-text {{if item.isActive 'active'}}">
         Account settings
@@ -16,6 +13,12 @@
     <menu.Item type="button" class="menu-item" as |item|>
       <span class="menu-item-text {{if item.isActive 'active'}}">
         Support
+      </span>
+    </menu.Item>
+
+    <menu.Item type="button" class="menu-item" @disabled={{true}} as |item|>
+      <span class="menu-item-text {{if item.isActive 'active'}}">
+        Disabled item
       </span>
     </menu.Item>
 
