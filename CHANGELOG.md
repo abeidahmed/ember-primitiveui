@@ -5,7 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.0] - 2022-07-13
+## [0.2.0] - 2023-04-30
 
 ### Added
-- Everything
+- `Portal` component.
+- `body-scroll-lock`, `focus-trap`, `on-outside-click`, and `velcro` modifier.
+
+### Fixed
+- `Dialog` does not close on clicking outside when a `Menu` is open (yet).
+
+### Changed
+- `Menu` is appended to the `body` using `in-element` helper.
+
+### Removed
+- Removed `Listbox` component.
+- Removed `Tabs` component.
+
+[0.2.0]: https://github.com/abeidahmed/ember-primitiveui/releases/tag/v0.2.0
