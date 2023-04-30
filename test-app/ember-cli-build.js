@@ -3,11 +3,7 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
-  let app = new EmberApp(defaults, {
-    primitiveUI: {
-      portalElement: '#portal',
-    },
-  });
+  let app = new EmberApp(defaults, {});
 
   /*
     This build file specifies the options for the test app of this
