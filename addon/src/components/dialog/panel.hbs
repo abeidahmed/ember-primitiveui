@@ -1,15 +1,13 @@
+{{! template-lint-disable no-down-event-binding }}
+
 {{#let (element (or @as "div")) as |Tag|}}
   <Tag
     id={{@panelId}}
     tabindex="-1"
-    {{focus-trap
-      options=(hash
-        fallbackFocus=(concat "#" @panelId)
-        allowOutsideClick=this.closeDialog
-        escapeDeactivates=this.closeDialog
-      )
-    }}
     {{body-scroll-lock reserveScrollBarGap=true}}
+    {{this.registerPanel}}
+    {{on-outside-click @onClose boundaries=this.rootBoundaries}}
+    {{focus-trap}}
     ...attributes
   >
     {{yield}}

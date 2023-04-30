@@ -1,7 +1,14 @@
 {{! template-lint-disable no-down-event-binding }}
 
 {{#let (element (or @as "div")) as |Tag|}}
-  <Tag ...attributes>
+  <Tag
+    {{on-outside-click
+      this.handleOutsideClick
+      boundaries=(array this.button.elem this.list.elem)
+      enabled=this.isOpen
+    }}
+    ...attributes
+  >
     {{yield
       (hash
         Button=(component
@@ -15,6 +22,8 @@
           activateFirstItem=this.activateFirstItem
           activateLastItem=this.activateLastItem
           setMouseMoving=this.setMouseMoving
+          registerButton=this.registerButton
+          unregisterButton=this.unregisterButton
         )
         Items=(component
           "menu/items"
@@ -26,6 +35,8 @@
           activatePreviousItem=this.activatePreviousItem
           activateNextItem=this.activateNextItem
           setMouseMoving=this.setMouseMoving
+          registerList=this.registerList
+          unregisterList=this.unregisterList
         )
         Item=(component
           "menu/item"

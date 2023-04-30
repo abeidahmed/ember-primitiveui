@@ -1,12 +1,15 @@
 import Component from '@glimmer/component';
-import { getOwner } from '@ember/application';
+import { portalId } from '../utils/portal';
 
 export default class PortalComponent extends Component {
   get portalRoot() {
-    const {
-      APP: { rootElement },
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } = (getOwner(this) as any).resolveRegistration('config:environment');
-    return rootElement ? document.querySelector(rootElement) : document.body;
+    const portal = document.querySelector(portalId(this));
+    if (portal) return portal;
+
+    const element = document.createElement('div');
+    element.id = portalId(this).substring(1);
+    document.body.append(element);
+
+    return element;
   }
 }

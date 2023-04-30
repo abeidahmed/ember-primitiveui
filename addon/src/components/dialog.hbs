@@ -1,3 +1,5 @@
+{{! template-lint-disable no-down-event-binding }}
+
 {{#if @open}}
   <Portal>
     {{#let (element (or @as "div")) as |Tag|}}
@@ -7,6 +9,7 @@
         aria-labelledby={{if this.title this.titleId}}
         aria-describedby={{if this.description this.descriptionId}}
         tabindex="-1"
+        {{on "keydown" this.handleKeydown}}
         ...attributes
       >
         {{yield

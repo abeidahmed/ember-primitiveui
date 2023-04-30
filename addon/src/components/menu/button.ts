@@ -1,6 +1,7 @@
 import { action } from '@ember/object';
 import Component from '@glimmer/component';
 import { next } from '@ember/runloop';
+import { modifier } from 'ember-modifier';
 
 interface Args {
   isOpen: boolean;
@@ -10,9 +11,13 @@ interface Args {
   activateFirstItem: () => void;
   activateLastItem: () => void;
   setMouseMoving: (value: boolean) => void;
+  registerButton: (button: MenuButtonComponent) => void;
+  unregisterButton: () => void;
 }
 
 export default class MenuButtonComponent extends Component<Args> {
+  elem?: HTMLElement;
+
   @action handleKeydown(event: KeyboardEvent) {
     this.args.setMouseMoving(false);
 
@@ -53,4 +58,17 @@ export default class MenuButtonComponent extends Component<Args> {
         break;
     }
   }
+
+  registerButton = modifier<{ Element: HTMLElement }>(
+    (element) => {
+      this.elem = element;
+      this.args.registerButton(this);
+
+      return () => {
+        this.elem = undefined;
+        this.args.unregisterButton();
+      };
+    },
+    { eager: false }
+  );
 }

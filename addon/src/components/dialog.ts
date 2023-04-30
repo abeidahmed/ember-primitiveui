@@ -16,8 +16,8 @@ export default class DialogComponent extends Component<Args> {
   titleId = `${this.guid}-title`;
   descriptionId = `${this.guid}-description`;
 
-  @tracked title: DialogTitleComponent | undefined;
-  @tracked description: DialogDescriptionComponent | undefined;
+  @tracked title?: DialogTitleComponent;
+  @tracked description?: DialogDescriptionComponent;
 
   @action registerTitle(title: DialogTitleComponent) {
     this.title = title;
@@ -33,5 +33,13 @@ export default class DialogComponent extends Component<Args> {
 
   @action unregisterDescription() {
     this.description = undefined;
+  }
+
+  @action handleKeydown(event: KeyboardEvent) {
+    if (event.key !== 'Escape') return;
+
+    event.preventDefault();
+    event.stopPropagation();
+    this.args.onClose();
   }
 }

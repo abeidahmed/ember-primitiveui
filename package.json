@@ -11,5 +11,6 @@
     "test": "yarn workspace docs run test:ember && yarn workspace test-app run test:ember"
   },
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {}
 }
