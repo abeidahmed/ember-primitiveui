@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { modifier } from 'ember-modifier';
+import { portalId } from '../../utils/portal';
 
 interface Args {
   onClose: () => void;
@@ -30,7 +31,7 @@ export default class DialogPanelComponent extends Component<Args> {
 
   @action rootBoundaries() {
     const boundaries = Array.from(
-      document.querySelectorAll('html > *, body > *, [data-pui-portal] > *') ??
+      document.querySelectorAll(`html > *, body > *, ${portalId(this)} > *`) ??
         []
     ).filter((boundary) => {
       if (boundary === document.body) return false;
