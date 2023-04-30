@@ -5,7 +5,7 @@
     id={{@buttonId}}
     aria-haspopup="true"
     aria-expanded="{{@isOpen}}"
-    aria-controls={{if @isOpen @itemsId}}
+    aria-controls={{if @isOpen @listId}}
     {{on "click" @toggle}}
     {{on "keydown" this.handleKeydown}}
     {{this.registerButton}}

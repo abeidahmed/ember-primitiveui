@@ -6,7 +6,7 @@ import { isTabbable } from 'tabbable';
 import { cycle } from '../utils/array';
 import type MenuButtonComponent from './menu/button';
 import type MenuItemComponent from './menu/item';
-import type MenuItemsComponent from './menu/items';
+import type MenuListComponent from './menu/list';
 
 interface Args {
   as?: string | typeof Component;
@@ -15,11 +15,11 @@ interface Args {
 export default class MenuComponent extends Component<Args> {
   guid = `${guidFor(this)}-menu`;
   buttonId = `${this.guid}-button`;
-  itemsId = `${this.guid}-items`;
+  listId = `${this.guid}-list`;
 
   @tracked isOpen = false;
   @tracked button?: MenuButtonComponent;
-  @tracked list?: MenuItemsComponent;
+  @tracked list?: MenuListComponent;
   @tracked items: MenuItemComponent[] = [];
   @tracked activeItem?: MenuItemComponent;
   @tracked isMouseMoving = false;
@@ -67,7 +67,7 @@ export default class MenuComponent extends Component<Args> {
     this.button = undefined;
   }
 
-  @action registerList(list: MenuItemsComponent) {
+  @action registerList(list: MenuListComponent) {
     this.list = list;
   }
 

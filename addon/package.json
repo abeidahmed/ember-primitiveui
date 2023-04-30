@@ -89,7 +89,7 @@
       "./components/menu.js": "./dist/_app_/components/menu.js",
       "./components/menu/button.js": "./dist/_app_/components/menu/button.js",
       "./components/menu/item.js": "./dist/_app_/components/menu/item.js",
-      "./components/menu/items.js": "./dist/_app_/components/menu/items.js",
+      "./components/menu/list.js": "./dist/_app_/components/menu/list.js",
       "./components/portal.js": "./dist/_app_/components/portal.js",
       "./components/switch.js": "./dist/_app_/components/switch.js",
       "./components/switch/button.js": "./dist/_app_/components/switch/button.js",

@@ -10,11 +10,11 @@ interface Args {
   activateNextItem: () => void;
   activeItem?: MenuItemComponent;
   setMouseMoving: (value: boolean) => void;
-  registerList: (list: MenuItemsComponent) => void;
+  registerList: (list: MenuListComponent) => void;
   unregisterList: () => void;
 }
 
-export default class MenuItemsComponent extends Component<Args> {
+export default class MenuListComponent extends Component<Args> {
   elem?: HTMLElement;
 
   @action handleKeydown(event: KeyboardEvent) {

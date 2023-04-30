@@ -27,7 +27,7 @@ let ENV = {
 
 ## Usage
 
-Menu is built using the `menu`, `menu.Button`, `menu.Items`, and `menu.Item` components. Opening/closing the `menu.Items`
+Menu is built using the `menu`, `menu.Button`, `menu.List`, and `menu.Item` components. Opening/closing the `menu.List`
 is handled automatically. Here is a list of all the scenarios:
 - Opens/closes the menu when `menu.Button` is clicked.
 - Closes the menu when clicked outside the `menu` component.
@@ -36,7 +36,7 @@ is handled automatically. Here is a list of all the scenarios:
 ```hbs
 <Menu as |menu|>
   <menu.Button>Toggle menu</menu.Button>
-  <menu.Items>
+  <menu.List>
     <menu.Item as |item|>
       Account settings {{if item.active "(active)"}}
     </menu.Item>
@@ -48,7 +48,7 @@ is handled automatically. Here is a list of all the scenarios:
     <menu.Item as |item|>
       Guides {{if item.active "(active)"}}
     </menu.Item>
-  </menu.Items>
+  </menu.List>
 </Menu>
 ```
 
@@ -87,8 +87,8 @@ the menu.
 
 ## Focus management
 
-Clicking the `menu.Button` toggles the menu and focuses the `menu.Items` component. Pressing `Tab` when inside the
-`menu.Items` will close the menu and focus returns to `menu.Button` component.
+Clicking the `menu.Button` toggles the menu and focuses the `menu.List` component. Pressing `Tab` when inside the
+`menu.List` will close the menu and focus returns to `menu.Button` component.
 
 ## Mouse interaction
 
@@ -120,7 +120,7 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 | ---        |    ----   | ---- |
 | `as`   | `button`        | `string` |
 
-### menu.Items
+### menu.List
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
