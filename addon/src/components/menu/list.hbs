@@ -4,7 +4,7 @@
   <Portal @disabled={{reverse-boolean @portal}}>
     {{#let (element (or @as "div")) as |Tag|}}
       <Tag
-        id={{@itemsId}}
+        id={{@listId}}
         tabindex="-1"
         role="menu"
         aria-labelledby={{@buttonId}}

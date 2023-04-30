@@ -3,10 +3,10 @@ import { guidFor } from '@ember/object/internals';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { isTabbable } from 'tabbable';
-import { move } from '../helpers/dom';
+import { cycle } from '../utils/array';
 import type MenuButtonComponent from './menu/button';
 import type MenuItemComponent from './menu/item';
-import type MenuItemsComponent from './menu/items';
+import type MenuListComponent from './menu/list';
 
 interface Args {
   as?: string | typeof Component;
@@ -15,11 +15,11 @@ interface Args {
 export default class MenuComponent extends Component<Args> {
   guid = `${guidFor(this)}-menu`;
   buttonId = `${this.guid}-button`;
-  itemsId = `${this.guid}-items`;
+  listId = `${this.guid}-list`;
 
   @tracked isOpen = false;
   @tracked button?: MenuButtonComponent;
-  @tracked list?: MenuItemsComponent;
+  @tracked list?: MenuListComponent;
   @tracked items: MenuItemComponent[] = [];
   @tracked activeItem?: MenuItemComponent;
   @tracked isMouseMoving = false;
@@ -67,7 +67,7 @@ export default class MenuComponent extends Component<Args> {
     this.button = undefined;
   }
 
-  @action registerList(list: MenuItemsComponent) {
+  @action registerList(list: MenuListComponent) {
     this.list = list;
   }
 
@@ -88,11 +88,11 @@ export default class MenuComponent extends Component<Args> {
   }
 
   @action activatePreviousItem() {
-    this.setActiveItemWithScroll(move(this.enabledItems, this.activeItem, -1));
+    this.setActiveItemWithScroll(cycle(this.enabledItems, this.activeItem, -1));
   }
 
   @action activateNextItem() {
-    this.setActiveItemWithScroll(move(this.enabledItems, this.activeItem, 1));
+    this.setActiveItemWithScroll(cycle(this.enabledItems, this.activeItem, 1));
   }
 
   @action setMouseMoving(value: boolean) {
