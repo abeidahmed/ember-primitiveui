@@ -94,7 +94,6 @@
       "./components/switch.js": "./dist/_app_/components/switch.js",
       "./components/switch/button.js": "./dist/_app_/components/switch/button.js",
       "./components/switch/label.js": "./dist/_app_/components/switch/label.js",
-      "./helpers/dom.js": "./dist/_app_/helpers/dom.js",
       "./helpers/or.js": "./dist/_app_/helpers/or.js",
       "./helpers/reverse-boolean.js": "./dist/_app_/helpers/reverse-boolean.js",
       "./helpers/tag-is-component.js": "./dist/_app_/helpers/tag-is-component.js",

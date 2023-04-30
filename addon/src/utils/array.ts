@@ -1,8 +1,15 @@
 /**
- * @description Cycle through a list of items
+ * @description Cycle forwards/backwards through a list of items
+ * @example
+ * const elements = ['pen', 'pencil', 'chalk']
+ * cycle(elements, 'pencil', 1)
+ * //=> 'chalk'
+ * cycle(elements, 'chalk', -1)
+ * //=> 'pencil'
+ * cycle(elements, 'chalk', 1)
+ * //=> 'pen'
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function move(items: any[], item: any, index: 1 | -1) {
+export function cycle<T>(items: T[], item: T, index: 1 | -1): T {
   let activeIndex = items.indexOf(item);
 
   if (activeIndex === items.length - 1 && index === 1) {

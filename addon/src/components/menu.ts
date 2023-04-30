@@ -3,7 +3,7 @@ import { guidFor } from '@ember/object/internals';
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { isTabbable } from 'tabbable';
-import { move } from '../helpers/dom';
+import { cycle } from '../utils/array';
 import type MenuButtonComponent from './menu/button';
 import type MenuItemComponent from './menu/item';
 import type MenuItemsComponent from './menu/items';
@@ -88,11 +88,11 @@ export default class MenuComponent extends Component<Args> {
   }
 
   @action activatePreviousItem() {
-    this.setActiveItemWithScroll(move(this.enabledItems, this.activeItem, -1));
+    this.setActiveItemWithScroll(cycle(this.enabledItems, this.activeItem, -1));
   }
 
   @action activateNextItem() {
-    this.setActiveItemWithScroll(move(this.enabledItems, this.activeItem, 1));
+    this.setActiveItemWithScroll(cycle(this.enabledItems, this.activeItem, 1));
   }
 
   @action setMouseMoving(value: boolean) {
