@@ -11,6 +11,7 @@
         aria-activedescendant={{@activeItem.id}}
         {{on "keydown" this.handleKeydown}}
         {{this.registerList}}
+        {{focus-trap}}
         ...attributes
       >
         {{yield}}

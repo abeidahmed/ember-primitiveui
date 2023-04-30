@@ -5,6 +5,7 @@
     {{body-scroll-lock reserveScrollBarGap=true}}
     {{this.registerPanel}}
     {{on-outside-click @onClose boundaries=@rootBoundaries}}
+    {{focus-trap}}
     ...attributes
   >
     {{yield}}
