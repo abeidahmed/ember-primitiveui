@@ -5,7 +5,8 @@
   @description="An accessible menu component that you can extend to build robust custom menus with full-fledged keyboard support and aria attributes."
   @demoSrc="/examples/menu"
 >
-{{format-markdown "
+  {{format-markdown
+    '
 ## Usage
 
 Menu is built using the `menu`, `menu.Button`, `menu.Items`, and `menu.Item` components. Opening/closing the `menu.Items`
@@ -19,15 +20,15 @@ is handled automatically. Here is a list of all the scenarios:
   <menu.Button>Toggle menu</menu.Button>
   <menu.Items>
     <menu.Item as |item|>
-      Account settings {{if item.isActive \"(active)\"}}
+      Account settings {{if item.active "(active)"}}
     </menu.Item>
 
     <menu.Item disabled as |item|>
-      Help {{if item.isActive \"(active)\"}}
+      Help {{if item.active "(active)"}}
     </menu.Item>
 
     <menu.Item as |item|>
-      Guides {{if item.isActive \"(active)\"}}
+      Guides {{if item.active "(active)"}}
     </menu.Item>
   </menu.Items>
 </Menu>
@@ -35,11 +36,11 @@ is handled automatically. Here is a list of all the scenarios:
 
 ## Styling the active item
 
-Each `menu.Item` yields `isActive` getter which is true when the item is active, otherwise false.
+Each `menu.Item` yields `active` getter which is true when the item is active, otherwise false.
 
 ```hbs
 <menu.Item as |item|>
-  <span class=\"w-full {{if item.isActive \"text-gray-700\" \"text-gray-300\"}}\">
+  <span class="w-full {{if item.active "text-gray-700" "text-gray-300"}}">
     Account
   </span>
 </menu.Item>
@@ -61,7 +62,7 @@ Pass the `LinkTo` component to the `@as` argument and it will automatically redi
 the menu.
 
 ```hbs
-<menu.Item @as={{component \"link-to\" route=\"about\" query=(...) model=\"...\"}} as |item|>
+<menu.Item @as={{component "link-to" route="about" query=(...) model="..."}} as |item|>
   About page
 </menu.Item>
 ```
@@ -115,6 +116,7 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 
 | Yields      | Description |
 | ---        |   ---- |
-| `isActive`   |  `boolean`. Whether or not the `menu.Item` is currently active. |
-"}}
+| `active`   |  `boolean`. Whether or not the `menu.Item` is currently active. |
+'
+  }}
 </ArticleContainer>

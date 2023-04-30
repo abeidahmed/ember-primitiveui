@@ -63,7 +63,7 @@ export default class MenuItemComponent extends Component<Args> {
     this.elem?.click();
   }
 
-  get isActive() {
+  get active() {
     return this.args.activeItem?.id === this.id;
   }
 }

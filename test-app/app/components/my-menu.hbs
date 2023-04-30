@@ -5,25 +5,25 @@
 
   <menu.Items class="menu-list" {{velcro "[data-button]" offsetOptions=(hash mainAxis=4)}}>
     <menu.Item type="button" class="menu-item" as |item|>
-      <span class="menu-item-text {{if item.isActive 'active'}}">
+      <span class="menu-item-text {{if item.active 'active'}}">
         Account settings
       </span>
     </menu.Item>
 
     <menu.Item type="button" class="menu-item" as |item|>
-      <span class="menu-item-text {{if item.isActive 'active'}}">
+      <span class="menu-item-text {{if item.active 'active'}}">
         Support
       </span>
     </menu.Item>
 
     <menu.Item type="button" class="menu-item" @disabled={{true}} as |item|>
-      <span class="menu-item-text {{if item.isActive 'active'}}">
+      <span class="menu-item-text {{if item.active 'active'}}">
         Disabled item
       </span>
     </menu.Item>
 
     <menu.Item type="button" class="menu-item" as |item|>
-      <span class="menu-item-text {{if item.isActive 'active'}}">
+      <span class="menu-item-text {{if item.active 'active'}}">
         License
       </span>
     </menu.Item>
