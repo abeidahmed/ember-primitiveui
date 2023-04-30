@@ -10,63 +10,63 @@ module('Integration | Component | menu', function (hooks) {
     await render(hbs`
       <Menu as |menu|>
         <menu.Button data-test-button>Toggle menu</menu.Button>
-        <menu.Items data-test-items>
+        <menu.List data-test-list>
           <menu.Item>Item 1</menu.Item>
-        </menu.Items>
+        </menu.List>
       </Menu>
     `);
 
     assert.dom('[data-test-button]').hasText('Toggle menu');
     assert.dom('[data-test-button]').hasAria('expanded', 'false');
     assert.dom('[data-test-button]').hasAria('haspopup', 'true');
-    assert.dom('[data-test-items]').isNotVisible();
+    assert.dom('[data-test-list]').isNotVisible();
   });
 
   test('disabled item attribute', async function (assert) {
     await render(hbs`
       <Menu as |menu|>
         <menu.Button data-test-button>Toggle menu</menu.Button>
-        <menu.Items data-test-items>
+        <menu.List data-test-list>
           <menu.Item data-test-item1>Item 1</menu.Item>
           <menu.Item @disabled={{true}} data-test-item2>Item 2</menu.Item>
-        </menu.Items>
+        </menu.List>
       </Menu>
     `);
 
     await click('[data-test-button]');
-    assert.dom('[data-test-items]').isVisible();
+    assert.dom('[data-test-list]').isVisible();
     assert.dom(find('[data-test-item1]')).doesNotHaveAttribute('disabled');
     assert.dom(find('[data-test-item1]')).doesNotHaveAria('disabled');
     assert.dom(find('[data-test-item2]')).hasAttribute('disabled');
     assert.dom(find('[data-test-item2]')).hasAria('disabled', 'true');
   });
 
-  test('open/close items', async function (assert) {
+  test('open/close list', async function (assert) {
     await render(hbs`
       <Menu as |menu|>
         <menu.Button data-test-button>Toggle menu</menu.Button>
-        <menu.Items data-test-items>
+        <menu.List data-test-list>
           <menu.Item data-test-item>
             Item 1
           </menu.Item>
-        </menu.Items>
+        </menu.List>
       </Menu>
     `);
 
     await click('[data-test-button]');
-    assert.dom('[data-test-items]').isVisible();
+    assert.dom('[data-test-list]').isVisible();
     assert.dom('[data-test-button]').hasAria('expanded', 'true');
 
-    const items = find('[data-test-items]');
-    assert.dom('[data-test-button]').hasAria('controls', items.id);
-    assert.dom('[data-test-items]').hasAttribute('tabindex', '-1');
-    assert.dom('[data-test-items]').hasAria('labelledby', find('[data-test-button]').id);
-    assert.dom('[data-test-items]').hasAttribute('role', 'menu');
+    const list = find('[data-test-list]');
+    assert.dom('[data-test-button]').hasAria('controls', list.id);
+    assert.dom('[data-test-list]').hasAttribute('tabindex', '-1');
+    assert.dom('[data-test-list]').hasAria('labelledby', find('[data-test-button]').id);
+    assert.dom('[data-test-list]').hasAttribute('role', 'menu');
     assert.dom('[data-test-item]').hasAttribute('tabindex', '-1');
     assert.dom('[data-test-item]').hasAttribute('role', 'menuitem');
 
     await click('[data-test-button]');
-    assert.dom('[data-test-items]').isNotVisible();
+    assert.dom('[data-test-list]').isNotVisible();
     assert.dom('[data-test-button]').hasAria('expanded', 'false');
     assert.dom('[data-test-button]').doesNotHaveAria('controls');
   });
@@ -76,59 +76,59 @@ module('Integration | Component | menu', function (hooks) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
 
       await click(document.body);
-      assert.dom('[data-test-items]').isNotVisible();
+      assert.dom('[data-test-list]').isNotVisible();
     });
   });
 
   module('focus manangement', function () {
-    test('focuses on the items container after opening the menu', async function (assert) {
+    test('focuses on the list after opening the menu', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await click('[data-test-button]');
-      assert.strictEqual(document.activeElement, find('[data-test-items]'));
+      assert.strictEqual(document.activeElement, find('[data-test-list]'));
     });
 
     test('focuses on the button element after closing the menu', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
-      assert.dom('[data-test-items]').isNotVisible();
+      assert.dom('[data-test-list]').isNotVisible();
       await click('[data-test-button]');
-      assert.strictEqual(document.activeElement, find('[data-test-items]'));
-      assert.dom('[data-test-items]').isVisible();
+      assert.strictEqual(document.activeElement, find('[data-test-list]'));
+      assert.dom('[data-test-list]').isVisible();
 
       await click('[data-test-button]');
       assert.strictEqual(document.activeElement, find('[data-test-button]'));
-      assert.dom('[data-test-items]').isNotVisible();
+      assert.dom('[data-test-list]').isNotVisible();
     });
   });
 
@@ -137,116 +137,116 @@ module('Integration | Component | menu', function (hooks) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').doesNotHaveAria('activedescendant');
+      assert.dom('[data-test-list]').isVisible();
+      assert.dom('[data-test-list]').doesNotHaveAria('activedescendant');
     });
 
     test('activates the item on mouse hover', async function (assert) {
       await render(hbs`
         <Menu data-test-menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await click('[data-test-button]');
       await triggerEvent('[data-test-item]', 'mousemove');
       await triggerEvent('[data-test-item]', 'mouseover');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item]').id);
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item]').id);
     });
 
     test('activates the first option on Enter', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'Enter');
-      assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item]').id);
+      assert.dom('[data-test-list]').isVisible();
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item]').id);
     });
 
     test('activates the first option on Space', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', ' ');
-      assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item]').id);
+      assert.dom('[data-test-list]').isVisible();
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item]').id);
     });
 
     test('activates the first option on ArrowDown', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
             <menu.Item data-test-item2>
               Item 2
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      assert.dom('[data-test-list]').isVisible();
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item1]').id);
     });
 
     test('activates the last option on ArrowUp', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
             <menu.Item data-test-item2>
               Item 2
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-items]').isVisible();
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item2]').id);
+      assert.dom('[data-test-list]').isVisible();
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item2]').id);
     });
 
     test('cycles through the items with ArrowDown', async function (assert) {
       await render(hbs`
         <Menu data-test-menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
@@ -256,29 +256,29 @@ module('Integration | Component | menu', function (hooks) {
             <menu.Item data-test-item3>
               Item 3
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
 
-      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      await triggerKeyEvent('[data-test-list]', 'keydown', 'ArrowDown');
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item1]').id);
 
       // skips option2
-      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item3]').id);
+      await triggerKeyEvent('[data-test-list]', 'keydown', 'ArrowDown');
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item3]').id);
 
-      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowDown');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      await triggerKeyEvent('[data-test-list]', 'keydown', 'ArrowDown');
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item1]').id);
     });
 
     test('cycles through the items with ArrowUp', async function (assert) {
       await render(hbs`
         <Menu data-test-menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
@@ -288,22 +288,22 @@ module('Integration | Component | menu', function (hooks) {
             <menu.Item data-test-item3>
               Item 3
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
 
-      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item3]').id);
+      await triggerKeyEvent('[data-test-list]', 'keydown', 'ArrowUp');
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item3]').id);
 
       // skips option2
-      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item1]').id);
+      await triggerKeyEvent('[data-test-list]', 'keydown', 'ArrowUp');
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item1]').id);
 
-      await triggerKeyEvent('[data-test-items]', 'keydown', 'ArrowUp');
-      assert.dom('[data-test-items]').hasAria('activedescendant', find('[data-test-item3]').id);
+      await triggerKeyEvent('[data-test-list]', 'keydown', 'ArrowUp');
+      assert.dom('[data-test-list]').hasAria('activedescendant', find('[data-test-item3]').id);
     });
   });
 
@@ -312,57 +312,57 @@ module('Integration | Component | menu', function (hooks) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
 
       await click('[data-test-item]');
-      assert.dom('[data-test-items]').isNotVisible();
+      assert.dom('[data-test-list]').isNotVisible();
     });
 
     test('closes the menu on Enter', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'Enter');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
 
       await triggerKeyEvent('[data-test-item]', 'keydown', 'Enter');
-      assert.dom('[data-test-items]').isNotVisible();
+      assert.dom('[data-test-list]').isNotVisible();
     });
 
     test('closes the menu on Space', async function (assert) {
       await render(hbs`
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item data-test-item>
               Item 1
             </menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       `);
 
       await triggerKeyEvent('[data-test-button]', 'keydown', 'Enter');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
 
       await triggerKeyEvent('[data-test-item]', 'keydown', ' ');
-      assert.dom('[data-test-items]').isNotVisible();
+      assert.dom('[data-test-list]').isNotVisible();
     });
   });
 
@@ -372,15 +372,15 @@ module('Integration | Component | menu', function (hooks) {
       <div data-test-container>
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items data-test-items>
+          <menu.List data-test-list>
             <menu.Item>Item 1</menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       </div>
     `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
       assert.dom('[data-test-container]').doesNotIncludeText('Item 1');
     });
 
@@ -389,15 +389,15 @@ module('Integration | Component | menu', function (hooks) {
       <div data-test-container>
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.Items @portal={{false}} data-test-items>
+          <menu.List @portal={{false}} data-test-list>
             <menu.Item>Item 1</menu.Item>
-          </menu.Items>
+          </menu.List>
         </Menu>
       </div>
     `);
 
       await click('[data-test-button]');
-      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-list]').isVisible();
       assert.dom('[data-test-container]').includesText('Item 1');
     });
   });
@@ -406,11 +406,11 @@ module('Integration | Component | menu', function (hooks) {
     await render(hbs`
       <Menu as |menu|>
         <menu.Button data-test-button>Toggle menu</menu.Button>
-        <menu.Items data-test-items>
+        <menu.List data-test-list>
           <menu.Item @as={{component "link-to" route="index"}} data-test-item>
             Item 1
           </menu.Item>
-        </menu.Items>
+        </menu.List>
       </Menu>
     `);
 
