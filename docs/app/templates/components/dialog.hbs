@@ -5,7 +5,27 @@
   @description="An accessible dialog component that you can easily extend to build your custom dialog components."
   @demoSrc="/examples/dialog"
 >
-{{format-markdown "
+  {{format-markdown
+    "
+
+## Important
+The `Dialog` component uses the `Portal` component to append its contents into the `body`, hence you will need to add the
+following code in your `config/environment.js` file for it to work properly.
+
+```js
+let ENV = {
+  APP: {
+    primitiveUI: {
+      portalElement: '#portal', // This can be anything ('#my-id', '.my-selector', etc)
+    },
+  };
+
+  if (environment === 'test') {
+    ENV.APP.primitiveUI.portalElement = ENV.APP.rootElement;
+  }
+}
+```
+
 ## Usage
 
 Dialogs are built using the `dialog`, `dialog.Title`, `dialog.Description`, and `dialog.Panel` components. When the
@@ -77,5 +97,6 @@ export default class MyDialogComponent extends Component {
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `p`        | `string` |
-"}}
+"
+  }}
 </ArticleContainer>

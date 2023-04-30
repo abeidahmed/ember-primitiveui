@@ -7,6 +7,24 @@
 >
   {{format-markdown
     '
+## Important
+The `Menu` component uses the `Portal` component to append its contents into the `body`, hence you will need to add the
+following code in your `config/environment.js` file for it to work properly.
+
+```js
+let ENV = {
+  APP: {
+    primitiveUI: {
+      portalElement: \'#portal\',
+    },
+  };
+
+  if (environment === \'test\') {
+    ENV.APP.primitiveUI.portalElement = ENV.APP.rootElement;
+  }
+}
+```
+
 ## Usage
 
 Menu is built using the `menu`, `menu.Button`, `menu.Items`, and `menu.Item` components. Opening/closing the `menu.Items`
