@@ -133,7 +133,7 @@ module('Integration | Component | dialog', function (hooks) {
       assert.strictEqual(document.activeElement, find('[data-test-panel]'));
     });
 
-    test('focuses on the first valid focusable children', async function (assert) {
+    test('focuses on the children element that has [data-autofocus] attribute', async function (assert) {
       this.set('open', false);
       this.set('onClose', function () {});
       this.set('onOpen', () => {
@@ -144,7 +144,7 @@ module('Integration | Component | dialog', function (hooks) {
         <button type="button" {{on "click" this.onOpen}}>Open dialog</button>
         <Dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
           <dialog.Panel data-test-panel>
-            <button data-test-button type="button">Button</button>
+            <button data-test-button type="button" data-autofocus>Button</button>
           </dialog.Panel>
         </Dialog>
       `);

@@ -64,7 +64,10 @@ export default modifier<Signature>(
     }
 
     elements.push(element);
-    tryFocus(element);
+    const initialFocus =
+      element.querySelector<HTMLElement>('[data-autofocus]') || element;
+    tryFocus(initialFocus);
+
     element.addEventListener('keydown', handleKeydown, true);
     document.addEventListener('focusin', handleFocusin, true);
 
