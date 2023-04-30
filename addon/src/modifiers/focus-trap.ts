@@ -1,6 +1,6 @@
 import { modifier } from 'ember-modifier';
 import { tabbable } from 'tabbable';
-import { move } from '../helpers/dom';
+import { cycle } from '../utils/array';
 
 interface Signature {
   Element: HTMLElement;
@@ -20,7 +20,7 @@ export default modifier<Signature>(
 
       const scopedTabbableElements = Array.from(tabbable(element)) as HTMLElement[];
       const activeElement = element.contains(document.activeElement) ? (document.activeElement as HTMLElement) : null;
-      const updatedActiveElement = move(scopedTabbableElements, activeElement, event.shiftKey ? -1 : 1);
+      const updatedActiveElement = cycle(scopedTabbableElements, activeElement, event.shiftKey ? -1 : 1);
       tryFocus(updatedActiveElement);
     }
 
