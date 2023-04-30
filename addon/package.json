@@ -98,11 +98,9 @@
       "./helpers/or.js": "./dist/_app_/helpers/or.js",
       "./helpers/reverse-boolean.js": "./dist/_app_/helpers/reverse-boolean.js",
       "./helpers/tag-is-component.js": "./dist/_app_/helpers/tag-is-component.js",
-      "./modifiers/autofocus.js": "./dist/_app_/modifiers/autofocus.js",
       "./modifiers/body-scroll-lock.js": "./dist/_app_/modifiers/body-scroll-lock.js",
       "./modifiers/focus-trap.js": "./dist/_app_/modifiers/focus-trap.js",
       "./modifiers/on-outside-click.js": "./dist/_app_/modifiers/on-outside-click.js",
-      "./modifiers/on-outside-interaction.js": "./dist/_app_/modifiers/on-outside-interaction.js",
       "./modifiers/velcro.js": "./dist/_app_/modifiers/velcro.js"
     }
   },
