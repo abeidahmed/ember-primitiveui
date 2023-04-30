@@ -61,8 +61,6 @@ export default class TabListComponent extends Component<Args> {
   }
 
   get enabledItems() {
-    return this.args.items.filter(
-      (item) => !item.elem?.hasAttribute('disabled')
-    );
+    return this.args.items.filter((item) => !item.elem?.hasAttribute('disabled'));
   }
 }

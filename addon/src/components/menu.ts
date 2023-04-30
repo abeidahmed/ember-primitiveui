@@ -84,9 +84,7 @@ export default class MenuComponent extends Component<Args> {
   }
 
   @action activateLastItem() {
-    this.setActiveItemWithScroll(
-      this.enabledItems[this.enabledItems.length - 1]
-    );
+    this.setActiveItemWithScroll(this.enabledItems[this.enabledItems.length - 1]);
   }
 
   @action activatePreviousItem() {

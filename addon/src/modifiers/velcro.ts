@@ -1,21 +1,7 @@
 import Modifier from 'ember-modifier';
 import { registerDestructor } from '@ember/destroyable';
-import {
-  autoUpdate,
-  computePosition,
-  flip,
-  offset,
-  shift,
-  size,
-} from '@floating-ui/dom';
-import type {
-  FlipOptions,
-  Middleware,
-  OffsetOptions,
-  Placement,
-  ShiftOptions,
-  Strategy,
-} from '@floating-ui/dom';
+import { autoUpdate, computePosition, flip, offset, shift, size } from '@floating-ui/dom';
+import type { FlipOptions, Middleware, OffsetOptions, Placement, ShiftOptions, Strategy } from '@floating-ui/dom';
 
 interface Signature {
   Element: HTMLElement;
@@ -45,8 +31,7 @@ export default class VelcroModifier extends Modifier<Signature> {
     options: Signature['Args']['Named']
   ) {
     this.popupElement = element;
-    this.anchorElement =
-      anchor instanceof HTMLElement ? anchor : document.querySelector(anchor);
+    this.anchorElement = anchor instanceof HTMLElement ? anchor : document.querySelector(anchor);
     this.options = options;
 
     registerDestructor(this, this.stop.bind(this));
@@ -56,11 +41,7 @@ export default class VelcroModifier extends Modifier<Signature> {
   start() {
     if (!this.anchorElement) return;
 
-    this.cleanup = autoUpdate(
-      this.anchorElement,
-      this.popupElement,
-      this.reposition.bind(this)
-    );
+    this.cleanup = autoUpdate(this.anchorElement, this.popupElement, this.reposition.bind(this));
   }
 
   stop() {
@@ -93,12 +74,8 @@ export default class VelcroModifier extends Modifier<Signature> {
           apply: ({ rects }) => {
             const syncWidth = sync === 'width' || sync === 'both';
             const syncHeight = sync === 'height' || sync === 'both';
-            this.popupElement.style.width = syncWidth
-              ? `${rects.reference.width}px`
-              : '';
-            this.popupElement.style.height = syncHeight
-              ? `${rects.reference.height}px`
-              : '';
+            this.popupElement.style.width = syncWidth ? `${rects.reference.width}px` : '';
+            this.popupElement.style.height = syncHeight ? `${rects.reference.height}px` : '';
           },
         })
       );
@@ -111,11 +88,11 @@ export default class VelcroModifier extends Modifier<Signature> {
     _middleware.push(shift(shiftOptions));
     _middleware.concat(middleware);
 
-    const { x, y } = await computePosition(
-      this.anchorElement,
-      this.popupElement,
-      { placement, middleware: _middleware, strategy }
-    );
+    const { x, y } = await computePosition(this.anchorElement, this.popupElement, {
+      placement,
+      middleware: _middleware,
+      strategy,
+    });
     Object.assign(this.popupElement.style, {
       left: `${x}px`,
       top: `${y}px`,

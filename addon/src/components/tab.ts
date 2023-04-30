@@ -45,9 +45,7 @@ export default class TabComponent extends Component<Args> {
     const { defaultControls } = this.args;
 
     if (defaultControls) {
-      const item = this.items.find(
-        (item) => item.args.controls === defaultControls
-      );
+      const item = this.items.find((item) => item.args.controls === defaultControls);
       this.selectedItem = item || this.items[0];
     } else {
       this.selectedItem = this.items[0];

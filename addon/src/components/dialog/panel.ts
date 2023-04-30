@@ -22,16 +22,15 @@ export default class DialogPanelComponent extends Component<Args> {
   );
 
   @action rootBoundaries() {
-    const boundaries = Array.from(
-      document.querySelectorAll(`html > *, body > *, ${portalId(this)} > *`) ??
-        []
-    ).filter((boundary) => {
-      if (boundary === document.body) return false;
-      if (boundary === document.head) return false;
-      if (!(boundary instanceof HTMLElement)) return false;
-      if (this.elem && boundary.contains(this.elem)) return false;
-      return true;
-    });
+    const boundaries = Array.from(document.querySelectorAll(`html > *, body > *, ${portalId(this)} > *`) ?? []).filter(
+      (boundary) => {
+        if (boundary === document.body) return false;
+        if (boundary === document.head) return false;
+        if (!(boundary instanceof HTMLElement)) return false;
+        if (this.elem && boundary.contains(this.elem)) return false;
+        return true;
+      }
+    );
 
     return [...boundaries, this.elem];
   }
