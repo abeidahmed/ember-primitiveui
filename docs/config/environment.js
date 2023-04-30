@@ -18,6 +18,9 @@ module.exports = function (environment) {
     },
 
     APP: {
+      primitiveUI: {
+        portalElement: '#portal',
+      },
       // Here you can pass flags/options to your application instance
       // when it is created
     },
@@ -41,6 +44,7 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    ENV.APP.primitiveUI.portalElement = ENV.APP.rootElement;
   }
 
   if (environment === 'production') {

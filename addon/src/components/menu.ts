@@ -114,6 +114,6 @@ export default class MenuComponent extends Component<Args> {
   }
 
   get enabledItems() {
-    return this.items.filter((item) => !item.elem?.hasAttribute('disabled'));
+    return this.items.filter((item) => !item.args.disabled);
   }
 }

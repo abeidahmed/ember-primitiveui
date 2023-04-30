@@ -8,7 +8,9 @@
     {{on "mousemove" this.onMousemove}}
     {{this.registerItem}}
     ...attributes
+    disabled={{@disabled}}
+    aria-disabled="{{@disabled}}"
   >
-    {{yield (hash isActive=this.isActive)}}
+    {{yield (hash active=this.active)}}
   </Tag>
 {{/let}}

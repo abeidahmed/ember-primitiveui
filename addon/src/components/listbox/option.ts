@@ -57,11 +57,11 @@ export default class ListboxOptionComponent extends Component<Args> {
     this.elem?.click();
   }
 
-  get isSelected() {
+  get selected() {
     return this.args.selectedOption === this;
   }
 
-  get isActive() {
+  get active() {
     return this.args.activeOption === this;
   }
 

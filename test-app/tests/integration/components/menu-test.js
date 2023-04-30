@@ -11,9 +11,7 @@ module('Integration | Component | menu', function (hooks) {
       <Menu as |menu|>
         <menu.Button data-test-button>Toggle menu</menu.Button>
         <menu.Items data-test-items>
-          <menu.Item>
-            Item 1
-          </menu.Item>
+          <menu.Item>Item 1</menu.Item>
         </menu.Items>
       </Menu>
     `);
@@ -22,6 +20,25 @@ module('Integration | Component | menu', function (hooks) {
     assert.dom('[data-test-button]').hasAria('expanded', 'false');
     assert.dom('[data-test-button]').hasAria('haspopup', 'true');
     assert.dom('[data-test-items]').isNotVisible();
+  });
+
+  test('disabled item attribute', async function (assert) {
+    await render(hbs`
+      <Menu as |menu|>
+        <menu.Button data-test-button>Toggle menu</menu.Button>
+        <menu.Items data-test-items>
+          <menu.Item data-test-item1>Item 1</menu.Item>
+          <menu.Item @disabled={{true}} data-test-item2>Item 2</menu.Item>
+        </menu.Items>
+      </Menu>
+    `);
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-items]').isVisible();
+    assert.dom(find('[data-test-item1]')).doesNotHaveAttribute('disabled');
+    assert.dom(find('[data-test-item1]')).doesNotHaveAria('disabled');
+    assert.dom(find('[data-test-item2]')).hasAttribute('disabled');
+    assert.dom(find('[data-test-item2]')).hasAria('disabled', 'true');
   });
 
   test('open/close items', async function (assert) {
@@ -233,7 +250,7 @@ module('Integration | Component | menu', function (hooks) {
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
-            <menu.Item disabled data-test-item2>
+            <menu.Item @disabled={{true}} data-test-item2>
               Item 2
             </menu.Item>
             <menu.Item data-test-item3>
@@ -265,7 +282,7 @@ module('Integration | Component | menu', function (hooks) {
             <menu.Item data-test-item1>
               Item 1
             </menu.Item>
-            <menu.Item disabled data-test-item2>
+            <menu.Item @disabled={{true}} data-test-item2>
               Item 2
             </menu.Item>
             <menu.Item data-test-item3>
@@ -349,8 +366,9 @@ module('Integration | Component | menu', function (hooks) {
     });
   });
 
-  test('portals by default', async function (assert) {
-    await render(hbs`
+  module('portal', function () {
+    test('enabled by default', async function (assert) {
+      await render(hbs`
       <div data-test-container>
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
@@ -361,13 +379,13 @@ module('Integration | Component | menu', function (hooks) {
       </div>
     `);
 
-    await click('[data-test-button]');
-    assert.dom('[data-test-items]').isVisible();
-    assert.dom('[data-test-container]').doesNotIncludeText('Item 1');
-  });
+      await click('[data-test-button]');
+      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-container]').doesNotIncludeText('Item 1');
+    });
 
-  test('portal can be disabled', async function (assert) {
-    await render(hbs`
+    test('can be disabled', async function (assert) {
+      await render(hbs`
       <div data-test-container>
         <Menu as |menu|>
           <menu.Button data-test-button>Toggle menu</menu.Button>
@@ -378,9 +396,10 @@ module('Integration | Component | menu', function (hooks) {
       </div>
     `);
 
-    await click('[data-test-button]');
-    assert.dom('[data-test-items]').isVisible();
-    assert.dom('[data-test-container]').includesText('Item 1');
+      await click('[data-test-button]');
+      assert.dom('[data-test-items]').isVisible();
+      assert.dom('[data-test-container]').includesText('Item 1');
+    });
   });
 
   test('can pass LinkTo component on the item', async function (assert) {

@@ -6,6 +6,7 @@ import { guidFor } from '@ember/object/internals';
 
 interface Args {
   as?: string | typeof Component;
+  disabled?: boolean;
   registerItem: (item: MenuItemComponent) => void;
   unregisterItem: (item: MenuItemComponent) => void;
   close: () => void;
@@ -32,14 +33,14 @@ export default class MenuItemComponent extends Component<Args> {
 
   @action onMouseover() {
     if (!this.args.isMouseMoving) return;
-    if (this.elem?.hasAttribute('disabled')) return;
+    if (this.args.disabled) return;
 
     this.args.activateItem(this);
   }
 
   @action onMousemove() {
     if (this.args.isMouseMoving) return;
-    if (this.elem?.hasAttribute('disabled')) return;
+    if (this.args.disabled) return;
 
     this.args.setMouseMoving(true);
     this.args.activateItem(this);
@@ -62,7 +63,7 @@ export default class MenuItemComponent extends Component<Args> {
     this.elem?.click();
   }
 
-  get isActive() {
+  get active() {
     return this.args.activeItem?.id === this.id;
   }
 }

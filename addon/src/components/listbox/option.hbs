@@ -3,16 +3,13 @@
     id={{@value.id}}
     tabindex="-1"
     role="option"
-    aria-selected="{{this.isSelected}}"
+    aria-selected="{{this.selected}}"
     {{this.registerOption}}
     {{on "click" this.onClick}}
     {{on "mouseover" this.onMouseover}}
     {{on "mousemove" this.onMousemove}}
     ...attributes
   >
-    {{yield (hash
-      isSelected=this.isSelected
-      isActive=this.isActive
-    )}}
+    {{yield (hash selected=this.selected active=this.active)}}
   </Tag>
 {{/let}}

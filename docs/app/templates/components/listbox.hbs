@@ -5,7 +5,8 @@
   @description="Build custom select menus for your app, with robust support for keyboard navigation."
   @demoSrc="/examples/listbox"
 >
-{{format-markdown "
+  {{format-markdown
+    "
 ## Usage
 
 Listboxes are built using the `listbox`, `listbox.Label`, `listbox.Button`, `listbox.Options`, and `listbox.Option`
@@ -52,7 +53,7 @@ export default class MyDialogComponent extends Component {
 
 ## Styling the active and selected `listbox.Option`
 
-Each `listbox.Option` yields `isActive` and `isSelected` getter function that you can use to style your listboxes.
+Each `listbox.Option` yields `active` and `selected` getter function that you can use to style your listboxes.
 
 ```diff
 <Listbox
@@ -64,9 +65,9 @@ Each `listbox.Option` yields `isActive` and `isSelected` getter function that yo
     {{#each this.people as |person|}}
 +     <listbox.Option @value={{person}} disabled={{person.disabled}} as |option|>
 +       <span
-+         class=\"{{if option.isActive \"bg-blue-500 text-white\" \"bg-white text-gray-900\"}}\"
++         class=\"{{if option.active \"bg-blue-500 text-white\" \"bg-white text-gray-900\"}}\"
 +       >
-+         {{person.name}} {{if option.isSelected \"(selected)\"}}
++         {{person.name}} {{if option.selected \"(selected)\"}}
 +       </span>
       </listbox.Option>
     {{/each}}
@@ -164,7 +165,8 @@ Clicking the `listbox.Button` toggles the opening/closing of the `listbox.Option
 
 | Yields      | Description |
 | ---        |   ---- |
-| `isActive`   |  `boolean`. Whether or not the `listbox.Option` is active. |
-| `isSelected`   |  `boolean`. Whether or not the `listbox.Option` is selected. |
-"}}
+| `active`   |  `boolean`. Whether or not the `listbox.Option` is active. |
+| `selected`   |  `boolean`. Whether or not the `listbox.Option` is selected. |
+"
+  }}
 </ArticleContainer>

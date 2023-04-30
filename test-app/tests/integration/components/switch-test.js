@@ -9,7 +9,7 @@ module('Integration | Component | switch', function (hooks) {
   module('rendering without a label', function () {
     test('it renders without any errors', async function (assert) {
       await render(hbs`
-        <Switch @isChecked={{false}} data-test-switch as |switch|>
+        <Switch @checked={{false}} data-test-switch as |switch|>
           <switch.Button data-test-button>Button</switch.Button>
         </Switch>
       `);
@@ -25,7 +25,7 @@ module('Integration | Component | switch', function (hooks) {
   module('rendering with a label', function () {
     test('it renders without any errors', async function (assert) {
       await render(hbs`
-        <Switch @isChecked={{false}} data-test-switch as |switch|>
+        <Switch @checked={{false}} data-test-switch as |switch|>
           <switch.Label data-test-label>Label</switch.Label>
           <switch.Button data-test-button>Button</switch.Button>
         </Switch>
@@ -46,7 +46,7 @@ module('Integration | Component | switch', function (hooks) {
       });
 
       await render(hbs`
-        <Switch @isChecked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
+        <Switch @checked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
           <switch.Label data-test-label>Label</switch.Label>
           <switch.Button data-test-button>Button</switch.Button>
         </Switch>
@@ -61,15 +61,15 @@ module('Integration | Component | switch', function (hooks) {
       assert.dom('[data-test-button]').hasAria('checked', 'false');
     });
 
-    test('clicking on the label does not toggle the switch when @isPassive={{true}}', async function (assert) {
+    test('clicking on the label does not toggle the switch when @passive={{true}}', async function (assert) {
       this.set('value', false);
       this.set('onChange', (value) => {
         this.set('value', value);
       });
 
       await render(hbs`
-        <Switch @isChecked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
-          <switch.Label @isPassive={{true}} data-test-label>Label</switch.Label>
+        <Switch @checked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
+          <switch.Label @passive={{true}} data-test-label>Label</switch.Label>
           <switch.Button data-test-button>Button</switch.Button>
         </Switch>
       `);
@@ -88,7 +88,7 @@ module('Integration | Component | switch', function (hooks) {
     });
 
     await render(hbs`
-      <Switch @isChecked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
+      <Switch @checked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
         <switch.Button data-test-button>Button</switch.Button>
       </Switch>
     `);
@@ -109,7 +109,7 @@ module('Integration | Component | switch', function (hooks) {
     });
 
     await render(hbs`
-      <Switch @isChecked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
+      <Switch @checked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
         <switch.Button data-test-button>Button</switch.Button>
       </Switch>
     `);
@@ -130,7 +130,7 @@ module('Integration | Component | switch', function (hooks) {
     });
 
     await render(hbs`
-      <Switch @isChecked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
+      <Switch @checked={{this.value}} @onChange={{this.onChange}} data-test-switch as |switch|>
         <switch.Button data-test-button>Button</switch.Button>
       </Switch>
     `);
@@ -151,7 +151,7 @@ module('Integration | Component | switch', function (hooks) {
 
       await render(hbs`
         <form {{on "submit" this.onSubmit}}>
-          <Switch @isChecked={{false}} data-test-switch as |switch|>
+          <Switch @checked={{false}} data-test-switch as |switch|>
             <switch.Button data-test-button>Button</switch.Button>
           </Switch>
         </form>
