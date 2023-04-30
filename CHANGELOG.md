@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `Portal` component.
+- `body-scroll-lock`, `focus-trap`, `on-outside-click`, and `velcro` modifier.
 
 ### Fixed
 - `Dialog` does not close on clicking outside when a `Menu` is open (yet).
