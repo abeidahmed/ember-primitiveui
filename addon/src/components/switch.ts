@@ -7,7 +7,7 @@ import type Button from './switch/button';
 
 interface Args {
   onChange?: (value: boolean) => void;
-  isChecked?: boolean;
+  checked?: boolean;
 }
 
 export default class SwitchComponent extends Component<Args> {
@@ -20,7 +20,7 @@ export default class SwitchComponent extends Component<Args> {
 
   @action onLabelClick() {
     if (!this.button) return;
-    if (this.label && this.label.args.isPassive) return;
+    if (this.label && this.label.args.passive) return;
 
     this.button.focus();
     this.button.click();
@@ -62,7 +62,7 @@ export default class SwitchComponent extends Component<Args> {
   }
 
   toggle() {
-    this.args.onChange?.(!this.args.isChecked);
+    this.args.onChange?.(!this.args.checked);
   }
 }
 

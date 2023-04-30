@@ -5,7 +5,8 @@
   @description="Fully customizable tab interfaces with robust keyboard navigation and focus management that you can extend to create accessible tab components."
   @demoSrc="/examples/tabs"
 >
-{{format-markdown "
+  {{format-markdown
+    '
 ## Usage
 
 Tabs are built using the `tab`, `tab.List`, `tab.Item`, and `tab.Panel` components.
@@ -13,26 +14,26 @@ Tabs are built using the `tab`, `tab.List`, `tab.Item`, and `tab.Panel` componen
 ```hbs
 <Tab as |tab|>
   <tab.List>
-    <tab.Item @controls=\"panel-1\">Tab 1</tab.Item>
-    <tab.Item @controls=\"panel-2\">Tab 2</tab.Item>
-    <tab.Item @controls=\"panel-3\">Tab 3</tab.Item>
+    <tab.Item @controls="panel-1">Tab 1</tab.Item>
+    <tab.Item @controls="panel-2">Tab 2</tab.Item>
+    <tab.Item @controls="panel-3">Tab 3</tab.Item>
   </tab.List>
   <div>
-    <tab.Panel @id=\"panel-1\">Panel 1</tab.Panel>
-    <tab.Panel @id=\"panel-2\">Panel 2</tab.Panel>
-    <tab.Panel @id=\"panel-3\">Panel 2</tab.Panel>
+    <tab.Panel @id="panel-1">Panel 1</tab.Panel>
+    <tab.Panel @id="panel-2">Panel 2</tab.Panel>
+    <tab.Panel @id="panel-3">Panel 2</tab.Panel>
   </div>
 </Tab>
 ```
 
 ## Styling the selected `tab.Item`
 
-Each `tab.Item` component yields `isSelected` getter which is `true` when the `tab.Item` is selected, else `false`.
+Each `tab.Item` component yields `selected` getter which is `true` when the `tab.Item` is selected, else `false`.
 
 ```diff
-- <tab.Item @controls=\"panel-1\">Tab 1</tab.Item>
-+ <tab.Item @controls=\"panel-1\" as |item|>
-+   <span class=\"{{if item.isSelected \"bg-indigo-600\" \"bg-white\"}}\">Tab 1</span>
+- <tab.Item @controls="panel-1">Tab 1</tab.Item>
++ <tab.Item @controls="panel-1" as |item|>
++   <span class="{{if item.selected "bg-indigo-600" "bg-white"}}">Tab 1</span>
 + </tab.Item>
 ```
 
@@ -42,8 +43,8 @@ Simply pass the `diabled` attribute to the component. Disabled tabs cannot be se
 navigating the tab list with the keyboard.
 
 ```diff
-- <tab.Item @controls=\"panel-2\"></tab.Item>
-+ <tab.Item @controls=\"panel-1\" disabled>Tab 1</tab.Item>
+- <tab.Item @controls="panel-2"></tab.Item>
++ <tab.Item @controls="panel-1" disabled>Tab 1</tab.Item>
 ```
 
 ## Controlling the active `tab.Item`
@@ -51,12 +52,12 @@ navigating the tab list with the keyboard.
 Provide the `@defaultControls` and manage the state yourself.
 
 ```js
-import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
+import Component from \'@glimmer/component\';
+import { tracked } from \'@glimmer/tracking\';
+import { action } from \'@ember/object\';
 
 export default class MyTabComponent extends Component {
-  @tracked defaultControls = 'panel-1';
+  @tracked defaultControls = \'panel-1\';
 
   @action onChange(id) {
     this.defaultControls = id;
@@ -67,30 +68,30 @@ export default class MyTabComponent extends Component {
 ```hbs
 <Tab @defaultControl={{this.defaultControls}} @onChange={{this.onChange}} as |tab|>
   <tab.List>
-    <tab.Item @controls=\"panel-1\">Tab 1</tab.Item>
-    <tab.Item @controls=\"panel-2\">Tab 2</tab.Item>
+    <tab.Item @controls="panel-1">Tab 1</tab.Item>
+    <tab.Item @controls="panel-2">Tab 2</tab.Item>
   </tab.List>
   <div>
-    <tab.Panel @id=\"panel-1\">Panel 1</tab.Panel>
-    <tab.Panel @id=\"panel-2\">Panel 2</tab.Panel>
+    <tab.Panel @id="panel-1">Panel 1</tab.Panel>
+    <tab.Panel @id="panel-2">Panel 2</tab.Panel>
   </div>
 </Tab>
 ```
 
 ## Vertical tabs
-If you've styled your `tab.List` to appear vertically, simply pass the `@isVertical={{true}}` argument. This will
+If you\'ve styled your `tab.List` to appear vertically, simply pass the `@vertical={{true}}` argument. This will
 set the `aria-orientation` attribute and will enable navigating with the up and down arrow keys instead of the left and
 right.
 
 ```hbs
-<Tab @isVertical={{true}} as |tab|>
+<Tab @vertical={{true}} as |tab|>
   <tab.List>
-    <tab.Item @controls=\"panel-1\">Tab 1</tab.Item>
-    <tab.Item @controls=\"panel-2\">Tab 2</tab.Item>
+    <tab.Item @controls="panel-1">Tab 1</tab.Item>
+    <tab.Item @controls="panel-2">Tab 2</tab.Item>
   </tab.List>
   <div>
-    <tab.Panel @id=\"panel-1\">Panel 1</tab.Panel>
-    <tab.Panel @id=\"panel-2\">Panel 2</tab.Panel>
+    <tab.Panel @id="panel-1">Panel 1</tab.Panel>
+    <tab.Panel @id="panel-2">Panel 2</tab.Panel>
   </div>
 </Tab>
 ```
@@ -114,7 +115,7 @@ right.
 | ---        |    ----   | ---- |
 | `as`   | `div`        | `string \| typeof Component` |
 | `defaultControls`   | first `panelId`        | `string`. Default `panelId` to be selected at first. |
-| `isVertical`      | false       | `Boolean`. When true, the orientation of the `tab.List` will be `vertical`, otherwise it will be `horizontal`. |
+| `vertical`      | false       | `Boolean`. When true, the orientation of the `tab.List` will be `vertical`, otherwise it will be `horizontal`. |
 | `onChange`   | -        | `(value: string) => void`. Called whenever the tab changes. |
 
 ### tab.List
@@ -132,7 +133,7 @@ right.
 
 | Yields      | Description |
 | ---        |   ---- |
-| `isSelected`   |  `boolean`. Whether or not the `tab.Item` is currently selected. |
+| `selected`   |  `boolean`. Whether or not the `tab.Item` is currently selected. |
 
 ### tab.Panel
 
@@ -143,6 +144,7 @@ right.
 
 | Yields      | Description |
 | ---        |   ---- |
-| `isSelected`   |  `boolean`. Whether or not the `tab.Panel` is currently selected. |
-"}}
+| `selected`   |  `boolean`. Whether or not the `tab.Panel` is currently selected. |
+'
+  }}
 </ArticleContainer>

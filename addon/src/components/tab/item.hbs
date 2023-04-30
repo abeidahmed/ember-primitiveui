@@ -2,13 +2,13 @@
   <Tag
     id={{this.id}}
     role="tab"
-    tabindex={{if this.isSelected "0" "-1"}}
-    aria-controls={{if this.isSelected @controls}}
-    aria-selected="{{this.isSelected}}"
+    tabindex={{if this.selected "0" "-1"}}
+    aria-controls={{if this.selected @controls}}
+    aria-selected="{{this.selected}}"
     {{on "click" this.onClick}}
     {{this.registerItem}}
     ...attributes
   >
-    {{yield (hash isSelected=this.isSelected)}}
+    {{yield (hash selected=this.selected)}}
   </Tag>
 {{/let}}

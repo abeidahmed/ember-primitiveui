@@ -1,27 +1,42 @@
 <ExampleContainer>
   <Tab class="max-w-lg w-full p-3" as |tab|>
     <tab.List class="flex items-center bg-gray-300 rounded-md p-1 space-x-2">
-      <tab.Item @controls="panel-1" class="rounded flex items-center w-full justify-center text-base truncate focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-gray-300 focus:ring-indigo-500 sm:text-sm" as |item|>
-        <span class="w-full py-2 px-3 rounded truncate {{if item.isSelected "bg-indigo-600 text-white" "text-gray-600"}}">
+      <tab.Item
+        @controls="panel-1"
+        class="rounded flex items-center w-full justify-center text-base truncate focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-gray-300 focus:ring-indigo-500 sm:text-sm"
+        as |item|
+      >
+        <span class="w-full py-2 px-3 rounded truncate {{if item.selected 'bg-indigo-600 text-white' 'text-gray-600'}}">
           Total subscribers
         </span>
       </tab.Item>
 
-      <tab.Item @controls="panel-2" class="rounded flex items-center w-full justify-center text-base truncate focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-gray-300 focus:ring-indigo-500 sm:text-sm" as |item|>
-        <span class="w-full py-2 px-3 rounded truncate {{if item.isSelected "bg-indigo-600 text-white" "text-gray-600"}}">
+      <tab.Item
+        @controls="panel-2"
+        class="rounded flex items-center w-full justify-center text-base truncate focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-gray-300 focus:ring-indigo-500 sm:text-sm"
+        as |item|
+      >
+        <span class="w-full py-2 px-3 rounded truncate {{if item.selected 'bg-indigo-600 text-white' 'text-gray-600'}}">
           Avg. open rate
         </span>
       </tab.Item>
 
-      <tab.Item @controls="panel-3" class="rounded flex items-center w-full justify-center text-base truncate focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-gray-300 focus:ring-indigo-500 sm:text-sm" as |item|>
-        <span class="w-full py-2 px-3 rounded truncate {{if item.isSelected "bg-indigo-600 text-white" "text-gray-600"}}">
+      <tab.Item
+        @controls="panel-3"
+        class="rounded flex items-center w-full justify-center text-base truncate focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-gray-300 focus:ring-indigo-500 sm:text-sm"
+        as |item|
+      >
+        <span class="w-full py-2 px-3 rounded truncate {{if item.selected 'bg-indigo-600 text-white' 'text-gray-600'}}">
           Avg. click rate
         </span>
       </tab.Item>
     </tab.List>
 
     <div class="mt-2 bg-white shadow rounded">
-      <tab.Panel @id="panel-1" class="rounded p-4 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-200 focus:ring-indigo-500">
+      <tab.Panel
+        @id="panel-1"
+        class="rounded p-4 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-200 focus:ring-indigo-500"
+      >
         <div class="space-x-3 flex items-center">
           <div class="flex-shrink-0 p-2.5 rounded bg-indigo-100">
             {{svg-jar "group" class="w-6 h-6 text-indigo-600" fill="currentColor"}}
@@ -34,7 +49,10 @@
         </div>
       </tab.Panel>
 
-      <tab.Panel @id="panel-2" class="rounded p-4 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-200 focus:ring-indigo-500">
+      <tab.Panel
+        @id="panel-2"
+        class="rounded p-4 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-200 focus:ring-indigo-500"
+      >
         <div class="space-x-3 flex items-center">
           <div class="flex-shrink-0 p-2.5 rounded bg-indigo-100">
             {{svg-jar "mail-open" class="w-6 h-6 text-indigo-600" fill="currentColor"}}
@@ -47,7 +65,10 @@
         </div>
       </tab.Panel>
 
-      <tab.Panel @id="panel-3" class="rounded p-4 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-200 focus:ring-indigo-500">
+      <tab.Panel
+        @id="panel-3"
+        class="rounded p-4 focus:outline-none focus:ring-2 ring-offset-2 ring-offset-gray-200 focus:ring-indigo-500"
+      >
         <div class="space-x-3 flex items-center">
           <div class="flex-shrink-0 p-2.5 rounded bg-indigo-100">
             {{svg-jar "pointer" class="w-6 h-6 text-indigo-600" fill="currentColor"}}

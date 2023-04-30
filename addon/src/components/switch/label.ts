@@ -2,7 +2,7 @@ import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 
 interface Args {
-  isPassive?: boolean;
+  passive?: boolean;
   registerLabel: (label: SwitchLabelComponent) => void;
   unregisterLabel: () => void;
 }

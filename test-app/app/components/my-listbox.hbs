@@ -4,7 +4,9 @@
   <listbox.Options>
     {{#each this.people as |person|}}
       <listbox.Option @value={{person}} disabled={{person.disabled}} as |option|>
-        {{person.name}} {{if option.isSelected "(selected)"}} {{if option.isActive "(active)"}}
+        {{person.name}}
+        {{if option.selected "(selected)"}}
+        {{if option.active "(active)"}}
       </listbox.Option>
     {{/each}}
   </listbox.Options>

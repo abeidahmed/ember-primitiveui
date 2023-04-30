@@ -254,7 +254,7 @@ module('Integration | Component | tab', function (hooks) {
   module('vertical tabs', function () {
     test('it has aria-orientation set to vertical', async function (assert) {
       await render(hbs`
-        <Tab @isVertical={{true}} as |tab|>
+        <Tab @vertical={{true}} as |tab|>
           <tab.List data-test-list>
             <tab.Item @controls="panel-1" data-test-item1>
               Item 1
@@ -276,7 +276,7 @@ module('Integration | Component | tab', function (hooks) {
       });
 
       await render(hbs`
-        <Tab @onChange={{this.onChange}} @isVertical={{true}} as |tab|>
+        <Tab @onChange={{this.onChange}} @vertical={{true}} as |tab|>
           <tab.List data-test-list>
             <tab.Item @controls="panel-1" data-test-item1>
               Item 1
@@ -356,7 +356,7 @@ module('Integration | Component | tab', function (hooks) {
       });
 
       await render(hbs`
-        <Tab @onChange={{this.onChange}} @isVertical={{true}} as |tab|>
+        <Tab @onChange={{this.onChange}} @vertical={{true}} as |tab|>
           <tab.List data-test-list>
             <tab.Item @controls="panel-1" data-test-item1>
               Item 1

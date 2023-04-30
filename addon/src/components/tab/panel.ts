@@ -8,7 +8,7 @@ interface Args {
 }
 
 export default class TabPanelComponent extends Component<Args> {
-  get isSelected() {
+  get selected() {
     return this.args.selectedItem?.args.controls === this.args.id;
   }
 }

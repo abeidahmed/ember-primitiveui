@@ -39,7 +39,7 @@ export default class TabItemComponent extends Component<Args> {
     this.elem?.focus();
   }
 
-  get isSelected() {
+  get selected() {
     return this.args.selectedItem?.id === this.id;
   }
 }

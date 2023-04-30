@@ -5,7 +5,7 @@ import TabItemComponent from './item';
 
 interface Args {
   as?: string | typeof Component;
-  isVertical?: boolean;
+  vertical?: boolean;
   items: TabItemComponent[];
   selectedItem: TabItemComponent | undefined;
   selectItemAndCommit: (item: TabItemComponent) => void;
@@ -17,8 +17,8 @@ export default class TabListComponent extends Component<Args> {
       case 'ArrowUp':
       case 'ArrowLeft':
         {
-          if (this.args.isVertical && event.key === 'ArrowLeft') break;
-          if (!this.args.isVertical && event.key === 'ArrowUp') break;
+          if (this.args.vertical && event.key === 'ArrowLeft') break;
+          if (!this.args.vertical && event.key === 'ArrowUp') break;
 
           event.preventDefault();
           const nextItem = move(this.enabledItems, this.args.selectedItem, -1);
@@ -28,8 +28,8 @@ export default class TabListComponent extends Component<Args> {
       case 'ArrowDown':
       case 'ArrowRight':
         {
-          if (this.args.isVertical && event.key === 'ArrowRight') break;
-          if (!this.args.isVertical && event.key === 'ArrowDown') break;
+          if (this.args.vertical && event.key === 'ArrowRight') break;
+          if (!this.args.vertical && event.key === 'ArrowDown') break;
 
           event.preventDefault();
           const nextItem = move(this.enabledItems, this.args.selectedItem, 1);

@@ -7,7 +7,7 @@ import type TabItemComponent from './tab/item';
 interface Args {
   as?: string | typeof Component;
   defaultControls?: string;
-  isVertical?: boolean;
+  vertical?: boolean;
   onChange?: (panelId: string) => void;
 }
 

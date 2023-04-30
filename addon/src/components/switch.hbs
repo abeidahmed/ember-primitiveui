@@ -1,25 +1,27 @@
 {{#let (element (or @as "div")) as |Tag|}}
   <Tag ...attributes>
-    {{yield (hash
-      Label=(
-        component "switch/label"
-        labelId=this.labelId
-        registerLabel=this.registerLabel
-        unregisterLabel=this.unregisterLabel
-        onLabelClick=this.onLabelClick
+    {{yield
+      (hash
+        Label=(component
+          "switch/label"
+          labelId=this.labelId
+          registerLabel=this.registerLabel
+          unregisterLabel=this.unregisterLabel
+          onLabelClick=this.onLabelClick
+        )
+        Button=(component
+          "switch/button"
+          buttonId=this.buttonId
+          labelId=this.labelId
+          label=this.label
+          checked=@checked
+          registerButton=this.registerButton
+          unregisterButton=this.unregisterButton
+          onButtonClick=this.onButtonClick
+          onKeyup=this.onKeyup
+          onKeypress=this.onKeypress
+        )
       )
-      Button=(
-        component "switch/button"
-        buttonId=this.buttonId
-        labelId=this.labelId
-        label=this.label
-        isChecked=@isChecked
-        registerButton=this.registerButton
-        unregisterButton=this.unregisterButton
-        onButtonClick=this.onButtonClick
-        onKeyup=this.onKeyup
-        onKeypress=this.onKeypress
-      )
-    )}}
+    }}
   </Tag>
 {{/let}}
