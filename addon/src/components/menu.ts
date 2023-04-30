@@ -75,7 +75,7 @@ export default class MenuComponent extends Component<Args> {
     this.list = undefined;
   }
 
-  @action activateItem(item: MenuItemComponent) {
+  @action setActiveItem(item?: MenuItemComponent) {
     this.activeItem = item;
   }
 
