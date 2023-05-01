@@ -4,9 +4,9 @@ import { action } from '@ember/object';
 import { guidFor } from '@ember/object/internals';
 
 export default class PopoverComponent extends Component {
-  guid = `${guidFor(this)}-popover`;
-  buttonId = `${this.guid}-button`;
-  panelId = `${this.guid}-panel`;
+  id = `${guidFor(this)}-popover`;
+  buttonId = `${this.id}-button`;
+  panelId = `${this.id}-panel`;
 
   @tracked isOpen = false;
 
