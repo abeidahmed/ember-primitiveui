@@ -2,19 +2,10 @@
 
 <div class="container">
   <div>
-    <Popover class="popover" as |popover|>
-      <popover.Button class="popover-btn" data-button>Simple popover</popover.Button>
-      <popover.Panel
-        class="popover-panel"
-        {{velcro "[data-button]" placement="bottom" offsetOptions=(hash mainAxis=4)}}
-      >
-        Contents
-
-        <div>
-          <button type="button" {{on "click" popover.close}}>Close</button>
-        </div>
-      </popover.Panel>
-    </Popover>
+    <MyPopover as |popover|>
+      <div>Contents</div>
+      <button type="button" {{on "click" popover.close}}>Close</button>
+    </MyPopover>
 
     <PopoverWithDialog />
   </div>
