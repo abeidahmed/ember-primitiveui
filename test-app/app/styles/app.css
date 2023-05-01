@@ -71,3 +71,16 @@
 .dialog-title {
   margin: 0;
 }
+
+/** Popover */
+.popover {
+  position: relative;
+}
+
+.popover-panel {
+  width: 376px;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid #e0e1eb;
+  padding: 12px;
+}

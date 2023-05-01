@@ -1,3 +1,12 @@
-<div ...attributes>
-  {{yield (hash Button=(component "popover/button") Panel=(component "popover/panel"))}}
+<div ...attributes data-state={{if this.isOpen "open" "closed"}}>
+  {{yield
+    (hash
+      Button=(component
+        "popover/button" isOpen=this.isOpen buttonId=this.buttonId panelId=this.panelId toggle=this.toggle
+      )
+      Panel=(component "popover/panel" isOpen=this.isOpen panelId=this.panelId close=this.close)
+      open=this.isOpen
+      close=this.close
+    )
+  }}
 </div>

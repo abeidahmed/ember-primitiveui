@@ -1,1 +1,18 @@
-<div ...attributes>{{yield}}</div>
+{{! template-lint-disable no-down-event-binding }}
+
+{{#if @isOpen}}
+  <Portal @disabled={{reverse-boolean @portal}}>
+    <div
+      ...attributes
+      role="dialog"
+      aria-modal="true"
+      tabindex="-1"
+      id={{@panelId}}
+      data-state={{if @isOpen "open" "closed"}}
+      {{on "keydown" this.handleKeydown}}
+      {{focus-trap}}
+    >
+      {{yield}}
+    </div>
+  </Portal>
+{{/if}}

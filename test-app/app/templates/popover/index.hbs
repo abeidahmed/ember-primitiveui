@@ -1,0 +1,14 @@
+{{page-title "Popover"}}
+
+<div class="container">
+  <Popover class="popover" as |popover|>
+    <popover.Button class="popover-btn" data-button>Button</popover.Button>
+    <popover.Panel class="popover-panel" {{velcro "[data-button]" placement="bottom" offsetOptions=(hash mainAxis=4)}}>
+      Contents
+
+      <div>
+        <button type="button" {{on "click" popover.close}}>Close</button>
+      </div>
+    </popover.Panel>
+  </Popover>
+</div>
