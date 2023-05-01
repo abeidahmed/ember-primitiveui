@@ -114,6 +114,14 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 | ---        |    ----   | ---- |
 | `as`   | `div`        | `string` |
 
+| Yields      | Description |
+| ---        | ---- |
+| `id`   | `string`. The `id` attribute of the `menu`. |
+| `buttonId`   | `string`. The `id` attribute of the `menu.Button`. |
+| `listId`   | `string`. The `id` attribute of the `menu.List`. |
+| `open`   | `boolean`. Whether or not the menu is open. |
+| `close`   | `() => void`. Closes the menu and focuses back on the `menu.Button`. |
+
 | Data attribute      | Values |
 | ---        |    ----   |
 | `data-state`   | `"open" \| "closed"` |
@@ -149,6 +157,7 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 | Yields      | Description |
 | ---        |   ---- |
 | `active`   |  `boolean`. Whether or not the `menu.Item` is currently active. |
+| `id`   |  `string`. The `id` attribute of the `menu.Item`. |
 
 | Data attribute      | Values |
 | ---        |    ----   |
