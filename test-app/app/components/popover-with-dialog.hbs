@@ -1,0 +1,15 @@
+<MyPopover @buttonTitle="Popover with dialog">
+  <div>Contents goes here!</div>
+  <button type="button" {{on "click" this.openDialog}}>Open dialog</button>
+</MyPopover>
+
+<Dialog @open={{this.isOpen}} @onClose={{this.closeDialog}} class="dialog" as |dialog|>
+  <dialog.Panel class="dialog-panel">
+    <header class="dialog-header">
+      <dialog.Title class="dialog-title">Dialog title</dialog.Title>
+      <button type="button" {{on "click" this.closeDialog}}>X</button>
+    </header>
+
+    Dialog contents here!
+  </dialog.Panel>
+</Dialog>

@@ -1,0 +1,12 @@
+{{page-title "Popover"}}
+
+<div class="container">
+  <div>
+    <MyPopover as |popover|>
+      <div>Contents</div>
+      <button type="button" {{on "click" popover.close}}>Close</button>
+    </MyPopover>
+
+    <PopoverWithDialog />
+  </div>
+</div>

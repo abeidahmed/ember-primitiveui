@@ -1,12 +1,19 @@
 {{page-title "Dialog"}}
 
 <div class="container">
-  <MyDialog>
-    Dialog content!
+  <div>
+    <MyDialog>
+      <div>Dialog content!</div>
 
-    <div>
-      <button type="button">Cancel</button>
-      <button type="button">Confirm</button>
-    </div>
-  </MyDialog>
+      <div>
+        <button type="button">Cancel</button>
+        <button type="button">Confirm</button>
+      </div>
+    </MyDialog>
+
+    <MyDialog>
+      <div>Dialog content!</div>
+      <MyPopover>Popover contents</MyPopover>
+    </MyDialog>
+  </div>
 </div>

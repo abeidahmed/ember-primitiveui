@@ -12,4 +12,5 @@ Router.map(function () {
     this.route('with-menu');
     this.route('with-body-lock');
   });
+  this.route('popover', function () {});
 });

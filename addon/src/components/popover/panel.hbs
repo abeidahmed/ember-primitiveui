@@ -1,0 +1,21 @@
+{{! template-lint-disable no-down-event-binding }}
+
+{{#if @isOpen}}
+  <Portal @disabled={{reverse-boolean @portal}}>
+    {{#let (element (or @as "div")) as |Tag|}}
+      <Tag
+        ...attributes
+        role="dialog"
+        aria-modal="true"
+        tabindex="-1"
+        id={{@panelId}}
+        data-state={{if @isOpen "open" "closed"}}
+        {{on "keydown" this.handleKeydown}}
+        {{focus-trap}}
+        {{this.registerPanel}}
+      >
+        {{yield}}
+      </Tag>
+    {{/let}}
+  </Portal>
+{{/if}}

@@ -1,0 +1,35 @@
+{{#let (element (or @as "div")) as |Tag|}}
+  <Tag
+    ...attributes
+    id={{this.id}}
+    data-state={{if this.isOpen "open" "closed"}}
+    {{on-outside-click this.handleOutsideClick boundaries=(array this.button.elem this.panel.elem) enabled=this.isOpen}}
+  >
+    {{yield
+      (hash
+        Button=(component
+          "popover/button"
+          isOpen=this.isOpen
+          buttonId=this.buttonId
+          panelId=this.panelId
+          toggle=this.toggle
+          registerButton=this.registerButton
+          unregisterButton=this.unregisterButton
+        )
+        Panel=(component
+          "popover/panel"
+          isOpen=this.isOpen
+          panelId=this.panelId
+          close=this.close
+          registerPanel=this.registerPanel
+          unregisterPanel=this.unregisterPanel
+        )
+        id=this.id
+        buttonId=this.buttonId
+        panelId=this.panelId
+        open=this.isOpen
+        close=this.close
+      )
+    }}
+  </Tag>
+{{/let}}
