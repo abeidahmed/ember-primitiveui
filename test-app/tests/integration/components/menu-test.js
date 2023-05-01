@@ -404,15 +404,15 @@ module('Integration | Component | menu', function (hooks) {
 
     test('can be disabled', async function (assert) {
       await render(hbs`
-      <div data-test-container>
-        <Menu as |menu|>
-          <menu.Button data-test-button>Toggle menu</menu.Button>
-          <menu.List @portal={{false}} data-test-list>
-            <menu.Item>Item 1</menu.Item>
-          </menu.List>
-        </Menu>
-      </div>
-    `);
+        <div data-test-container>
+          <Menu as |menu|>
+            <menu.Button data-test-button>Toggle menu</menu.Button>
+            <menu.List @portal={{false}} data-test-list>
+              <menu.Item>Item 1</menu.Item>
+            </menu.List>
+          </Menu>
+        </div>
+      `);
 
       await click('[data-test-button]');
       assert.dom('[data-test-list]').isVisible();
@@ -434,5 +434,81 @@ module('Integration | Component | menu', function (hooks) {
 
     await click('[data-test-button]');
     assert.dom('[data-test-item]').matchesSelector('a[href="/"]');
+  });
+
+  test('yields id, buttonId, and panelId', async function (assert) {
+    await render(hbs`
+      <Menu data-test-menu as |menu|>
+        <menu.Button data-test-button>Toggle menu</menu.Button>
+        <menu.List data-test-list>
+          <menu.Item data-test-item>
+            {{menu.id}} {{menu.buttonId}} {{menu.listId}}
+          </menu.Item>
+        </menu.List>
+      </Menu>
+    `);
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-list]').isVisible();
+    assert.dom('[data-test-item]').includesText(find('[data-test-menu]').id);
+    assert.dom('[data-test-item]').includesText(find('[data-test-button]').id);
+    assert.dom('[data-test-item]').includesText(find('[data-test-list]').id);
+  });
+
+  test('yields itemId', async function (assert) {
+    await render(hbs`
+      <Menu data-test-menu as |menu|>
+        <menu.Button data-test-button>Toggle menu</menu.Button>
+        <menu.List data-test-list>
+          <menu.Item data-test-item as |item|>
+            {{item.id}}
+          </menu.Item>
+        </menu.List>
+      </Menu>
+    `);
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-list]').isVisible();
+    assert.dom('[data-test-item]').includesText(find('[data-test-item]').id);
+  });
+
+  test('yields an open tracked property', async function (assert) {
+    await render(hbs`
+      <Menu data-test-menu as |menu|>
+        <menu.Button data-test-button>{{if menu.open "Close" "Open"}}</menu.Button>
+        <menu.List data-test-list>
+          <menu.Item data-test-item as |item|>
+            {{item.id}}
+          </menu.Item>
+        </menu.List>
+      </Menu>
+    `);
+
+    assert.dom('[data-test-button]').hasText('Open');
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-list]').isVisible();
+    assert.dom('[data-test-button]').hasText('Close');
+  });
+
+  test('yields a close function that closes the list and focuses on the button', async function (assert) {
+    await render(hbs`
+      <Menu data-test-menu as |menu|>
+        <menu.Button data-test-button>Toggle menu</menu.Button>
+        <menu.List data-test-list>
+          <menu.Item data-test-item as |item|>
+            {{item.id}}
+          </menu.Item>
+          <button type="button" {{on "click" menu.close}} data-test-menu-btn>Close</button>
+        </menu.List>
+      </Menu>
+    `);
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-list]').isVisible();
+
+    await click('[data-test-menu-btn]');
+    assert.dom('[data-test-list]').isNotVisible();
+    assert.strictEqual(document.activeElement, find('[data-test-button]'));
   });
 });

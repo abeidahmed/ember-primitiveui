@@ -2,9 +2,10 @@
 
 {{#let (element (or @as "div")) as |Tag|}}
   <Tag
-    {{on-outside-click this.handleOutsideClick boundaries=(array this.button.elem this.list.elem) enabled=this.isOpen}}
     ...attributes
+    id={{this.id}}
     data-state={{if this.isOpen "open" "closed"}}
+    {{on-outside-click this.handleOutsideClick boundaries=(array this.button.elem this.list.elem) enabled=this.isOpen}}
   >
     {{yield
       (hash
@@ -45,6 +46,11 @@
           isMouseMoving=this.isMouseMoving
           setMouseMoving=this.setMouseMoving
         )
+        id=this.id
+        buttonId=this.buttonId
+        listId=this.listId
+        open=this.isOpen
+        close=this.close
       )
     }}
   </Tag>
