@@ -1,0 +1,12 @@
+<Popover class="popover" as |popover|>
+  <popover.Button class="popover-btn">
+    {{if @buttonTitle @buttonTitle "Open popover"}}
+  </popover.Button>
+
+  <popover.Panel
+    class="popover-panel"
+    {{velcro (concat "#" popover.buttonId) placement="bottom" offsetOptions=(hash mainAxis=4)}}
+  >
+    {{yield}}
+  </popover.Panel>
+</Popover>
