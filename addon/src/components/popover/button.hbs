@@ -1,13 +1,15 @@
-<button
-  type="button"
-  ...attributes
-  id={{@buttonId}}
-  aria-haspopup="dialog"
-  aria-expanded="{{@isOpen}}"
-  aria-controls={{if @isOpen @panelId}}
-  data-state={{if @isOpen "open" "closed"}}
-  {{on "click" @toggle}}
-  {{this.registerButton}}
->
-  {{yield}}
-</button>
+{{#let (element (or @as "button")) as |Tag|}}
+  <Tag
+    type="button"
+    ...attributes
+    id={{@buttonId}}
+    aria-haspopup="dialog"
+    aria-expanded="{{@isOpen}}"
+    aria-controls={{if @isOpen @panelId}}
+    data-state={{if @isOpen "open" "closed"}}
+    {{on "click" @toggle}}
+    {{this.registerButton}}
+  >
+    {{yield}}
+  </Tag>
+{{/let}}
