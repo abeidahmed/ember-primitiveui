@@ -4,16 +4,16 @@
   <Portal @disabled={{reverse-boolean @portal}}>
     {{#let (element (or @as "div")) as |Tag|}}
       <Tag
-        id={{@listId}}
-        tabindex="-1"
         role="menu"
+        tabindex="-1"
+        ...attributes
+        id={{@listId}}
         aria-labelledby={{@buttonId}}
         aria-activedescendant={{@activeItem.id}}
+        data-state={{if @isOpen "open" "closed"}}
         {{on "keydown" this.handleKeydown}}
         {{this.registerList}}
         {{focus-trap}}
-        ...attributes
-        data-state={{if @isOpen "open" "closed"}}
       >
         {{yield}}
       </Tag>

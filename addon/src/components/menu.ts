@@ -13,9 +13,9 @@ interface Args {
 }
 
 export default class MenuComponent extends Component<Args> {
-  guid = `${guidFor(this)}-menu`;
-  buttonId = `${this.guid}-button`;
-  listId = `${this.guid}-list`;
+  id = `${guidFor(this)}-menu`;
+  buttonId = `${this.id}-button`;
+  listId = `${this.id}-list`;
 
   @tracked isOpen = false;
   @tracked button?: MenuButtonComponent;
