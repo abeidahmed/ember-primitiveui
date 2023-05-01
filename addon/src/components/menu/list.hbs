@@ -13,6 +13,7 @@
         {{this.registerList}}
         {{focus-trap}}
         ...attributes
+        data-state={{if @isOpen "open" "closed"}}
       >
         {{yield}}
       </Tag>

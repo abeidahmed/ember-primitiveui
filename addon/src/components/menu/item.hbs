@@ -11,6 +11,7 @@
     ...attributes
     disabled={{@disabled}}
     aria-disabled="{{@disabled}}"
+    data-state={{if this.active "active"}}
   >
     {{yield (hash active=this.active)}}
   </Tag>

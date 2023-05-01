@@ -10,6 +10,7 @@
     {{on "keydown" this.handleKeydown}}
     {{this.registerButton}}
     ...attributes
+    data-state={{if @isOpen "open" "closed"}}
   >
     {{yield}}
   </Tag>
