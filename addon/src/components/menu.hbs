@@ -4,6 +4,7 @@
   <Tag
     {{on-outside-click this.handleOutsideClick boundaries=(array this.button.elem this.list.elem) enabled=this.isOpen}}
     ...attributes
+    data-state={{if this.isOpen "open" "closed"}}
   >
     {{yield
       (hash

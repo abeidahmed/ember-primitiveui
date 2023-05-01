@@ -114,11 +114,19 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 | ---        |    ----   | ---- |
 | `as`   | `div`        | `string` |
 
+| Data attribute      | Values |
+| ---        |    ----   |
+| `data-state`   | `"open" \| "closed"` |
+
 ### menu.Button
 
 | Argument      | Default | Description |
 | ---        |    ----   | ---- |
 | `as`   | `button`        | `string` |
+
+| Data attribute      | Values |
+| ---        |    ----   |
+| `data-state`   | `"open" \| "closed"` |
 
 ### menu.List
 
@@ -126,6 +134,10 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 | ---        |    ----   | ---- |
 | `as`   | `div`        | `string` |
 | `portal`   | `true`        | `boolean`. Setting it to `false` will not render the component inside a portal.  |
+
+| Data attribute      | Values |
+| ---        |    ----   |
+| `data-state`   | `"open" \| "closed"` |
 
 ### menu.Item
 
@@ -137,6 +149,10 @@ Clicking anywhere outside of an open menu will close that menu and focus returns
 | Yields      | Description |
 | ---        |   ---- |
 | `active`   |  `boolean`. Whether or not the `menu.Item` is currently active. |
+
+| Data attribute      | Values |
+| ---        |    ----   |
+| `data-state`   | `"active" \| "null"` |
 '
   }}
 </ArticleContainer>
