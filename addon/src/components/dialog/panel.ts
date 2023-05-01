@@ -10,17 +10,6 @@ interface Args {
 export default class DialogPanelComponent extends Component<Args> {
   elem?: HTMLElement;
 
-  registerPanel = modifier<{ Element: HTMLElement }>(
-    (element) => {
-      this.elem = element;
-
-      return () => {
-        this.elem = undefined;
-      };
-    },
-    { eager: false }
-  );
-
   @action rootBoundaries() {
     const boundaries = Array.from(document.querySelectorAll(`html > *, body > *, ${portalId(this)} > *`) ?? []).filter(
       (boundary) => {
@@ -34,4 +23,15 @@ export default class DialogPanelComponent extends Component<Args> {
 
     return [...boundaries, this.elem];
   }
+
+  registerPanel = modifier<{ Element: HTMLElement }>(
+    (element) => {
+      this.elem = element;
+
+      return () => {
+        this.elem = undefined;
+      };
+    },
+    { eager: false }
+  );
 }

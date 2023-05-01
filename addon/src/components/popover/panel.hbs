@@ -11,6 +11,7 @@
       data-state={{if @isOpen "open" "closed"}}
       {{on "keydown" this.handleKeydown}}
       {{focus-trap}}
+      {{this.registerPanel}}
     >
       {{yield}}
     </div>

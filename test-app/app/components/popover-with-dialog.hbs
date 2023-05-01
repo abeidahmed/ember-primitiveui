@@ -1,0 +1,18 @@
+<Popover class="popover" as |popover|>
+  <popover.Button class="popover-btn" data-button-2>Popover with modal</popover.Button>
+  <popover.Panel class="popover-panel" {{velcro "[data-button-2]" placement="bottom" offsetOptions=(hash mainAxis=4)}}>
+    <div>Contents goes here!</div>
+    <button type="button" {{on "click" this.openDialog}}>Open dialog</button>
+  </popover.Panel>
+</Popover>
+
+<Dialog @open={{this.isOpen}} @onClose={{this.closeDialog}} class="dialog" as |dialog|>
+  <dialog.Panel class="dialog-panel">
+    <header class="dialog-header">
+      <dialog.Title class="dialog-title">Dialog title</dialog.Title>
+      <button type="button" {{on "click" this.closeDialog}}>X</button>
+    </header>
+
+    Dialog contents here!
+  </dialog.Panel>
+</Dialog>
