@@ -1,0 +1,39 @@
+<aside class="flex-shrink-0 w-64 border-r text-sm">
+  <div class="flex flex-col sticky top-0 h-screen">
+    <div class="flex-shrink-0 border-b h-12 px-6 flex items-center">Ember primitiveui</div>
+    <nav class="flex-1 p-4 flex flex-col overflow-y-auto">
+      <ul>
+        {{#each this.linkGroups as |group index|}}
+          {{#let (unique-id) as |id|}}
+            <li>
+              <div
+                role="presentation"
+                id={{id}}
+                aria-hidden="true"
+                class="px-2 py-1.5 text-xs text-gray-600 font-semibold"
+              >
+                {{group.header}}
+              </div>
+              <ul aria-labelledby={{id}}>
+                {{#each group.links as |link|}}
+                  <li>
+                    <LinkTo
+                      @route={{link.route}}
+                      class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100"
+                      @activeClass="bg-gray-100 before:content-[''] before:absolute before:-left-2 before:bg-blue-600 before:w-1 before:inset-y-0 before:rounded-full before:h-5/6 before:my-auto"
+                    >
+                      {{link.name}}
+                    </LinkTo>
+                  </li>
+                {{/each}}
+              </ul>
+            </li>
+          {{/let}}
+          {{#if (not-eq (sub this.linkGroups.length 1) index)}}
+            <li role="separator" class="my-2 border-t"></li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </nav>
+  </div>
+</aside>

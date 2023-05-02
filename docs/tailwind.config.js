@@ -15,9 +15,9 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          'Segoe UI',
           '-apple-system',
           'BlinkMacSystemFont',
+          'Segoe UI',
           'Helvetica',
           'Arial',
           'sans-serif',

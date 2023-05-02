@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.">
-    <meta property="og:title" content="ember primitiveui">
-    <meta property="og:url" content="https://ember-primitiveui.netlify.com">
-    <meta property="og:type" content="article">
-    <meta property="og:description" content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.">
-    <meta name="twitter:title" content="ember primitiveui">
-    <meta name="twitter:description" content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications."
+    />
+    <meta property="og:title" content="ember primitiveui" />
+    <meta property="og:url" content="https://ember-primitiveui.netlify.com" />
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:description"
+      content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications."
+    />
+    <meta name="twitter:title" content="ember primitiveui" />
+    <meta
+      name="twitter:description"
+      content="Completely unstyled, fully accessible UI components for building ambitious Ember.js applications."
+    />
 
     {{content-for "head"}}
 
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
-    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/docs.css">
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css" />
+    <link integrity="" rel="stylesheet" href="{{rootURL}}assets/docs.css" />
 
     {{content-for "head-footer"}}
   </head>
-  <body class="bg-white text-gray-900 min-h-screen font-normal text-base">
+  <body class="flex flex-col bg-white text-gray-900 min-h-screen font-normal text-base font-sans">
     {{content-for "body"}}
 
     <script src="{{rootURL}}assets/vendor.js"></script>
