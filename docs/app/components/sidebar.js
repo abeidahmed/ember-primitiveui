@@ -7,7 +7,7 @@ export default class SidebarComponent extends Component {
       links: [
         {
           name: 'Getting started',
-          route: 'index',
+          route: 'page.index',
         },
       ],
     },
@@ -16,19 +16,19 @@ export default class SidebarComponent extends Component {
       links: [
         {
           name: 'Dialog',
-          route: 'components.dialog',
+          route: 'page.components.dialog',
         },
         {
           name: 'Menu',
-          route: 'components.menu',
+          route: 'page.components.menu',
         },
         {
           name: 'Popover',
-          route: 'components.popover',
+          route: 'page.components.popover',
         },
         {
           name: 'Switch',
-          route: 'components.switch',
+          route: 'page.components.switch',
         },
       ],
     },
@@ -37,19 +37,19 @@ export default class SidebarComponent extends Component {
       links: [
         {
           name: 'body-scroll-lock',
-          route: 'modifiers.body-scroll-lock',
+          route: 'page.modifiers.body-scroll-lock',
         },
         {
           name: 'focus-trap',
-          route: 'modifiers.focus-trap',
+          route: 'page.modifiers.focus-trap',
         },
         {
           name: 'on-outside-click',
-          route: 'modifiers.on-outside-click',
+          route: 'page.modifiers.on-outside-click',
         },
         {
           name: 'velcro',
-          route: 'modifiers.velcro',
+          route: 'page.modifiers.velcro',
         },
       ],
     },
