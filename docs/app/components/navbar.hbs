@@ -1,5 +1,17 @@
-<header class="flex-shrink-0 bg-white border-b flex items-center justify-end sticky px-4 sm:px-6 top-0 h-12 z-10">
-  <div class="flex items-center text-sm space-x-4">
+<header class="flex-shrink-0 bg-white border-b flex items-center justify-between sticky px-4 sm:px-6 top-0 h-12 z-10">
+  <div class="flex-shrink-0 flex items-center justify-center lg:hidden">
+    <button
+      type="button"
+      class="w-6 h-6 text-gray-700"
+      {{on "click" this.sidebar.open}}
+      aria-label="Open sidebar"
+      aria-expanded="{{this.sidebar.isOpen}}"
+    >
+      {{svg-jar "hamburger-menu" width="24" height="24"}}
+    </button>
+  </div>
+
+  <div class="flex items-center text-sm space-x-4 lg:ml-auto">
     <a
       href="https://github.com/abeidahmed/ember-primitiveui/blob/main/CHANGELOG.md"
       class="inline-flex items-center text-blue-600 hover:underline"

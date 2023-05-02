@@ -1,6 +1,23 @@
-<aside class="flex-shrink-0 w-64 border-r text-sm">
+<div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 {{unless this.sidebar.isOpen 'hidden'}} lg:hidden"></div>
+<div
+  class="absolute z-30 bg-white flex-shrink-0 w-64 border-r text-sm
+    {{unless this.sidebar.isOpen 'hidden'}}
+    lg:static lg:block"
+  {{on-outside-click this.sidebar.close enabled=this.sidebar.isOpen}}
+>
   <div class="flex flex-col sticky top-0 h-screen">
-    <div class="flex-shrink-0 border-b h-12 px-6 flex items-center">Ember primitiveui</div>
+    <div class="flex-shrink-0 border-b h-12 px-6 flex items-center justify-between">
+      <span>Ember primitiveui</span>
+      <button
+        type="button"
+        class="w-6 h-6 -mr-2 text-gray-700 lg:hidden"
+        {{on "click" this.sidebar.close}}
+        aria-label="Close sidebar"
+      >
+        {{svg-jar "close" fill="currentColor" height="24" width="24"}}
+      </button>
+    </div>
+
     <nav class="flex-1 p-4 flex flex-col overflow-y-auto">
       <ul>
         {{#each this.linkGroups as |group index|}}
@@ -36,4 +53,4 @@
       </ul>
     </nav>
   </div>
-</aside>
+</div>
