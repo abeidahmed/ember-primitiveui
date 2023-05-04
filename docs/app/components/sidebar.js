@@ -6,11 +6,15 @@ export default class SidebarComponent extends Component {
 
   linkGroups = [
     {
-      header: 'Introduction',
+      header: 'Overview',
       links: [
         {
-          name: 'Getting started',
+          name: 'Introduction',
           route: 'page.index',
+        },
+        {
+          name: 'Getting started',
+          route: 'page.getting-started',
         },
       ],
     },
@@ -28,6 +32,10 @@ export default class SidebarComponent extends Component {
         {
           name: 'Popover',
           route: 'page.components.popover',
+        },
+        {
+          name: 'Portal',
+          route: 'page.components.portal',
         },
         {
           name: 'Switch',

@@ -5,18 +5,13 @@
   <h1>{{@title}}</h1>
   <p class="text-lg">{{@description}}</p>
 
-  <div class="relative rounded-lg overflow-hidden bg-gray-200">
-    <div class="w-full h-[356px]">
-      <iframe src={{@demoSrc}} title={{@title}} class="h-full w-full"></iframe>
+  {{#if @demoSrc}}
+    <div class="relative rounded-lg overflow-hidden bg-gray-200">
+      <div class="w-full h-[356px]">
+        <iframe src={{@demoSrc}} title={{@title}} class="h-full w-full"></iframe>
+      </div>
     </div>
-  </div>
-
-  <h2 id="installation" class="markdown-heading">
-    <a href="#installation" class="font-bold no-underline hover:underline">Installation</a>
-  </h2>
-
-  <p>To get started, install the addon by:</p>
-  <pre><code>ember install ember-primitiveui</code></pre>
+  {{/if}}
 
   {{yield}}
 </article>
