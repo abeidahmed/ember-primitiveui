@@ -18,39 +18,63 @@
       </button>
     </div>
 
-    <nav class="flex-1 p-4 flex flex-col overflow-y-auto">
-      <ul>
-        {{#each this.linkGroups as |group index|}}
-          {{#let (unique-id) as |id|}}
-            <li>
-              <div
-                role="presentation"
-                id={{id}}
-                aria-hidden="true"
-                class="px-2 py-1.5 text-xs text-gray-600 font-semibold"
-              >
-                {{group.header}}
-              </div>
-              <ul aria-labelledby={{id}}>
-                {{#each group.links as |link|}}
-                  <li>
-                    <LinkTo
-                      @route={{link.route}}
-                      class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100"
-                      @activeClass="bg-gray-100 font-semibold before:content-[''] before:absolute before:-left-2 before:bg-blue-600 before:w-1 before:inset-y-0 before:rounded-full before:h-5/6 before:my-auto"
-                    >
-                      {{link.name}}
-                    </LinkTo>
-                  </li>
-                {{/each}}
-              </ul>
-            </li>
-          {{/let}}
-          {{#if (not-eq (sub this.linkGroups.length 1) index)}}
-            <li role="separator" class="my-2 border-t"></li>
-          {{/if}}
-        {{/each}}
-      </ul>
-    </nav>
+    <DocfyOutput @scope="docs" as |node|>
+      <nav class="flex-1 p-4 flex flex-col overflow-y-auto">
+        <ul class="space-y-2 divide-y">
+          <li>
+            <div
+              role="presentation"
+              id="top-level-navigation"
+              aria-hidden="true"
+              class="p-2 text-xs text-gray-600 font-semibold"
+            >
+              Introduction
+            </div>
+            <ul aria-labelledby="top-level-navigation">
+              {{#each node.pages as |page|}}
+                <li>
+                  <DocfyLink
+                    @to={{page.url}}
+                    class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100"
+                    @activeClass="bg-gray-100 font-semibold before:content-[''] before:absolute before:-left-2 before:bg-blue-600 before:w-1 before:inset-y-0 before:rounded-full before:h-5/6 before:my-auto"
+                  >
+                    {{page.title}}
+                  </DocfyLink>
+                </li>
+              {{/each}}
+            </ul>
+          </li>
+
+          {{#each node.children as |child|}}
+            {{#let (unique-id) as |id|}}
+              <li class="pt-2">
+                <div
+                  role="presentation"
+                  aria-hidden="true"
+                  class="p-2 text-xs text-gray-600 font-semibold capitalize"
+                  id={{id}}
+                >
+                  {{child.label}}
+                </div>
+
+                <ul aria-labelledby={{id}}>
+                  {{#each child.pages as |page|}}
+                    <li>
+                      <DocfyLink
+                        @to={{page.url}}
+                        class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100"
+                        @activeClass="bg-gray-100 font-semibold before:content-[''] before:absolute before:-left-2 before:bg-blue-600 before:w-1 before:inset-y-0 before:rounded-full before:h-5/6 before:my-auto"
+                      >
+                        {{page.title}}
+                      </DocfyLink>
+                    </li>
+                  {{/each}}
+                </ul>
+              </li>
+            {{/let}}
+          {{/each}}
+        </ul>
+      </nav>
+    </DocfyOutput>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import EmberRouter from '@ember/routing/router';
 import config from 'docs/config/environment';
+import { addDocfyRoutes } from '@docfy/ember';
 
 export default class Router extends EmberRouter {
   location = config.locationType;
@@ -7,25 +8,26 @@ export default class Router extends EmberRouter {
 }
 
 Router.map(function () {
-  this.route('examples', function () {
-    this.route('dialog');
-    this.route('menu');
-    this.route('switch');
-  });
-  this.route('page', { path: '/' }, function () {
-    this.route('components', function () {
-      this.route('dialog');
-      this.route('menu');
-      this.route('popover');
-      this.route('portal');
-      this.route('switch');
-    });
-    this.route('modifiers', function () {
-      this.route('body-scroll-lock');
-      this.route('focus-trap');
-      this.route('on-outside-click');
-      this.route('velcro');
-    });
-    this.route('getting-started');
-  });
+  addDocfyRoutes(this);
+  // this.route('examples', function () {
+  //   this.route('dialog');
+  //   this.route('menu');
+  //   this.route('switch');
+  // });
+  // this.route('page', { path: '/' }, function () {
+  //   this.route('components', function () {
+  //     this.route('dialog');
+  //     this.route('menu');
+  //     this.route('popover');
+  //     this.route('portal');
+  //     this.route('switch');
+  //   });
+  //   this.route('modifiers', function () {
+  //     this.route('body-scroll-lock');
+  //     this.route('focus-trap');
+  //     this.route('on-outside-click');
+  //     this.route('velcro');
+  //   });
+  //   this.route('getting-started');
+  // });
 });
