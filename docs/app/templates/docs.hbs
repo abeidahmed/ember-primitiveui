@@ -9,11 +9,15 @@
         {{outlet}}
       </article>
 
-      <div class="hidden flex-shrink-0 pl-8 w-56 lg:block">
-        <div class="sticky top-24 overflow-y-auto max-h-[calc(100vh_-_96px)]">
-          <Toc />
-        </div>
-      </div>
+      <DocfyOutput @fromCurrentURL={{true}} as |page|>
+        {{#if page.headings}}
+          <div class="hidden flex-shrink-0 pl-8 w-56 lg:block">
+            <div class="sticky top-24 overflow-y-auto max-h-[calc(100vh_-_96px)]">
+              <Toc @headings={{page.headings}} />
+            </div>
+          </div>
+        {{/if}}
+      </DocfyOutput>
     </main>
   </div>
 </div>
