@@ -1,23 +1,22 @@
-<div class="flex-1 flex">
-  <Sidebar />
-  <div class="flex-1 flex flex-col">
-    <Navbar />
-    <main class="flex flex-1 max-w-8xl w-full mx-auto p-4 sm:p-6 lg:p-12">
-      <article
-        class="flex-1 w-full max-w-[800px] mx-auto prose prose-code:before:content-none prose-code:after:content-none prose-h1:before:block prose-h1:before:h-24 prose-h1:before:-mt-24 prose-h2:before:block prose-h2:before:h-24 prose-h2:before:-mt-24 prose-h3:before:block prose-h3:before:h-24 prose-h3:before:-mt-24"
-      >
-        {{outlet}}
-      </article>
+<Sidebar />
 
-      <DocfyOutput @fromCurrentURL={{true}} as |page|>
-        {{#if page.headings}}
-          <aside class="hidden flex-shrink-0 pl-8 w-56 lg:block">
-            <div class="sticky top-24 overflow-y-auto max-h-[calc(100vh_-_96px)]">
-              <Toc @headings={{page.headings}} />
-            </div>
-          </aside>
-        {{/if}}
-      </DocfyOutput>
-    </main>
-  </div>
+<div class="flex flex-col lg:pl-64">
+  <Navbar />
+  <main class="flex flex-1 max-w-8xl w-full mx-auto p-4 sm:p-6 lg:p-12">
+    <article
+      class="flex-1 w-full max-w-[800px] mx-auto min-w-0 prose prose-code:before:content-none prose-code:after:content-none prose-h1:before:block prose-h1:before:h-24 prose-h1:before:-mt-24 prose-h2:before:block prose-h2:before:h-24 prose-h2:before:-mt-24 prose-h3:before:block prose-h3:before:h-24 prose-h3:before:-mt-24"
+    >
+      {{outlet}}
+    </article>
+
+    <DocfyOutput @fromCurrentURL={{true}} as |page|>
+      {{#if page.headings}}
+        <aside class="hidden flex-shrink-0 pl-8 w-56 lg:block">
+          <div class="sticky top-24 overflow-y-auto max-h-[calc(100vh_-_96px)]">
+            <Toc @headings={{page.headings}} />
+          </div>
+        </aside>
+      {{/if}}
+    </DocfyOutput>
+  </main>
 </div>
