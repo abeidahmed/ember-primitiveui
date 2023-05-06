@@ -9,4 +9,5 @@ module.exports = {
     editBranch: 'main',
   },
   remarkPlugins: [highlight],
+  tocMaxDepth: 3,
 };
