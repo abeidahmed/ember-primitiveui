@@ -8,14 +8,14 @@
 >
   <div class="flex flex-col">
     <div class="flex-shrink-0 border-b h-12 px-6 flex items-center justify-between">
-      <span>Ember primitiveui</span>
+      <LinkTo @route="index">Ember primitiveUI</LinkTo>
       <button
         type="button"
         class="w-6 h-6 -mr-2 text-gray-700 lg:hidden"
         {{on "click" this.sidebar.close}}
         aria-label="Close sidebar"
       >
-        {{svg-jar "close" fill="currentColor" height="24" width="24"}}
+        <Svg @icon="close" @size="24" />
       </button>
     </div>
 

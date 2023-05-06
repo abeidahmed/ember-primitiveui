@@ -7,7 +7,7 @@
       aria-label="Open sidebar"
       aria-expanded="{{this.sidebar.isOpen}}"
     >
-      {{svg-jar "hamburger-menu" width="24" height="24"}}
+      <Svg @icon="hamburger-menu" @size="24" />
     </button>
   </div>
 
@@ -20,7 +20,7 @@
     >
       <span>Changelog</span>
       <span class="flex-shrink-0 ml-1" aria-hidden="true">
-        {{svg-jar "external-link" fill="currentColor" height="18" width="18"}}
+        <Svg @icon="external-link" @size="18" />
       </span>
     </a>
 
@@ -32,7 +32,7 @@
     >
       <span class="flex-1">GitHub</span>
       <span class="flex-shrink-0 ml-1" aria-hidden="true">
-        {{svg-jar "external-link" fill="currentColor" height="18" width="18"}}
+        <Svg @icon="external-link" @size="18" />
       </span>
     </a>
   </div>

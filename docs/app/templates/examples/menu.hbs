@@ -6,7 +6,10 @@
         data-button
       >
         Options
-        {{svg-jar "drop-down" fill="currentColor" aria-hidden="true" class="w-5 h-5 ml-1"}}
+
+        <span class="ml-1">
+          <Svg @icon="drop-down" />
+        </span>
       </menu.Button>
 
       <menu.List
