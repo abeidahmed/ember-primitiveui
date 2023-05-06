@@ -4,7 +4,7 @@ A menu is a widget that offers a list of choices to the user.
 
 ## Usage
 
-Menu is built using the `Menu`, `menu.Button`, `menu.List`, and `menu.Item` components. Opening and closing of the list
+Menus are built using the `Menu`, `menu.Button`, `menu.List`, and `menu.Item` components. Opening and closing of the list
 is handled automatically.
 
 ```hbs
