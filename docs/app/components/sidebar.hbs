@@ -8,7 +8,13 @@
 >
   <div class="flex flex-col">
     <div class="flex-shrink-0 border-b h-12 px-6 flex items-center justify-between">
-      <LinkTo @route="index">Ember primitiveUI</LinkTo>
+      <div class="-ml-2">
+        <LinkTo @route="index" class="flex items-center" aria-label="Ember primitiveUI home page">
+          {{svg-jar "ember-logo" height="48" width="95" aria-hidden="true"}}
+          <span class="text-lg font-semibold" aria-hidden="true">primitiveUI</span>
+        </LinkTo>
+      </div>
+
       <button
         type="button"
         class="w-6 h-6 -mr-2 text-gray-700 lg:hidden"

@@ -1,9 +1,12 @@
 <header class="bg-white flex items-center justify-between h-12 px-4 sm:px-6 lg:px-8">
-  <div>
-    Logo
+  <div class="-ml-2 hidden sm:flex sm:items-center">
+    <LinkTo @route="index" class="flex items-center" aria-label="Ember primitiveUI home page">
+      {{svg-jar "ember-logo" height="48" width="95" aria-hidden="true"}}
+      <span class="text-lg font-semibold" aria-hidden="true">primitiveUI</span>
+    </LinkTo>
   </div>
 
-  <div class="flex items-center text-sm space-x-4">
+  <div class="ml-auto flex items-center text-sm space-x-4">
     <a
       href="https://github.com/abeidahmed/ember-primitiveui/blob/main/CHANGELOG.md"
       class="inline-flex items-center text-blue-600 hover:underline"
