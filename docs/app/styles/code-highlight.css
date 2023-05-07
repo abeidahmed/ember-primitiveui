@@ -1,3 +1,7 @@
+.language-diff {
+  color: theme("colors.gray.400");
+}
+
 .hljs-comment,
 .hljs-quote {
   color: #5c6370;
@@ -15,7 +19,7 @@
 .hljs-selector-tag,
 .hljs-deletion,
 .hljs-subst {
-  color: #e06c75;
+  color: theme("colors.red.400");
 }
 
 .hljs-literal {
@@ -27,7 +31,7 @@
 .hljs-addition,
 .hljs-attribute,
 .hljs-meta .hljs-string {
-  color: #98c379;
+  color: theme("colors.green.300");
 }
 
 .hljs-attr,

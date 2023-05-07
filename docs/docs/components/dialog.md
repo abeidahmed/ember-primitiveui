@@ -43,13 +43,13 @@ first focusable element, set `data-autofocus` on an element.
 
 Pressing `Tab` will cycle through all the focusable elements.
 
-```hbs
+```diff
 <Dialog @open={{this.isOpen}} @onClose={{this.close}} as |dialog|>
   <dialog.Panel>
     <dialog.Title>Activate your account</dialog.Title>
     <p>All your data will be restored.</p>
 
-    <button type="button" data-autofocus>Button</button>
++   <button type="button" data-autofocus>Button</button>
   </dialog.Panel>
 </Dialog>
 ```

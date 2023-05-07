@@ -18,13 +18,13 @@ Popovers are built using the `Popover`, `popover.Button`, and `popover.Panel` co
 
 ## Positioning
 
-Positioning functionality of the `popover.Panel` is not baked in, but you can use the `velcro` modifier to do so. Learn
-how to use the modifier.
+Positioning functionality of the `popover.Panel` is not baked in, but you can use the [`velcro`](../modifiers/velcro.md)
+modifier to dynamically position the popover.
 
-```hbs
+```diff
 <Popover as |popover|>
   <popover.Button>Toggle popover</popover.Button>
-  <popover.Panel {{velcro (concat "#" popover.buttonId) placement="bottom"}}>
++ <popover.Panel {{velcro (concat "#" popover.buttonId) placement="bottom"}}>
     Popover contents!
   </popover.Panel>
 </Popover>
@@ -37,11 +37,11 @@ first focusable element, set `data-autofocus` on an element.
 
 Pressing `Tab` will cycle through all the focusable elements.
 
-```hbs
+```diff
 <Popover as |popover|>
   <popover.Button>Toggle popover</popover.Button>
   <popover.Panel>
-    <button type="button" data-autofocus>Button</button>
++   <button type="button" data-autofocus>Button</button>
   </popover.Panel>
 </Popover>
 ```

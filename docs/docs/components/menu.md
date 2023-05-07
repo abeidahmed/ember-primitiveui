@@ -60,13 +60,13 @@ menu.
 
 ## Positioning
 
-Positioning functionality of the `menu.List` is not baked in, but you can use the `velcro` modifier to do so. Learn
-how to use the modifier.
+Positioning functionality of the `menu.List` is not baked in, but you can use the [`velcro`](../modifiers/velcro.md)
+modifier to dynamically position the menu.
 
-```hbs
+```diff
 <Menu as |menu|>
   <menu.Button>Toggle menu</menu.Button>
-  <menu.List {{velcro (concat "#" menu.buttonId placement="bottom-end")}}>
++ <menu.List {{velcro (concat "#" menu.buttonId placement="bottom-end")}}>
     <menu.Item as |item|>
       Account settings
     </menu.Item>
