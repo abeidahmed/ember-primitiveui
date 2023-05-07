@@ -10,3 +10,11 @@ attributes, keyboard management, focus management are handled by the library.
 
 The library also provides a handful of `modifiers` that you can use to add behaviors to your already existing
 components.
+
+## Installation
+
+To install the library, run:
+
+```bash
+ember install ember-primitiveui
+```
