@@ -58,43 +58,9 @@
   <section class="py-20 px-4 sm:px-6 lg:px-8">
     <h2 class="text-2xl font-bold sm:text-2xl md:text-3xl">What you get?</h2>
     <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      <div class="col-span-1 border rounded p-5">
-        <div class="text-blue-600">
-          <Svg @icon="check-circle" @size="28" />
-        </div>
-        <h3 class="py-2 font-semibold text-lg md:text-xl">WAI-ARIA compliant</h3>
-        <p class="text-gray-600 leading-5">
-          Components adhere to the WAI-ARIA design patterns wherever possible.
-        </p>
-      </div>
-      <div class="col-span-1 border rounded p-5">
-        <div class="text-blue-600">
-          <Svg @icon="keyboard" @size="28" />
-        </div>
-        <h3 class="py-2 font-semibold text-lg md:text-xl">Keyboard management</h3>
-        <p class="text-gray-600 leading-5">
-          Components provide full keyboard support where users expect to use them.
-        </p>
-      </div>
-      <div class="col-span-1 border rounded p-5">
-        <div class="text-blue-600">
-          <Svg @icon="focus" @size="28" />
-        </div>
-        <h3 class="py-2 font-semibold text-lg md:text-xl">Focus management</h3>
-        <p class="text-gray-600 leading-5">
-          By default, the components provide sensible focus management. However, you can customize them with the help of
-          our modifiers.
-        </p>
-      </div>
-      <div class="col-span-1 border rounded p-5">
-        <div class="text-blue-600">
-          <Svg @icon="brush" @size="28" />
-        </div>
-        <h3 class="py-2 font-semibold text-lg md:text-xl">Unstyled components</h3>
-        <p class="text-gray-600 leading-5">
-          All the components are unstyled giving you the freedom to style them as you wish.
-        </p>
-      </div>
+      {{#each this.infos as |info|}}
+        <InfoBox @icon={{info.icon}} @title={{info.title}} @description={{info.description}} />
+      {{/each}}
     </div>
   </section>
 </main>
