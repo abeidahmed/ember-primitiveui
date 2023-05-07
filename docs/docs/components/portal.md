@@ -16,6 +16,6 @@ Portals are built using the `Portal` component.
 
 ### `Portal`
 
-| Argument   | Default | Description |
-| ---        | ---     | ---         |
-| `disabled` | `false` | `boolean`   |
+| Argument   | Default | Description                                       |
+| ---        | ---     | ---                                               |
+| `disabled` | `false` | `boolean`. Whether or not the portal is disabled. |

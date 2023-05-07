@@ -11,13 +11,13 @@ escape from the containing element.
 </div>
 ```
 
-By default, the first focusable element will be the one that you use the `focus-trap` modifier, so it needs to have a
-`tabindex` attribute set to either of `0` or `1` if it's a non-focusable element.
+By default, the first focusable element will be the element that you use the `focus-trap` modifier on. Hence it needs to
+have a `tabindex` attribute set to either of `0` or `1` if it's a non-focusable element.
 
 If you want to customize the first focusable element, set `data-autofocus` on an element.
 
-```hbs
+```diff
 <div tabindex="-1" {{focus-trap}}>
-  <button type="button" data-autofocus>Button</button>
++ <button type="button" data-autofocus>Button</button>
 </div>
 ```

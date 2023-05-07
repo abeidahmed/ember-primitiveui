@@ -44,7 +44,7 @@ Set ``@disabled={{true}}`` argument to the `menu.Item` component. This will make
 and it will be skipped when pressing the up/down arrows.
 
 ```hbs
-<menu.Item @disabled={{true}} as |item|>Account</menu.Item>
+<menu.Item @disabled={{true}}>Account</menu.Item>
 ```
 
 ## Integrating with `LinkTo` component

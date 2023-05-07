@@ -30,7 +30,7 @@ Pass in an array of elements to the modifier. Clicking on these elements will no
 element is outside the DOM node.
 
 ```hbs
-<div {{on-outside-click this.close}} boundaries=this.boundaries>
+<div {{on-outside-click this.close boundaries=this.boundaries}}>
   <button type="button">Button</button>
 </div>
 ```
@@ -56,10 +56,10 @@ export default class MyComponent extends Component {
 ## Enable the modifier manually
 
 If building a pop-up menu, it might be a good idea to start listening for outside clicks only if the menu is open. In
-that case, you can pass in a `boolean` to the `enabled` named argument.
+that case, you can pass a `boolean` property to the `enabled` named argument.
 
 ```hbs
-<div {{on-outside-click this.close}} enabled=this.isOpen>
+<div {{on-outside-click this.close enabled=this.isOpen}}>
   <button type="button">Button</button>
 </div>
 ```

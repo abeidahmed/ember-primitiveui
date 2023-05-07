@@ -26,7 +26,6 @@ export default class MyDialogComponent extends Component {
   <dialog.Panel>
     <dialog.Title>Activate your account</dialog.Title>
     <p>All your data will be restored.</p>
-
     <button type="button">Button</button>
   </dialog.Panel>
 </Dialog>
@@ -38,7 +37,7 @@ When a dialog is open, scroll is locked.
 
 ## Focus management
 
-When the dialog is opened, `dialog.Panel` will be focused an the focus will be trapped. If you want to customize the
+When the dialog is opened, `dialog.Panel` will be focused and the focus will be trapped. If you want to customize the
 first focusable element, set `data-autofocus` on an element.
 
 Pressing `Tab` will cycle through all the focusable elements.
@@ -48,7 +47,6 @@ Pressing `Tab` will cycle through all the focusable elements.
   <dialog.Panel>
     <dialog.Title>Activate your account</dialog.Title>
     <p>All your data will be restored.</p>
-
 +   <button type="button" data-autofocus>Button</button>
   </dialog.Panel>
 </Dialog>
