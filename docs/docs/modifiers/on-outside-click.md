@@ -24,7 +24,9 @@ export default class MyComponent extends Component {
 }
 ```
 
-## Specifying a boundary manually
+## Examples
+
+### Specifying a boundary manually
 
 Pass in an array of elements to the modifier. Clicking on these elements will not trigger the callback even if the
 element is outside the DOM node.
@@ -53,7 +55,7 @@ export default class MyComponent extends Component {
 }
 ```
 
-## Enable the modifier manually
+### Enable the modifier manually
 
 If building a pop-up menu, it might be a good idea to start listening for outside clicks only if the menu is open. In
 that case, you can pass a `boolean` property to the `enabled` named argument.
