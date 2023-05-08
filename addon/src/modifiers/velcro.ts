@@ -49,8 +49,6 @@ export default class VelcroModifier extends Modifier<Signature> {
 
     this.cleanup();
     this.cleanup = undefined;
-    this.popupElement.style.removeProperty('--popup-height');
-    this.popupElement.style.removeProperty('--popup-width');
   }
 
   async reposition() {
@@ -98,5 +96,7 @@ export default class VelcroModifier extends Modifier<Signature> {
       top: `${y}px`,
       position: strategy,
     });
+
+    this.popupElement.setAttribute('data-placement', placement);
   }
 }
