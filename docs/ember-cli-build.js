@@ -1,11 +1,11 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const { glob } = require('glob');
+const { globSync } = require('glob');
 
-async function urlForPrember() {
+function urlForPrember() {
   const index = '/index';
-  const files = await glob('./docs/**/*.md');
+  const files = globSync('./docs/**/*.md');
   const normalizedFiles = files.map((file) => {
     const f = `/${file.replace('.md', '')}`;
     return f.endsWith(index) ? f.substring(0, f.length - index.length) : f;
