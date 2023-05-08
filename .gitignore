@@ -4,3 +4,5 @@ yarn-error.log
 
 # IDE
 .idea
+# Local Netlify folder
+.netlify
