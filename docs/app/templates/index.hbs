@@ -1,13 +1,69 @@
-<Navbar />
-
-<main class="max-w-8xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-  <h1 class="text-2xl sm:text-3xl md:max-w-4xl font-bold">
-    Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.
-  </h1>
-
-  <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-9 gap-y-12">
-    <UiCard @img="dialog" @title="Dialog (Modal)" @route="components.dialog" />
-    <UiCard @img="menu" @title="Menu (Dropdown)" @route="components.menu" />
-    <UiCard @img="switch" @title="Switch (Toggle)" @route="components.switch" />
+<header class="bg-white max-w-8xl mx-auto flex items-center justify-between h-12 px-4 sm:px-6 lg:px-8">
+  <div class="-ml-2 hidden sm:flex sm:items-center">
+    <LinkTo @route="index" class="flex items-center" aria-label="Ember primitiveUI home page">
+      {{svg-jar "ember-logo" height="48" width="95" aria-hidden="true"}}
+      <span class="text-lg font-semibold" aria-hidden="true">primitiveUI</span>
+    </LinkTo>
   </div>
+
+  <div class="ml-auto flex items-center text-sm space-x-4">
+    <a
+      href="https://github.com/abeidahmed/ember-primitiveui/blob/main/CHANGELOG.md"
+      class="inline-flex items-center text-blue-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>Changelog</span>
+      <span class="flex-shrink-0 ml-1" aria-hidden="true">
+        <Svg @icon="external-link" @size="18" />
+      </span>
+    </a>
+
+    <a
+      href="https://github.com/abeidahmed/ember-primitiveui"
+      class="inline-flex items-center text-blue-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="flex-1">GitHub</span>
+      <span class="flex-shrink-0 ml-1" aria-hidden="true">
+        <Svg @icon="external-link" @size="18" />
+      </span>
+    </a>
+  </div>
+</header>
+
+<main class="max-w-8xl mx-auto">
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl font-extrabold sm:text-4xl md:text-5xl">
+      Build accessible UI components
+      <br class="hidden sm:inline" />
+      without breaking a sweat!
+    </h1>
+
+    <p class="mt-3 sm:text-lg text-gray-600">
+      Ember primitiveUI is an open-source UI component library for
+      <br class="hidden sm:inline" />
+      building ambitious Ember.js applications.
+    </p>
+
+    <div class="mt-5">
+      <LinkTo
+        @route="docs.index"
+        class="inline-flex items-center justify-center gap-x-2 h-10 px-4 bg-gray-900 text-white font-semibold rounded hover:bg-gray-800 active:bg-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-900"
+      >
+        Install components
+        <span class="text-gray-300"><Svg @icon="drop-right" /></span>
+      </LinkTo>
+    </div>
+  </section>
+
+  <section class="py-20 px-4 sm:px-6 lg:px-8">
+    <h2 class="text-2xl font-bold sm:text-2xl md:text-3xl">What you get?</h2>
+    <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      {{#each this.infos as |info|}}
+        <InfoBox @icon={{info.icon}} @title={{info.title}} @description={{info.description}} />
+      {{/each}}
+    </div>
+  </section>
 </main>

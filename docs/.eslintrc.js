@@ -33,6 +33,8 @@ module.exports = {
         './server/**/*.js',
         './tailwind.config.js',
         './functions/fastboot-server.js',
+        './.docfy-config.js',
+        './remark-plugins/**/*.js',
       ],
       parserOptions: {
         sourceType: 'script',

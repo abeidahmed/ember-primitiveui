@@ -23,6 +23,7 @@
     "test:ember": "ember test"
   },
   "devDependencies": {
+    "@docfy/ember": "^0.6.0",
     "@ember/optional-features": "^2.0.0",
     "@ember/test-helpers": "^2.7.0",
     "@glimmer/component": "^1.1.2",
@@ -54,6 +55,7 @@
     "ember-source": "~4.4.0",
     "ember-svg-jar": "^2.3.4",
     "ember-template-lint": "^4.8.0",
+    "ember-truth-helpers": "^3.1.1",
     "ember-welcome-page": "^6.2.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
@@ -61,15 +63,15 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-qunit": "^7.2.0",
-    "highlight.js": "^11.5.1",
     "loader.js": "^4.7.0",
-    "marked": "^4.0.17",
     "npm-run-all": "^4.1.5",
     "postcss-import": "^14.1.0",
     "prettier": "^2.6.2",
     "qunit": "^2.19.1",
     "qunit-dom": "^2.0.0",
+    "remark-highlight.js": "^6.0.0",
     "tailwindcss": "^3.1.5",
+    "unist-util-visit": "2.0.0",
     "webpack": "^5.72.1"
   },
   "dependencies": {

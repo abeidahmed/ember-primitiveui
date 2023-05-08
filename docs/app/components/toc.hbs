@@ -1,0 +1,24 @@
+<span id="toc-heading" class="font-semibold">On this page</span>
+<nav aria-labelledby="toc-heading" class="text-sm py-2">
+  <ul>
+    {{#each @headings as |heading|}}
+      <li>
+        <a href="#{{heading.id}}" class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100">
+          {{heading.title}}
+        </a>
+      </li>
+
+      {{#if heading.headings}}
+        <ul class="pl-3">
+          {{#each heading.headings as |subheading|}}
+            <li>
+              <a href="#{{subheading.id}}" class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100">
+                {{subheading.title}}
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    {{/each}}
+  </ul>
+</nav>

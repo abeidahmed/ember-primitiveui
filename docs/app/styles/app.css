@@ -2,7 +2,3 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "./code-highlight.css";
-
-.markdown-heading {
-  @apply before:block before:h-[100px] before:-mt-[100px];
-}

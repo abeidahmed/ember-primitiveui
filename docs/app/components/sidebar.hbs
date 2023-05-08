@@ -1,0 +1,87 @@
+{{#if this.sidebar.isOpen}}
+  <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20" {{body-scroll-lock reserveScrollBarGap=true}}></div>
+{{/if}}
+
+<div
+  class="fixed left-0 inset-y-0 z-30 bg-white w-64 border-r text-sm {{unless this.sidebar.isOpen 'hidden'}} lg:block"
+  {{on-outside-click this.sidebar.close enabled=this.sidebar.isOpen}}
+>
+  <div class="flex flex-col">
+    <div class="flex-shrink-0 border-b h-12 px-6 flex items-center justify-between">
+      <div class="-ml-2">
+        <LinkTo @route="index" class="flex items-center" aria-label="Ember primitiveUI home page">
+          {{svg-jar "ember-logo" height="48" width="95" aria-hidden="true"}}
+          <span class="text-lg font-semibold" aria-hidden="true">primitiveUI</span>
+        </LinkTo>
+      </div>
+
+      <button
+        type="button"
+        class="w-6 h-6 -mr-2 text-gray-700 lg:hidden"
+        {{on "click" this.sidebar.close}}
+        aria-label="Close sidebar"
+      >
+        <Svg @icon="close" @size="24" />
+      </button>
+    </div>
+
+    <DocfyOutput @scope="docs" as |node|>
+      <nav class="flex-1 p-4 flex flex-col overflow-y-auto">
+        <ul class="space-y-2 divide-y">
+          <li>
+            <div
+              role="presentation"
+              id="top-level-navigation"
+              aria-hidden="true"
+              class="p-2 text-xs text-gray-600 font-semibold"
+            >
+              Overview
+            </div>
+            <ul aria-labelledby="top-level-navigation">
+              {{#each node.pages as |page|}}
+                <li>
+                  <DocfyLink
+                    @to={{page.url}}
+                    class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100"
+                    @activeClass="bg-gray-100 font-semibold before:content-[''] before:absolute before:-left-2 before:bg-blue-600 before:w-1 before:inset-y-0 before:rounded-full before:h-5/6 before:my-auto"
+                  >
+                    {{page.title}}
+                  </DocfyLink>
+                </li>
+              {{/each}}
+            </ul>
+          </li>
+
+          {{#each node.children as |child|}}
+            {{#let (unique-id) as |id|}}
+              <li class="pt-2">
+                <div
+                  role="presentation"
+                  aria-hidden="true"
+                  class="p-2 text-xs text-gray-600 font-semibold capitalize"
+                  id={{id}}
+                >
+                  {{child.label}}
+                </div>
+
+                <ul aria-labelledby={{id}}>
+                  {{#each child.pages as |page|}}
+                    <li>
+                      <DocfyLink
+                        @to={{page.url}}
+                        class="relative block w-full py-1.5 px-2 rounded hover:bg-gray-100"
+                        @activeClass="bg-gray-100 font-semibold before:content-[''] before:absolute before:-left-2 before:bg-blue-600 before:w-1 before:inset-y-0 before:rounded-full before:h-5/6 before:my-auto"
+                      >
+                        {{page.title}}
+                      </DocfyLink>
+                    </li>
+                  {{/each}}
+                </ul>
+              </li>
+            {{/let}}
+          {{/each}}
+        </ul>
+      </nav>
+    </DocfyOutput>
+  </div>
+</div>

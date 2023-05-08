@@ -1,19 +1,39 @@
-<header class="z-10 sticky top-0 bg-white bg-opacity-50 backdrop-blur backdrop-filter max-w-8xl mx-auto">
-  <div class="mx-auto max-w-8xl xl:px-8">
-    <div class="flex items-center justify-between border-b py-5 px-4 sm:px-6 lg:px-8 xl:px-0">
-      <LinkTo @route="index" aria-label="Ember primitiveUI">
-        {{svg-jar "logo" class="w-48 h-auto"}}
-      </LinkTo>
+<header class="flex-shrink-0 bg-white border-b flex items-center justify-between sticky px-4 sm:px-6 top-0 h-12 z-10">
+  <div class="flex-shrink-0 flex items-center justify-center lg:hidden">
+    <button
+      type="button"
+      class="w-6 h-6 text-gray-700"
+      {{on "click" this.sidebar.open}}
+      aria-label="Open sidebar"
+      aria-expanded="{{this.sidebar.isOpen}}"
+    >
+      <Svg @icon="hamburger-menu" @size="24" />
+    </button>
+  </div>
 
-      <div class="flex-shrink-0">
-        <a
-          href="https://github.com/abeidahmed/ember-primitiveui"
-          aria-label="GitHub repository"
-          class="text-gray-500 hover:text-gray-900"
-        >
-          {{svg-jar "github-solid" fill="currentColor"}}
-        </a>
-      </div>
-    </div>
+  <div class="flex items-center text-sm space-x-4 lg:ml-auto">
+    <a
+      href="https://github.com/abeidahmed/ember-primitiveui/blob/main/CHANGELOG.md"
+      class="inline-flex items-center text-blue-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span>Changelog</span>
+      <span class="flex-shrink-0 ml-1" aria-hidden="true">
+        <Svg @icon="external-link" @size="18" />
+      </span>
+    </a>
+
+    <a
+      href="https://github.com/abeidahmed/ember-primitiveui"
+      class="inline-flex items-center text-blue-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="flex-1">GitHub</span>
+      <span class="flex-shrink-0 ml-1" aria-hidden="true">
+        <Svg @icon="external-link" @size="18" />
+      </span>
+    </a>
   </div>
 </header>
