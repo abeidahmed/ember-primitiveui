@@ -15,6 +15,21 @@ module.exports = function (defaults) {
         ],
       },
     },
+    prember: {
+      urls: [
+        '/',
+        '/docs',
+        '/docs/components/dialog',
+        '/docs/components/menu',
+        '/docs/components/popover',
+        '/docs/components/portal',
+        '/docs/components/switch',
+        '/docs/modifiers/body-scroll-lock',
+        '/docs/modifiers/focus-trap',
+        '/docs/modifiers/on-outside-click',
+        '/docs/modifiers/velcro',
+      ],
+    },
     svgJar: {
       sourceDirs: ['public/images/icons', 'public/images/assets'],
     },
