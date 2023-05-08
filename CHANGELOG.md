@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `Menu` component yields `id`, `buttonId`, `listId`, `itemId`, `close`, `open` properties.
 - Set `data-placement` on velcro element.
 
+### Removed
+- Boilerplate setup for `Portal` component.
+
 ## [0.2.0] - 2023-04-30
 
 ### Added
