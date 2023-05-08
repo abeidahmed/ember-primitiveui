@@ -1,6 +1,18 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const { glob } = require('glob');
+
+async function urlForPrember() {
+  const index = '/index';
+  const files = await glob('./docs/**/*.md');
+  const normalizedFiles = files.map((file) => {
+    const f = `/${file.replace('.md', '')}`;
+    return f.endsWith(index) ? f.substring(0, f.length - index.length) : f;
+  });
+
+  return ['/', ...normalizedFiles];
+}
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -16,19 +28,7 @@ module.exports = function (defaults) {
       },
     },
     prember: {
-      urls: [
-        '/',
-        '/docs',
-        '/docs/components/dialog',
-        '/docs/components/menu',
-        '/docs/components/popover',
-        '/docs/components/portal',
-        '/docs/components/switch',
-        '/docs/modifiers/body-scroll-lock',
-        '/docs/modifiers/focus-trap',
-        '/docs/modifiers/on-outside-click',
-        '/docs/modifiers/velcro',
-      ],
+      urls: urlForPrember(),
     },
     svgJar: {
       sourceDirs: ['public/images/icons', 'public/images/assets'],
