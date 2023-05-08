@@ -1,6 +1,18 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const { globSync } = require('glob');
+
+function urlForPrember() {
+  const index = '/index';
+  const files = globSync('./docs/**/*.md');
+  const normalizedFiles = files.map((file) => {
+    const f = `/${file.replace('.md', '')}`;
+    return f.endsWith(index) ? f.substring(0, f.length - index.length) : f;
+  });
+
+  return ['/', ...normalizedFiles];
+}
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -14,6 +26,9 @@ module.exports = function (defaults) {
           require('tailwindcss')('./tailwind.config.js'),
         ],
       },
+    },
+    prember: {
+      urls: urlForPrember(),
     },
     svgJar: {
       sourceDirs: ['public/images/icons', 'public/images/assets'],
