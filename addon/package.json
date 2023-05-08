@@ -1,7 +1,7 @@
 {
   "name": "ember-primitiveui",
-  "version": "0.2.0",
-  "description": "Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.",
+  "version": "0.3.0",
+  "description": "Ember primitiveUI is an open-source UI component library for building ambitious Ember.js applications.",
   "keywords": [
     "ember-addon",
     "headlessui",
