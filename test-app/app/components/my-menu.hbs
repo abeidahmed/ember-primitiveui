@@ -3,7 +3,7 @@
     Options
   </menu.Button>
 
-  <menu.List class="menu-list" {{velcro (concat "#" menu.buttonId) offsetOptions=(hash mainAxis=4)}}>
+  <menu.List class="menu-list" {{velcro (concat "#" menu.buttonId) placement="bottom" offsetOptions=(hash mainAxis=4)}}>
     <menu.Item type="button" class="menu-item" as |item|>
       <span class="menu-item-text {{if item.active 'active'}}">
         Account settings
