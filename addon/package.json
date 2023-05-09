@@ -83,7 +83,6 @@
     "demoURL": "https://ember-primitiveui.netlify.com",
     "app-js": {
       "./components/dialog.js": "./dist/_app_/components/dialog.js",
-      "./components/dialog/description.js": "./dist/_app_/components/dialog/description.js",
       "./components/dialog/panel.js": "./dist/_app_/components/dialog/panel.js",
       "./components/dialog/title.js": "./dist/_app_/components/dialog/title.js",
       "./components/menu.js": "./dist/_app_/components/menu.js",
