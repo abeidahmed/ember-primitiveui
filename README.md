@@ -1,6 +1,6 @@
 # ember-primitiveui
 
-Completely unstyled, fully accessible UI components for building ambitious Ember.js applications.
+Ember primitiveUI is an open-source UI component library for building ambitious Ember.js applications.
 
 ## Documentation
 
