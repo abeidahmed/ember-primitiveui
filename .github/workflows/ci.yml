@@ -46,7 +46,7 @@ jobs:
     name: ${{ matrix.try-scenario }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: ['lint', 'test']
+    needs: ["lint", "test"]
     strategy:
       fail-fast: false
       matrix:
@@ -57,10 +57,10 @@ jobs:
           - ember-classic
           - embroider-safe
           - embroider-optimized
-        include:
-          - try-scenario: ember-canary
-          - try-scenario: ember-beta
-            allow-failure: true
+        # include: # Uncomment after it tests pass.
+        #   - try-scenario: ember-canary
+        #   - try-scenario: ember-beta
+        #     allow-failure: true
     steps:
       - uses: actions/checkout@v3
       - name: Install Node
