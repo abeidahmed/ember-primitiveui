@@ -86,7 +86,12 @@ export default class VelcroModifier extends Modifier<Signature> {
     _middleware.push(shift(shiftOptions));
     _middleware.concat(middleware);
 
-    const { x, y } = await computePosition(this.anchorElement, this.popupElement, {
+    const {
+      x,
+      y,
+      placement: _placement,
+      strategy: _strategy,
+    } = await computePosition(this.anchorElement, this.popupElement, {
       placement,
       middleware: _middleware,
       strategy,
@@ -94,9 +99,9 @@ export default class VelcroModifier extends Modifier<Signature> {
     Object.assign(this.popupElement.style, {
       left: `${x}px`,
       top: `${y}px`,
-      position: strategy,
+      position: _strategy,
     });
 
-    this.popupElement.setAttribute('data-placement', placement);
+    this.popupElement.setAttribute('data-placement', _placement);
   }
 }
