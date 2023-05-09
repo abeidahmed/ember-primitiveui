@@ -18,4 +18,10 @@ module('Integration | Component | separator', function (hooks) {
 
     assert.dom('[data-test-separator]').hasAria('orientation', 'vertical');
   });
+
+  test('renders Separator as li using the `@as` argument', async function (assert) {
+    await render(hbs`<Separator @as="li" data-test-separator />`);
+
+    assert.dom('[data-test-separator]').hasTagName('li');
+  });
 });
