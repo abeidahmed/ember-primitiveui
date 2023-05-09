@@ -6,27 +6,11 @@ import { hbs } from 'ember-cli-htmlbars';
 module('Integration | Component | dialog', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('does not render if @open={{false}}', async function (assert) {
-    this.set('onClose', function () {});
-
-    await render(hbs`
-      <Dialog data-test-dialog @open={{false}} @onClose={{this.onClose}} as |dialog|>
-        <dialog.Panel data-test-panel>
-          <dialog.Title data-test-title>
-            Dialog title
-          </dialog.Title>
-        </dialog.Panel>
-      </Dialog>
-    `);
-
-    assert.dom('[data-test-dialog]').isNotVisible();
-  });
-
   test('it renders without any errors', async function (assert) {
     this.set('onClose', function () {});
 
     await render(hbs`
-      <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+      <Dialog @onClose={{this.onClose}} as |dialog|>
         <dialog.Panel data-test-panel>
           <dialog.Title data-test-title>
             Dialog title
@@ -45,7 +29,7 @@ module('Integration | Component | dialog', function (hooks) {
     this.set('onClose', function () {});
 
     await render(hbs`
-      <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+      <Dialog @onClose={{this.onClose}} as |dialog|>
         <dialog.Panel role="alertdialog" data-test-panel>
           <dialog.Title data-test-title>
             Dialog title
@@ -62,7 +46,7 @@ module('Integration | Component | dialog', function (hooks) {
       this.set('onClose', function () {});
 
       await render(hbs`
-        <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+        <Dialog @onClose={{this.onClose}} as |dialog|>
           <dialog.Panel data-test-panel>
             <dialog.Title data-test-title>
               Dialog title
@@ -78,7 +62,7 @@ module('Integration | Component | dialog', function (hooks) {
       this.set('onClose', function () {});
 
       await render(hbs`
-        <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+        <Dialog @onClose={{this.onClose}} as |dialog|>
           <dialog.Panel data-test-panel></dialog.Panel>
         </Dialog>
       `);
@@ -97,9 +81,11 @@ module('Integration | Component | dialog', function (hooks) {
 
       await render(hbs`
         <button type="button" {{on "click" this.onOpen}}>Open dialog</button>
-        <Dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel data-test-panel></dialog.Panel>
-        </Dialog>
+        {{#if this.open}}
+          <Dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
+            <dialog.Panel data-test-panel></dialog.Panel>
+          </Dialog>
+        {{/if}}
       `);
 
       await click(find('button[type="button"]')); // open the dialog
@@ -117,11 +103,13 @@ module('Integration | Component | dialog', function (hooks) {
 
       await render(hbs`
         <button type="button" {{on "click" this.onOpen}}>Open dialog</button>
-        <Dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel data-test-panel>
-            <button data-test-button type="button" data-autofocus>Button</button>
-          </dialog.Panel>
-        </Dialog>
+        {{#if this.open}}
+          <Dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
+            <dialog.Panel data-test-panel>
+              <button data-test-button type="button" data-autofocus>Button</button>
+            </dialog.Panel>
+          </Dialog>
+        {{/if}}
       `);
 
       await click(find('button[type="button"]')); // open the dialog
@@ -139,11 +127,13 @@ module('Integration | Component | dialog', function (hooks) {
       });
 
       await render(hbs`
-        <Dialog data-test-dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel data-test-panel>
-            <button data-test-button type="button">Button</button>
-          </dialog.Panel>
-        </Dialog>
+        {{#if this.open}}
+          <Dialog data-test-dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
+            <dialog.Panel data-test-panel>
+              <button data-test-button type="button">Button</button>
+            </dialog.Panel>
+          </Dialog>
+        {{/if}}
       `);
 
       assert.dom('[data-test-dialog]').isVisible();
@@ -159,12 +149,14 @@ module('Integration | Component | dialog', function (hooks) {
       });
 
       await render(hbs`
-        <Dialog data-test-dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
-          <div data-inside>Inside</div>
-          <dialog.Panel data-test-panel>
-            <button data-test-button type="button">Button</button>
-          </dialog.Panel>
-        </Dialog>
+        {{#if this.open}}
+          <Dialog data-test-dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
+            <div data-inside>Inside</div>
+            <dialog.Panel data-test-panel>
+              <button data-test-button type="button">Button</button>
+            </dialog.Panel>
+          </Dialog>
+        {{/if}}
       `);
 
       assert.dom('[data-test-dialog]').isVisible();
@@ -180,11 +172,13 @@ module('Integration | Component | dialog', function (hooks) {
       });
 
       await render(hbs`
-        <Dialog data-test-dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel data-test-panel>
-            <button data-test-button type="button">Button</button>
-          </dialog.Panel>
-        </Dialog>
+        {{#if this.open}}
+          <Dialog data-test-dialog @open={{this.open}} @onClose={{this.onClose}} as |dialog|>
+            <dialog.Panel data-test-panel>
+              <button data-test-button type="button">Button</button>
+            </dialog.Panel>
+          </Dialog>
+        {{/if}}
       `);
 
       assert.dom('[data-test-dialog]').isVisible();
