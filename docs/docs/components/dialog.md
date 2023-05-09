@@ -15,6 +15,10 @@ import { action } from '@ember/object';
 export default class MyDialogComponent extends Component {
   @tracked isOpen = true;
 
+  @action open() {
+    this.isOpen = true;
+  }
+
   @action close() {
     this.isOpen = false;
   }
@@ -22,13 +26,15 @@ export default class MyDialogComponent extends Component {
 ```
 
 ```hbs
-<Dialog @open={{this.isOpen}} @onClose={{this.close}} as |dialog|>
-  <dialog.Panel>
-    <dialog.Title>Activate your account</dialog.Title>
-    <p>All your data will be restored.</p>
-    <button type="button">Button</button>
-  </dialog.Panel>
-</Dialog>
+<button type="button" {{on "click" this.open}}>Open dialog</button>
+{{#if this.isOpen}}
+  <Dialog @onClose={{this.close}} as |dialog|>
+    <dialog.Panel>
+      <dialog.Title>Activate your account</dialog.Title>
+      <p>All your data will be restored.</p>
+    </dialog.Panel>
+  </Dialog>
+{{/if}}
 ```
 
 > If you use the `dialog.Title` component, we will automatically set the `aria-labelledby` attribute on the `Dialog` component.
@@ -43,7 +49,7 @@ first focusable element, set `data-autofocus` on an element.
 Pressing `Tab` will cycle through all the focusable elements.
 
 ```diff
-<Dialog @open={{this.isOpen}} @onClose={{this.close}} as |dialog|>
+<Dialog @onClose={{this.close}} as |dialog|>
   <dialog.Panel>
     <dialog.Title>Activate your account</dialog.Title>
     <p>All your data will be restored.</p>
@@ -71,7 +77,6 @@ Pressing `Tab` will cycle through all the focusable elements.
 | Argument  | Default | Description                                                                |
 | ---       | ---     | ---                                                                        |
 | `as`      | `div`   | `string`                                                                   |
-| `open`    | -       | `Boolean`. Whether the dialog is open or not.                              |
 | `onClose` | -       | `() => void`. A function that will be called when the dialog is dismissed. |
 
 ### `dialog.Panel`
