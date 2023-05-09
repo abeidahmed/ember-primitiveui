@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Add `Separator` component.
+- Menu component yields `Separator` component.
+
 ### Fixed
 - Move `aria-modal`, `role`, and `aria-labelledby` property to `dialog.Panel` component.
 - Make `data-placement` reactive.

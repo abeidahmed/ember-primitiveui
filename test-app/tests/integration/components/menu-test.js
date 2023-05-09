@@ -43,6 +43,23 @@ module('Integration | Component | menu', function (hooks) {
     assert.dom(find('[data-test-item2]')).hasAria('disabled', 'true');
   });
 
+  test('renders a separator', async function (assert) {
+    await render(hbs`
+      <Menu as |menu|>
+        <menu.Button data-test-button>Toggle menu</menu.Button>
+        <menu.List data-test-list>
+          <menu.Item>Item 1</menu.Item>
+          <menu.Separator data-test-separator />
+        </menu.List>
+      </Menu>
+    `);
+
+    await click('[data-test-button]');
+    assert.dom('[data-test-list]').isVisible();
+    assert.dom('[data-test-separator]').hasAria('orientation', 'horizontal');
+    assert.dom('[data-test-separator]').hasAttribute('role', 'separator');
+  });
+
   test('open/close list', async function (assert) {
     await render(hbs`
       <Menu data-test-menu as |menu|>

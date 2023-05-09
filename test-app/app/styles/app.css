@@ -84,3 +84,8 @@
   border: 1px solid #e0e1eb;
   padding: 12px;
 }
+
+[role="separator"] {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+  margin-block: 4px;
+}
