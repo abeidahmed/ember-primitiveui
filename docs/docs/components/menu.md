@@ -19,8 +19,10 @@ is handled automatically.
       Help {{if item.active "(active)"}}
     </menu.Item>
 
-    <menu.Item as |item|>
-      Guides {{if item.active "(active)"}}
+    <menu.Separator />
+
+    <menu.Item @as="button">
+      Sign out
     </menu.Item>
   </menu.List>
 </Menu>
@@ -151,3 +153,10 @@ When the menu is opened, `menu.List` will be focused and the focus will be trapp
 | Data attribute | Values           |
 | ---            | ---              |
 | `data-state`   | `active`, `null` |
+
+### `menu.Separator`
+
+| Argument      | Default      | Description               |
+| ---           | ---          | ---                       |
+| `as`          | `div`        | `string`.                 |
+| `orientation` | `horizontal` | `horizontal`, `vertical`. |
