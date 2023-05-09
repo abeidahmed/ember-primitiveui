@@ -1,4 +1,4 @@
-# ember-primitiveui
+# Ember primitiveUI
 
 Ember primitiveUI is an open-source UI component library for building ambitious Ember.js applications.
 
