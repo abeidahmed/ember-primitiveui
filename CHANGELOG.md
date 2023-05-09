@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2023-05-09
+
 ### Added
 - Add `Separator` component.
 - Menu component yields `Separator` component.
@@ -45,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed `Listbox` component.
 - Removed `Tabs` component.
 
-[unreleased]: https://github.com/abeidahmed/ember-primitiveui/compare/v0.3.0...HEAD
+[unreleased]: https://github.com/abeidahmed/ember-primitiveui/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/abeidahmed/ember-primitiveui/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/abeidahmed/ember-primitiveui/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/abeidahmed/ember-primitiveui/releases/tag/v0.2.0
