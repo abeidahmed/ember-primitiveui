@@ -1,14 +1,15 @@
-{{! template-lint-disable no-down-event-binding }}
-
 {{#let (element (or @as "div")) as |Tag|}}
   <Tag
+    role="dialog"
+    aria-labelledby={{if @title @titleId}}
+    ...attributes
     id={{@panelId}}
+    aria-modal="true"
     tabindex="-1"
     {{body-scroll-lock reserveScrollBarGap=true}}
     {{this.registerPanel}}
     {{on-outside-click @onClose boundaries=this.rootBoundaries}}
     {{focus-trap}}
-    ...attributes
   >
     {{yield}}
   </Tag>

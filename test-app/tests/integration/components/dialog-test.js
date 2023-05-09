@@ -15,9 +15,6 @@ module('Integration | Component | dialog', function (hooks) {
           <dialog.Title data-test-title>
             Dialog title
           </dialog.Title>
-          <dialog.Description data-test-description>
-            Dialog description
-          </dialog.Description>
         </dialog.Panel>
       </Dialog>
     `);
@@ -29,24 +26,35 @@ module('Integration | Component | dialog', function (hooks) {
     this.set('onClose', function () {});
 
     await render(hbs`
-      <Dialog data-test-dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+      <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
         <dialog.Panel data-test-panel>
           <dialog.Title data-test-title>
             Dialog title
           </dialog.Title>
-          <dialog.Description data-test-description>
-            Dialog description
-          </dialog.Description>
         </dialog.Panel>
       </Dialog>
     `);
 
-    assert.dom('[data-test-dialog]').hasAria('modal', 'true');
-    assert.dom('[data-test-dialog]').hasAttribute('role', 'dialog');
-    assert.dom('[data-test-dialog]').hasAttribute('tabindex', '-1');
+    assert.dom('[data-test-panel]').hasAria('modal', 'true');
+    assert.dom('[data-test-panel]').hasAttribute('role', 'dialog');
     assert.dom('[data-test-panel]').hasAttribute('tabindex', '-1');
     assert.dom('[data-test-title]').hasText('Dialog title');
-    assert.dom('[data-test-description]').hasText('Dialog description');
+  });
+
+  test('panel role can be overridden', async function (assert) {
+    this.set('onClose', function () {});
+
+    await render(hbs`
+      <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+        <dialog.Panel role="alertdialog" data-test-panel>
+          <dialog.Title data-test-title>
+            Dialog title
+          </dialog.Title>
+        </dialog.Panel>
+      </Dialog>
+    `);
+
+    assert.dom('[data-test-panel]').hasAttribute('role', 'alertdialog');
   });
 
   module('aria-labelledby', function () {
@@ -54,8 +62,8 @@ module('Integration | Component | dialog', function (hooks) {
       this.set('onClose', function () {});
 
       await render(hbs`
-        <Dialog data-test-dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel>
+        <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+          <dialog.Panel data-test-panel>
             <dialog.Title data-test-title>
               Dialog title
             </dialog.Title>
@@ -63,48 +71,19 @@ module('Integration | Component | dialog', function (hooks) {
         </Dialog>
       `);
 
-      assert.dom('[data-test-dialog]').hasAria('labelledby', find('[data-test-title]').id);
+      assert.dom('[data-test-panel]').hasAria('labelledby', find('[data-test-title]').id);
     });
 
     test('it does not set the attribute when title is missing', async function (assert) {
       this.set('onClose', function () {});
 
       await render(hbs`
-        <Dialog data-test-dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel></dialog.Panel>
+        <Dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
+          <dialog.Panel data-test-panel></dialog.Panel>
         </Dialog>
       `);
 
-      assert.dom('[data-test-dialog]').doesNotHaveAria('labelledby');
-    });
-  });
-
-  module('aria-describedby', function () {
-    test('sets aria-describedby attribute on the dialog container', async function (assert) {
-      this.set('onClose', function () {});
-
-      await render(hbs`
-        <Dialog data-test-dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel>
-            <dialog.Description data-dialog-description>Dialog description</dialog.Description>
-          </dialog.Panel>
-        </Dialog>
-      `);
-
-      assert.dom('[data-test-dialog]').hasAria('describedby', find('[data-dialog-description]').id);
-    });
-
-    test('does not set aria-describedby attribute if description is missing', async function (assert) {
-      this.set('onClose', function () {});
-
-      await render(hbs`
-        <Dialog data-test-dialog @open={{true}} @onClose={{this.onClose}} as |dialog|>
-          <dialog.Panel>
-          </dialog.Panel>
-        </Dialog>
-      `);
-
-      assert.dom('[data-test-dialog]').doesNotHaveAria('describedby');
+      assert.dom('[data-test-panel]').doesNotHaveAria('labelledby');
     });
   });
 
