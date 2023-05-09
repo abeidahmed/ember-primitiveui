@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Move `aria-modal`, `role`, and `aria-labelledby` property to `dialog.Panel` component.
 
+### Removed
+- `Dialog` no longer accepts the `@open` argument.
+
 ## [0.3.0] - 2023-05-08
 
 ### Added

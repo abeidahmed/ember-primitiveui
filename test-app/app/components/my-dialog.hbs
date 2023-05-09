@@ -2,13 +2,15 @@
   Open dialog
 </button>
 
-<Dialog @open={{this.isOpen}} @onClose={{this.close}} class="dialog" as |dialog|>
-  <dialog.Panel class="dialog-panel">
-    <header class="dialog-header">
-      <dialog.Title class="dialog-title">Dialog title</dialog.Title>
-      <button type="button" {{on "click" this.close}}>X</button>
-    </header>
+{{#if this.isOpen}}
+  <Dialog @onClose={{this.close}} class="dialog" as |dialog|>
+    <dialog.Panel class="dialog-panel">
+      <header class="dialog-header">
+        <dialog.Title class="dialog-title">Dialog title</dialog.Title>
+        <button type="button" {{on "click" this.close}}>X</button>
+      </header>
 
-    {{yield}}
-  </dialog.Panel>
-</Dialog>
+      {{yield}}
+    </dialog.Panel>
+  </Dialog>
+{{/if}}

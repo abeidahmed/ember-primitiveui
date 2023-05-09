@@ -5,7 +5,6 @@ import { action } from '@ember/object';
 import type DialogTitleComponent from './dialog/title';
 
 interface Args {
-  open: boolean;
   onClose: () => void;
 }
 

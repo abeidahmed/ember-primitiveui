@@ -1,18 +1,16 @@
 {{! template-lint-disable no-down-event-binding }}
 
-{{#if @open}}
-  <Portal>
-    {{#let (element (or @as "div")) as |Tag|}}
-      <Tag ...attributes {{on "keydown" this.handleKeydown}}>
-        {{yield
-          (hash
-            Title=(component
-              "dialog/title" titleId=this.titleId registerTitle=this.registerTitle unregisterTitle=this.unregisterTitle
-            )
-            Panel=(component "dialog/panel" panelId=this.panelId title=this.title titleId=this.titleId onClose=@onClose)
+<Portal>
+  {{#let (element (or @as "div")) as |Tag|}}
+    <Tag ...attributes {{on "keydown" this.handleKeydown}}>
+      {{yield
+        (hash
+          Title=(component
+            "dialog/title" titleId=this.titleId registerTitle=this.registerTitle unregisterTitle=this.unregisterTitle
           )
-        }}
-      </Tag>
-    {{/let}}
-  </Portal>
-{{/if}}
+          Panel=(component "dialog/panel" panelId=this.panelId title=this.title titleId=this.titleId onClose=@onClose)
+        )
+      }}
+    </Tag>
+  {{/let}}
+</Portal>
