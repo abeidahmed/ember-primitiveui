@@ -2,9 +2,12 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { modifier } from 'ember-modifier';
 import { portalId } from '../../utils/portal';
+import type DialogTitleComponent from './title';
 
 interface Args {
   onClose: () => void;
+  title?: DialogTitleComponent;
+  titleId: string;
 }
 
 export default class DialogPanelComponent extends Component<Args> {
